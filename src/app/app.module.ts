@@ -7,6 +7,7 @@ import { LoginComponent } from './core/login/login.component';
 import { RegisterComponent } from './core/register/register.component';
 import { NavbarMenuComponent } from './home/navbar-menu/navbar-menu.component';
 import { NowPlayingBarComponent } from './home/now-playing-bar/now-playing-bar.component';
+import { LayoutComponent } from './home/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NowPlayingBarComponent } from './home/now-playing-bar/now-playing-bar.c
     LoginComponent,
     RegisterComponent,
     NavbarMenuComponent,
-    NowPlayingBarComponent
+    NowPlayingBarComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
