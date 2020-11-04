@@ -8,6 +8,9 @@ import { RegisterComponent } from './core/register/register.component';
 import { NavbarMenuComponent } from './home/navbar-menu/navbar-menu.component';
 import { NowPlayingBarComponent } from './home/now-playing-bar/now-playing-bar.component';
 import { LayoutComponent } from './home/layout/layout.component';
+import { ListSongComponent } from './song/list-song/list-song.component';
+import {HttpClientModule} from '@angular/common/http';
+import { CreatSongComponent } from './song/creat-song/creat-song.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { LayoutComponent } from './home/layout/layout.component';
     RegisterComponent,
     NavbarMenuComponent,
     NowPlayingBarComponent,
-    LayoutComponent
+    LayoutComponent,
+    ListSongComponent,
+    CreatSongComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
