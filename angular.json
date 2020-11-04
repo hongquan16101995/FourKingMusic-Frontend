@@ -29,7 +29,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/js/scripts.js"
+              "src/assets/js/scripts.js",
+              "src/assets/js/song-progress.js"
             ]
           },
           "configurations": {
