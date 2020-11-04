@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FourKingMusic-Frontend"
+    }
+  },
+  "defaultProject": "FourKingMusic-Frontend",
+  "cli": {
+    "analytics": "c2e0115e-664e-4a42-aa10-74c6d8115982"
+  }
 }
