@@ -10,6 +10,5 @@ export class NavbarMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
+  } 
 }
