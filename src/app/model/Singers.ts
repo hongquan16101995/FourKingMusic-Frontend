@@ -1,6 +1,6 @@
 import {Song} from './Song';
 
-export interface Singer {
+export interface Singers {
   id?: number;
   name?: string;
   description?: string;

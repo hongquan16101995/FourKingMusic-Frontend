@@ -48,9 +48,6 @@ $(window).on("resize load", function(){
 });
 
 
-
-
-
 // Collapse Toggles
 
 $(".navigation__list__header").on( "click" , function() {

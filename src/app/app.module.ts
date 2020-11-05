@@ -10,6 +10,7 @@ import {NowPlayingBarComponent} from './home/now-playing-bar/now-playing-bar.com
 import {LayoutComponent} from './home/layout/layout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {ListSongComponent} from './song/list-song/list-song.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     RegisterComponent,
     NavbarMenuComponent,
     NowPlayingBarComponent,
-    LayoutComponent
+    LayoutComponent,
+    ListSongComponent
   ],
   imports: [
     BrowserModule,

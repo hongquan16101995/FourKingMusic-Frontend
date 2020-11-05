@@ -1,5 +1,5 @@
 import {Users} from './Users';
-import {Singer} from './Singer';
+import {Singers} from './Singers';
 import {Playlist} from './Playlist';
 
 export interface Song {
@@ -11,6 +11,6 @@ export interface Song {
   fileUrl?: string;
   dateCreated?: string;
   user?: Users;
-  singer?: Singer[];
+  singers?: Singers[];
   playlist?: Playlist[];
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://laravel.tinhocdongian.com/api'
+  apiUrl: 'http://10.30.0.31:8080'
 };
 
 /*
