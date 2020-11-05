@@ -8,9 +8,13 @@ import {RegisterComponent} from './core/register/register.component';
 import {NavbarMenuComponent} from './home/navbar-menu/navbar-menu.component';
 import {NowPlayingBarComponent} from './home/now-playing-bar/now-playing-bar.component';
 import {LayoutComponent} from './home/layout/layout.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
 import {ListSongComponent} from './song/list-song/list-song.component';
+import {HttpClientModule} from '@angular/common/http';
+import {CreatSongComponent} from './song/creat-song/creat-song.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+
+
 
 @NgModule({
   declarations: [
@@ -20,14 +24,16 @@ import {ListSongComponent} from './song/list-song/list-song.component';
     NavbarMenuComponent,
     NowPlayingBarComponent,
     LayoutComponent,
-    ListSongComponent
+    ListSongComponent,
+    CreatSongComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
