@@ -29,7 +29,7 @@ export class SongService {
     return this.http.put<Song>(API_URL + '/song' + song.id, song);
   }
 
-  deleteOneBook(id: number): Observable<any> {
+  deleteSong(id: number): Observable<any> {
     return this.http.delete(API_URL + '/song' + id);
   }
 }

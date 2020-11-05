@@ -4,6 +4,8 @@ import {LayoutComponent} from './home/layout/layout.component';
 import {LoginComponent} from './core/login/login.component';
 import {RegisterComponent} from './core/register/register.component';
 import {CreatSongComponent} from './song/creat-song/creat-song.component';
+import {DeleteSongComponent} from './song/delete-song/delete-song.component';
+import {UserMysongComponent} from './user/user-mysong/user-mysong.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,14 @@ const routes: Routes = [
   {
     path: 'creatSong',
     component: CreatSongComponent
+  },
+  {
+    path: 'deleteSong',
+    component: DeleteSongComponent
+  },
+  {
+    path: 'mysong',
+    component: UserMysongComponent
   }
   ];
 

@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import { DeleteSongComponent } from './song/delete-song/delete-song.component';
+import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
 
 
 
@@ -25,7 +27,9 @@ import {RouterModule} from '@angular/router';
     NowPlayingBarComponent,
     LayoutComponent,
     ListSongComponent,
-    CreatSongComponent
+    CreatSongComponent,
+    DeleteSongComponent,
+    UserMysongComponent
   ],
   imports: [
     BrowserModule,

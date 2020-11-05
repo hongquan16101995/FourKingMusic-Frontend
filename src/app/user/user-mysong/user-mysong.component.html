@@ -1,0 +1,15 @@
+<app-navbar-menu></app-navbar-menu>
+<div class="masthead">
+  <div class="container d-flex h-100 align-items-center">
+    <div *ngFor="let song of songList">
+        <div><img src="{{song.avatarUrl}}" alt="ko có ảnh" width="300px" height="300px"></div>
+        <div>{{song.name}}</div>
+      <div *ngIf="song.singers.length != 0 ; else block">
+        <div *ngFor="let singer of song.singers">
+          {{singer.name}}
+        </div>
+      </div>
+        <ng-template #block>{{song.user.name}}</ng-template>
+    </div>
+  </div>
+</div>
