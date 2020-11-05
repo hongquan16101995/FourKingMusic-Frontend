@@ -1,9 +1,9 @@
 <app-navbar-menu></app-navbar-menu>
-<form class="box" method="post">
+<form class="box" [formGroup]="loginForm" (ngSubmit)="login()">
   <h1>Đăng nhập</h1>
   <input type="text" name="" placeholder="Tên đăng nhập">
   <input type="password" name="" placeholder="Mật khẩu">
-  <a href="#" type="submit">Đăng nhập</a>
+  <a type="submit">Đăng nhập</a>
 </form>
 
 <div class="lines">

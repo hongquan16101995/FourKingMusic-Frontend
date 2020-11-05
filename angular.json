@@ -29,8 +29,11 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/js/scripts.js",
-              "src/assets/js/song-progress.js"
+              "src/assets/js/navbar.js",
+              "src/assets/js/song-progress.js",
+              "src/assets/js/list-carousel.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js"
             ]
           },
           "configurations": {
