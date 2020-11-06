@@ -13,6 +13,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
+import { SingerComponent } from './song/singer/singer.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
+import { PosterComponent } from './core/poster/poster.component';
 import { DeleteSongComponent } from './song/delete-song/delete-song.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
 import { InformationComponent } from './core/information/information.component';
@@ -31,6 +36,12 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     NowPlayingBarComponent,
     LayoutComponent,
     ListSongComponent,
+    CreatSongComponent,
+    NewMostSongsComponent,
+    SingerComponent,
+    FooterComponent,
+    ListPlaylistComponent,
+    PosterComponent,
     CreatSongComponent,
     DeleteSongComponent,
     UserMysongComponent,
