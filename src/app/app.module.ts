@@ -17,6 +17,7 @@ import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.comp
 import { SingerComponent } from './song/singer/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
+import { PosterComponent } from './core/poster/poster.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ListPlaylistComponent } from './song/list-playlist/list-playlist.compon
     SingerComponent,
     FooterComponent,
     ListPlaylistComponent,
+    PosterComponent,
   ],
   imports: [
     BrowserModule,
