@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Song} from '../model/Song';
 
@@ -10,6 +10,12 @@ const API_URL = `${environment.apiUrl}`;
   providedIn: 'root'
 })
 export class SongService {
+  token = JSON.parse(localStorage.getItem('token'));
+  // tslint:disable-next-line:variable-name
+  headers_object = new HttpHeaders().set('Authorization', 'Bearer' + this.token);
+  httpOptions = {
+    headers: this.headers_object
+  };
 
   constructor(private http: HttpClient) { }
 

@@ -6,6 +6,7 @@ import {RegisterComponent} from './core/register/register.component';
 import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {DeleteSongComponent} from './song/delete-song/delete-song.component';
 import {UserMysongComponent} from './user/user-mysong/user-mysong.component';
+import {AuthGuardGuard} from './guard/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -20,15 +21,18 @@ const routes: Routes = [
   },
   {
     path: 'creatSong',
-    component: CreatSongComponent
+    component: CreatSongComponent,
+    canActivate: [AuthGuardGuard]
   },
   {
     path: 'deleteSong',
-    component: DeleteSongComponent
+    component: DeleteSongComponent,
+    canActivate: [AuthGuardGuard]
   },
   {
     path: 'mysong',
-    component: UserMysongComponent
+    component: UserMysongComponent,
+    canActivate: [AuthGuardGuard]
   }
   ];
 

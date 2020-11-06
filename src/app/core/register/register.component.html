@@ -1,11 +1,11 @@
 <app-navbar-menu></app-navbar-menu>
-<form class="box">
+<form class="box" [formGroup]="registerForm" (ngSubmit)="register()">
   <h1>Đăng ký</h1>
-  <input type="text" name="" placeholder="Họ tên">
-  <input type="text" name="" placeholder="Email">
-  <input type="text" name="" placeholder="Tên đăng nhập">
-  <input type="password" name="" placeholder="Mật khẩu">
-  <a type="submit">Đăng ký</a>
+  <input formControlName="name" type="text" name="" placeholder="Họ tên">
+  <input formControlName="email" type="text" name="" placeholder="Email">
+  <input formControlName="username" type="text" name="" placeholder="Tên đăng nhập">
+  <input formControlName="password" type="password" name="" placeholder="Mật khẩu">
+  <button type="submit">Đăng ký</button>
 </form>
 
 <div class="lines">

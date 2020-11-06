@@ -18,20 +18,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [''],
+      username: [''],
       password: ['']
     });
   }
 
   // tslint:disable-next-line:typedef
   login() {
-    let data = this.loginForm.value;
+    const data = this.loginForm.value;
     this.loginService.login(data).subscribe(res => {
       // tslint:disable-next-line:triple-equals
-      if (res.status == 'success') {
-        let jwt = res.data.token;
+      if (res.email != null) {
+        const jwt = res.token;
         localStorage.setItem('token', JSON.stringify(jwt));
-        this.router.navigate(['admin']);
+        this.router.navigate(['']);
       } else {
         console.log(res);
       }
