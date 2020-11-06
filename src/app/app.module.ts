@@ -16,6 +16,7 @@ import {RouterModule} from '@angular/router';
 import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
 import { SingerComponent } from './song/singer/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
+import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FooterComponent } from './home/footer/footer.component';
     NewMostSongsComponent,
     SingerComponent,
     FooterComponent,
+    ListPlaylistComponent,
   ],
   imports: [
     BrowserModule,
