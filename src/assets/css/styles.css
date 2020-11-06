@@ -9915,7 +9915,7 @@ button.bg-black:focus {
 }
 
 .text-primary {
-  color: #64a19d !important;
+  color: #b885c6 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -9939,11 +9939,12 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-  color: #17a2b8 !important;
+  color: #ffffff !important;
 }
 
 a.text-info:hover, a.text-info:focus {
-  color: #0f6674 !important;
+  text-decoration: none;
+  color: #000000 !important;
 }
 
 .text-warning {
@@ -10310,7 +10311,7 @@ body {
 }
 .contact-section .card {
   border: 0;
-  border-bottom: 0.25rem solid #64a19d;
+  border-bottom: 0.25rem solid #b885c6 ;
 }
 .contact-section .card h4 {
   font-size: 0.8rem;
@@ -10319,7 +10320,7 @@ body {
   letter-spacing: 0.15rem;
 }
 .contact-section .card hr {
-  border-color: #64a19d;
+  border-color: #b885c6 ;
   border-width: 0.25rem;
   width: 3rem;
 }
@@ -10330,7 +10331,7 @@ body {
   text-align: center;
   height: 3rem;
   width: 3rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 100%;
   line-height: 3rem;
   color: rgba(255, 255, 255, 0.3);
