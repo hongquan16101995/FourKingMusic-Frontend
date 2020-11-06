@@ -11,5 +11,4 @@ export interface Users {
   hobbies?: string;
   avatarUrl?: string;
   role?: Role;
-  playlist?: Playlist[];
 }

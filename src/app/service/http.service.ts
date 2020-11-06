@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpHeaders} from '@angular/common/http';
-import {Users} from '../model/Users';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  token = JSON.parse(localStorage.getItem('token'));
+  token = localStorage.getItem('token');
   // tslint:disable-next-line:variable-name
   headers_object = new HttpHeaders().set('Authorization', 'Bearer' + this.token);
   httpOptions = {
@@ -25,5 +24,10 @@ export class HttpService {
   // tslint:disable-next-line:typedef
   getHttp(){
     return this.httpOptions;
+  }
+
+  // tslint:disable-next-line:typedef
+  getID(): string {
+    return this.id = localStorage.getItem('userId');
   }
 }

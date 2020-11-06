@@ -28,9 +28,10 @@ export class LoginComponent implements OnInit {
     const data = this.loginForm.value;
     this.loginService.login(data).subscribe(res => {
       // tslint:disable-next-line:triple-equals
-      if (res.email != null) {
+      if (res.id != null) {
         const jwt = res.token;
         localStorage.setItem('token', JSON.stringify(jwt));
+        localStorage.setItem('userId', JSON.stringify(res.id));
         this.router.navigate(['userHome']);
       } else {
         console.log(res);

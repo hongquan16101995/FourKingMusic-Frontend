@@ -16,8 +16,7 @@ export class UserHomeComponent implements OnInit {
   // tslint:disable-next-line:typedef
   logout(){
     localStorage.removeItem('token');
-    localStorage.clear();
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('id');
     localStorage.clear();
     this.route.navigate(['']);
   }

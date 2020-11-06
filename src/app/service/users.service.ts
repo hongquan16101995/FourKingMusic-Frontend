@@ -7,7 +7,6 @@ import {HttpService} from './http.service';
 import {Password} from '../model/Password';
 
 const API_URL = `${environment.apiUrl}`;
-const API_URL1 = `${environment.apiUrl1}`;
 
 @Injectable({
   providedIn: 'root'
@@ -22,23 +21,23 @@ export class UsersService {
   }
 
   // tslint:disable-next-line:typedef
-  changePassword(data: Password) {
+  changePassword(data: Password): Observable<any> {
     return this.http.post<any>(API_URL + '/user/changepassword', data, this.httpService.getHttp());
   }
 
   getAllUser(): Observable<Users[]> {
-    return this.http.get<Users[]>(API_URL1);
+    return this.http.get<Users[]>(API_URL);
   }
 
-  getById(id: number): Observable<Users> {
-    return this.http.get<Users>(API_URL1 +  id, this.httpService.getHttp());
+  getById(id: string): Observable<Users> {
+    return this.http.get<Users>(API_URL + '/user/' + id, this.httpService.getHttp());
   }
 
   creatUser(user: Users): Observable<Users> {
     return this.http.post<Users>(API_URL, user);
   }
 
-  updateUser(user: Users): Observable<Users> {
+  updateUser(user: Users): Observable<any> {
     return this.http.post<Users>(API_URL + '/user/changeinfo', user , this.httpService.getHttp());
   }
 

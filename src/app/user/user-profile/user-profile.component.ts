@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   userForm: FormGroup;
   message = '';
   user: Users;
-  iduser: number;
+  iduser: string;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UsersService,
@@ -35,18 +35,37 @@ export class UserProfileComponent implements OnInit {
         hobbies: ['', [Validators.required]],
         avatarUrl: ['', [Validators.required]]
       });
-    this.userForm.patchValue(this.user);
+    // @ts-ignore
+    this.iduser = this.httpService.getID();
+    console.log(this.iduser);
+    this.userService.getById(this.iduser).subscribe(data => {
+      this.user = {
+        id: data.id,
+        role: data.role,
+        username: data.username,
+        password: data.password
+      };
+      this.userForm.patchValue(data);
+    });
+    console.log(this.user);
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    // this.userForm.value.role = this.user.name;
-    // this.userForm.value.email = this.user.email;
-    // this.userForm.value.gender = this.user.gender;
-    // this.userForm.value.hobbies = this.user.hobbies;
-    // this.userForm.value.avatarUrl = this.user.avatarUrl;
-    this.userService.updateUser(this.userForm.value).subscribe(() => {
-      this.message = 'Update successfully!';
+    // console.log(this.user);
+    const user1 = {
+      id: this.user.id,
+      name: this.userForm.value.name,
+      email: this.userForm.value.email,
+      username: this.user.username,
+      password:  this.user.password,
+      gender: this.userForm.value.gender,
+      hobbies: this.userForm.value.hobbies,
+      avatarUrl: this.userForm.value.avatarUrl,
+      role: this.user.role
+    };
+    this.userService.updateUser(user1).subscribe(data => {
+      this.message = JSON.stringify(data);
     });
   }
 
