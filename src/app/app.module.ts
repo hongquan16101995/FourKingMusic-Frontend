@@ -13,7 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-
+import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import {RouterModule} from '@angular/router';
     NowPlayingBarComponent,
     LayoutComponent,
     ListSongComponent,
-    CreatSongComponent
+    CreatSongComponent,
+    NewMostSongsComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,8 +3,8 @@
   height: 400px;
   top: 50%;
   transform: translateY(-50%);
-  overflow: hidden;
-  margin-top: 100px;
+  margin-top: 250px;
+  background-color: #6f42c1;
 }
 #carousel div {
   position: absolute;

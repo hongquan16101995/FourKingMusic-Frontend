@@ -1,0 +1,38 @@
+
+<section id="newmostsongs">
+    <div class="new-most-song mt-5 bg-white">
+      <div class="row p-5">
+        <div class="col-6">
+          <h4 class="font-weight-bold">Newest songs</h4>
+          <ul class="list-group br-1">
+            <li class="list-group-item pb-1">
+              <a class="name-of-song">
+                <img width="40" height="40" src="{{song1.avatarUrl}}" class="img thumbnail pull-left mr-2">
+                <h6 class="mb-1 text-dark">{{song1.name}}</h6>
+              </a>
+              <p class="mb-0 singer" *ngFor="let singer of song1.singers">{{singer.name}}</p>
+            </li>
+          </ul>
+          <a class="text-info" href="">
+            <div class="text-center mt-3">Show all</div>
+          </a>
+        </div>
+        <div class="col-6">
+          <h4 class="font-weight-bold">Most played songs</h4>
+          <ul class="list-group">
+            <li class="list-group-item pb-1">
+              <a class="name-of-song">
+                <img src="{{song1.avatarUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
+                <h6 class="mb-1 text-dark">{{song1.name}}</h6>
+              </a>
+              <p class="mb-0 singer" *ngFor="let singer of song1.singers">{{singer.name}}</p>
+            </li>
+
+          </ul>
+          <a class="text-info" href="">
+            <div class="text-center mt-3">Show all</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>

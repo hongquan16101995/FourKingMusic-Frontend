@@ -32,7 +32,8 @@
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/assets/js/navbar.js",
-              "src/assets/js/list-carousel.js"
+              "src/assets/js/list-carousel.js",
+              "src/assets/js/review-carousel.js"
             ]
           },
           "configurations": {
