@@ -9915,7 +9915,7 @@ button.bg-black:focus {
 }
 
 .text-primary {
-  color: #b885c6 !important;
+  color: #EDA1AB !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10179,7 +10179,7 @@ body {
     color: #fff;
   }
   #mainNav.navbar-shrink {
-    background-color: #fff;
+    background-color: #ffffff;
   }
   #mainNav.navbar-shrink .navbar-brand {
     color: #000000;
@@ -10218,7 +10218,7 @@ body {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background-color: #a988e3;
+  background-color: #D698B9;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -10311,7 +10311,7 @@ body {
 }
 .contact-section .card {
   border: 0;
-  border-bottom: 0.25rem solid #b885c6 ;
+  border-bottom: 0.25rem solid #EDA1AB;
 }
 .contact-section .card h4 {
   font-size: 0.8rem;
@@ -10320,7 +10320,7 @@ body {
   letter-spacing: 0.15rem;
 }
 .contact-section .card hr {
-  border-color: #b885c6 ;
+  border-color: #EDA1AB ;
   border-width: 0.25rem;
   width: 3rem;
 }
@@ -10340,7 +10340,7 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 .contact-section .social a:active {
-  color: #fff;
+  color: #ffffff;
 }
 
 .footer {

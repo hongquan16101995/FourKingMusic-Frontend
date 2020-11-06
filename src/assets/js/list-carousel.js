@@ -42,15 +42,4 @@ $(document).keydown(function(e) {
   e.preventDefault();
 });
 
-$('#carousel div').click(function() {
-  moveToSelected($(this));
-});
-
-$('#prev').click(function() {
-  moveToSelected('prev');
-});
-
-$('#next').click(function() {
-  moveToSelected('next');
-});
 
