@@ -1,0 +1,18 @@
+
+<div class="carousel-gallery">
+  <h3>Ca sĩ</h3>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let song of songList">
+        <a href="#" data-fancybox="gallery">
+          <div class="image" style="background-image: url({{song.avatarUrl}})">
+            <div class="overlay">
+              <em class="mdi mdi-magnify-plus"></em>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>

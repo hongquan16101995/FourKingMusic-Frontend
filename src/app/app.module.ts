@@ -14,6 +14,8 @@ import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
+import { SingerComponent } from './song/singer/singer.component';
+import { FooterComponent } from './home/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.comp
     ListSongComponent,
     CreatSongComponent,
     NewMostSongsComponent,
+    SingerComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
