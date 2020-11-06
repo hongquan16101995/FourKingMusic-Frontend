@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpHeaders} from '@angular/common/http';
+import {Users} from '../model/Users';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class HttpService {
   httpOptions = {
     headers: this.headers_object
   };
+
+  id: string;
 
   constructor() { }
 

@@ -16,11 +16,11 @@ export class SongService {
               private httpService: HttpService) { }
 
   getAllSongs(): Observable<Song[]> {
-    return this.http.get<Song[]>(API_URL + '/song');
+    return this.http.get<Song[]>(API_URL + '/home/song');
   }
 
   getById(id: number): Observable<Song> {
-    return this.http.get<Song>(API_URL + '/song' + id);
+    return this.http.get<Song>(API_URL + '/home/song' + id);
   }
 
   createSong(song: Song): Observable<Song> {

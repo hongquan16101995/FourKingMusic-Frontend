@@ -17,6 +17,8 @@ import { DeleteSongComponent } from './song/delete-song/delete-song.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
 import { InformationComponent } from './core/information/information.component';
 import { PasswordComponent } from './core/password/password.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 
 
@@ -33,7 +35,9 @@ import { PasswordComponent } from './core/password/password.component';
     DeleteSongComponent,
     UserMysongComponent,
     InformationComponent,
-    PasswordComponent
+    PasswordComponent,
+    UserHomeComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

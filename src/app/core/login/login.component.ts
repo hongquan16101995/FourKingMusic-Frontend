@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       if (res.email != null) {
         const jwt = res.token;
         localStorage.setItem('token', JSON.stringify(jwt));
-        this.router.navigate(['']);
+        this.router.navigate(['userHome']);
       } else {
         console.log(res);
       }
