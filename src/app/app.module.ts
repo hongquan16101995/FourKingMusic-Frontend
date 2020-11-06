@@ -18,6 +18,14 @@ import { SingerComponent } from './song/singer/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
+import { DeleteSongComponent } from './song/delete-song/delete-song.component';
+import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
+import { InformationComponent } from './core/information/information.component';
+import { PasswordComponent } from './core/password/password.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,6 +42,13 @@ import { PosterComponent } from './core/poster/poster.component';
     FooterComponent,
     ListPlaylistComponent,
     PosterComponent,
+    CreatSongComponent,
+    DeleteSongComponent,
+    UserMysongComponent,
+    InformationComponent,
+    PasswordComponent,
+    UserHomeComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

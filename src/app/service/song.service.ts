@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Song} from '../model/Song';
+import {HttpService} from './http.service';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -11,25 +12,26 @@ const API_URL = `${environment.apiUrl}`;
 })
 export class SongService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private httpService: HttpService) { }
 
   getAllSongs(): Observable<Song[]> {
-    return this.http.get<Song[]>(API_URL + '/song');
+    return this.http.get<Song[]>(API_URL + '/home/song');
   }
 
   getById(id: number): Observable<Song> {
-    return this.http.get<Song>(API_URL + '/song' + id);
+    return this.http.get<Song>(API_URL + '/home/song' + id);
   }
 
   createSong(song: Song): Observable<Song> {
-    return this.http.post<Song>(API_URL + '/song', song);
+    return this.http.post<Song>(API_URL + '/song', song, this.httpService.getHttp());
   }
 
   updateSong(song: Song): Observable<Song> {
-    return this.http.put<Song>(API_URL + '/song' + song.id, song);
+    return this.http.put<Song>(API_URL + '/song' + song.id, song, this.httpService.getHttp());
   }
 
-  deleteOneBook(id: number): Observable<any> {
-    return this.http.delete(API_URL + '/song' + id);
+  deleteSong(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/song' + id, this.httpService.getHttp());
   }
 }

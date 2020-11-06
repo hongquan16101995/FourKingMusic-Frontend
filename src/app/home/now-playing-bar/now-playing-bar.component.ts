@@ -10,5 +10,4 @@ export class NowPlayingBarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

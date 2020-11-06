@@ -1,9 +1,8 @@
 <app-navbar-menu></app-navbar-menu>
-<form class="box" [formGroup]="loginForm" (ngSubmit)="login()">
-  <h1>Đăng nhập</h1>
-  <input formControlName="username" type="text" name="" placeholder="Tên đăng nhập">
-  <input formControlName="password" type="password" name="" placeholder="Mật khẩu">
-  <button type="submit">Đăng nhập</button>
+<form class="box" [formGroup]="informationForm" (ngSubmit)="information()">
+  <h1>Đăng ký</h1>
+  <input formControlName="name" type="text" name="" placeholder="Họ tên">
+  <button type="submit">Cập nhật</button>
 </form>
 
 <div class="lines">
