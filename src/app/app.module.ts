@@ -15,6 +15,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { DeleteSongComponent } from './song/delete-song/delete-song.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
+import { InformationComponent } from './core/information/information.component';
+import { PasswordComponent } from './core/password/password.component';
 
 
 
@@ -29,7 +31,9 @@ import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
     ListSongComponent,
     CreatSongComponent,
     DeleteSongComponent,
-    UserMysongComponent
+    UserMysongComponent,
+    InformationComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

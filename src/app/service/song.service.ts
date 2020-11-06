@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Song} from '../model/Song';
+import {HttpService} from './http.service';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -10,14 +11,9 @@ const API_URL = `${environment.apiUrl}`;
   providedIn: 'root'
 })
 export class SongService {
-  token = JSON.parse(localStorage.getItem('token'));
-  // tslint:disable-next-line:variable-name
-  headers_object = new HttpHeaders().set('Authorization', 'Bearer' + this.token);
-  httpOptions = {
-    headers: this.headers_object
-  };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private httpService: HttpService) { }
 
   getAllSongs(): Observable<Song[]> {
     return this.http.get<Song[]>(API_URL + '/song');
@@ -28,14 +24,14 @@ export class SongService {
   }
 
   createSong(song: Song): Observable<Song> {
-    return this.http.post<Song>(API_URL + '/song', song);
+    return this.http.post<Song>(API_URL + '/song', song, this.httpService.getHttp());
   }
 
   updateSong(song: Song): Observable<Song> {
-    return this.http.put<Song>(API_URL + '/song' + song.id, song);
+    return this.http.put<Song>(API_URL + '/song' + song.id, song, this.httpService.getHttp());
   }
 
   deleteSong(id: number): Observable<any> {
-    return this.http.delete(API_URL + '/song' + id);
+    return this.http.delete(API_URL + '/song' + id, this.httpService.getHttp());
   }
 }
