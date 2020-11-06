@@ -4,6 +4,7 @@
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
+  margin-top: 100px;
 }
 #carousel div {
   position: absolute;
