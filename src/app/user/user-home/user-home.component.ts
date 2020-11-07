@@ -8,17 +8,10 @@ import {Router} from '@angular/router';
 })
 export class UserHomeComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  // tslint:disable-next-line:typedef
-  logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.clear();
-    this.route.navigate(['']);
-  }
 
 }

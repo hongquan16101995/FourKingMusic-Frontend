@@ -10,7 +10,7 @@ import {NowPlayingBarComponent} from './home/now-playing-bar/now-playing-bar.com
 import {LayoutComponent} from './home/layout/layout.component';
 import {ListSongComponent} from './song/list-song/list-song.component';
 import {HttpClientModule} from '@angular/common/http';
-import {CreatSongComponent} from './song/creat-song/creat-song.component';
+import {CreatSongComponent} from './user/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
@@ -24,6 +24,8 @@ import { InformationComponent } from './core/information/information.component';
 import { PasswordComponent } from './core/password/password.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
+import { FooterUserComponent } from './user/footer-user/footer-user.component';
 
 
 
@@ -48,7 +50,9 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     InformationComponent,
     PasswordComponent,
     UserHomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NavbarUserComponent,
+    FooterUserComponent
   ],
   imports: [
     BrowserModule,

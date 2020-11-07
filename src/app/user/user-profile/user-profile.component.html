@@ -1,4 +1,4 @@
-
+<app-navbar-user></app-navbar-user>
 <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
   <div>
     <table class="table table-bordered">
@@ -43,10 +43,9 @@
         </td>
       </tr>
       <tr>
-        <td></td>
-        <td>
-          <button class="btn btn-primary mr-2" type="submit">Update</button>
-          <button class="btn btn-secondary" [routerLink]="['/userHome']">Cancel</button>
+        <td colspan="2">
+          <button type="submit">Update</button>
+          <button class="button-cancel" [routerLink]="['/userHome']">Cancel</button>
         </td>
       </tr>
     </table>
