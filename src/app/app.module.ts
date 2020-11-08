@@ -14,7 +14,7 @@ import {CreatSongComponent} from './user/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
-import { SingerComponent } from './song/singer/singer.component';
+import { SingerComponent } from './singer/singer-list/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
@@ -27,6 +27,11 @@ import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
 import { FooterUserComponent } from './user/footer-user/footer-user.component';
 import { PlaySongComponent } from './song/play-song/play-song.component';
 import {DeleteSongComponent} from './user/delete-song/delete-song.component';
+import { UserEditMysongComponent } from './user/user-edit-mysong/user-edit-mysong.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 
 
@@ -52,6 +57,8 @@ import {DeleteSongComponent} from './user/delete-song/delete-song.component';
     PasswordComponent,
     UserHomeComponent,
     UserProfileComponent,
+    UserEditMysongComponent,
+    UserProfileComponent,
     NavbarUserComponent,
     FooterUserComponent,
     PlaySongComponent
@@ -62,6 +69,9 @@ import {DeleteSongComponent} from './user/delete-song/delete-song.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     RouterModule
   ],
   providers: [],

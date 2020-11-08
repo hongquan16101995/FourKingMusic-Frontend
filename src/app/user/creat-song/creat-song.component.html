@@ -4,6 +4,11 @@
   <div>
     <table class="table table-bordered">
       <tr>
+        <td>AvatarUrl</td>
+        <td><input class="form-control" type="file" formControlName="avatarUrl" (change)="showPre($event)">
+        </td>
+      </tr>
+      <tr>
         <td>Name</td>
         <td><input class="form-control" type="text" formControlName="name">
           <div *ngIf="songForm.get('name').hasError('required') && songForm.get('name').touched" class="text-danger">
@@ -24,15 +29,6 @@
         <td>Tags</td>
         <td><input class="form-control" type="text" formControlName="tags">
           <div *ngIf="songForm.get('tags').hasError('required') && songForm.get('tags').touched" class="text-danger">
-            Erros
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>AvatarUrl</td>
-        <td><input class="form-control" type="text" formControlName="avatarUrl">
-          <div *ngIf="songForm.get('avatarUrl').hasError('required') && songForm.get('avatarUrl').touched"
-               class="text-danger">
             Erros
           </div>
         </td>

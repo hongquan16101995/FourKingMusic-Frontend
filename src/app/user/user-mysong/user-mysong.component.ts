@@ -16,7 +16,6 @@ export class UserMysongComponent implements OnInit {
   ngOnInit(): void {
     this.songService.getAllSongs().subscribe(data => {
       this.songList = data;
-      console.log(data);
     });
   }
 

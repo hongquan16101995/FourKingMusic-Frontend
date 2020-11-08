@@ -10,6 +10,7 @@ import {UserHomeComponent} from './user/user-home/user-home.component';
 import {UserProfileComponent} from './user/user-profile/user-profile.component';
 import {PlaySongComponent} from './song/play-song/play-song.component';
 import {DeleteSongComponent} from './user/delete-song/delete-song.component';
+import {UserEditMysongComponent} from './user/user-edit-mysong/user-edit-mysong.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'userProfile',
     component: UserProfileComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'userHome/:id/userEditMysong',
+    component: UserEditMysongComponent,
     canActivate: [AuthGuardGuard]
   }
   ];
