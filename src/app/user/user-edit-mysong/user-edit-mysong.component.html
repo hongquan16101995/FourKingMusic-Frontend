@@ -1,37 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger" [routerLink]="['/userHome']">
-      <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-      4KMusic</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-      Menu
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-      </ul>
-    </div>
-  </div>
-</nav>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<app-navbar-user></app-navbar-user>
+<div>
 <form (ngSubmit)="onSubmit()" [formGroup]="songForm">
   <div>
     <table class="table table-bordered">
       <tr>
-        <td><img [src]="avaUrl" alt="ko có ảnh"></td>
+        <td><img [src]="avaUrl" alt="ko có ảnh" height="50px" width="50px"></td>
         <td><input class="form-control" type="file" formControlName="avatarUrl" (change)="showPre($event)">
         </td>
       </tr>
@@ -62,16 +35,17 @@
         </td>
       </tr>
       <tr>
-        <td></td>
-        <td>
-          <button class="btn btn-primary mr-2" type="submit">Update</button>
+        <td colspan="2">
+          <button  type="submit">Update</button>
+          <button class="button-cancel" [routerLink]="['/userHome']" type="button">Cancel</button>
         </td>
       </tr>
     </table>
+
   </div>
 </form>
-<button class="btn btn-secondary" [routerLink]="['/userHome']">Cancel</button>
 <div class="alert alert-danger" role="alert" style="text-align: center" *ngIf="message">{{message}}</div>
+</div>
 
 
 

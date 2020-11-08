@@ -14,11 +14,12 @@
                 <div *ngFor="let singer of song.singers">
                   {{singer.name}}
                 </div>
-
-              </div>  <ng-template #block>{{song.user.name}}</ng-template>
+              </div>
+              <ng-template #block>{{song.user.name}}</ng-template>
             </div>
           </div>
         </a>
+        <button class="btn" [routerLink]="[song.id, 'userEditMysong']">Update</button>
       </div>
     </div>
     <div class="swiper-pagination"></div>

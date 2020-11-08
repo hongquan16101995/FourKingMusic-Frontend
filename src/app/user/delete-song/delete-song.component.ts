@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Song} from '../../model/Song';
+import {SongService} from '../../service/song.service';
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-delete-song',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteSongComponent implements OnInit {
 
-  constructor() { }
+  song: Song = {};
+
+  constructor(private songService: SongService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.params.id;
+    if (confirm('Are you sure?')) {
+      this.songService.getSongById(id).subscribe(data => {
+        this.song = data;
+      });
+    }
   }
 
+  onDelete(): void {
+    this.songService.deleteSong(this.song.id).subscribe(() => {
+      alert('Deleted song successfully');
+    });
+  }
 }
