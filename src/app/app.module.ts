@@ -14,7 +14,7 @@ import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
-import { SingerComponent } from './song/singer/singer.component';
+import { SingerComponent } from './singer/singer-list/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
@@ -29,7 +29,6 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import { SingerListComponent } from './singer/singer-list/singer-list.component';
 
 
 
@@ -55,8 +54,7 @@ import { SingerListComponent } from './singer/singer-list/singer-list.component'
     PasswordComponent,
     UserHomeComponent,
     UserProfileComponent,
-    UserEditMysongComponent,
-    SingerListComponent
+    UserEditMysongComponent
   ],
   imports: [
     BrowserModule,
