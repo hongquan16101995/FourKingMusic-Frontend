@@ -4,8 +4,18 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:8080'
-  apiUrl: 'http://10.30.0.31:8080'
+  firebaseConfig: {
+    apiKey: 'AIzaSyDP6MQXL8IAHunxJE_6jLQt7Q48KA-m6PM',
+    authDomain: 'uploadfile-1d4bd.firebaseapp.com',
+    databaseURL: 'https://uploadfile-1d4bd.firebaseio.com',
+    projectId: 'uploadfile-1d4bd',
+    storageBucket: 'uploadfile-1d4bd.appspot.com',
+    messagingSenderId: '721528225083',
+    appId: '1:721528225083:web:e1aa0c9538615c95bd8b1e'
+  },
+  apiUrl: 'http://localhost:8080'
+  // apiUrl: 'http://10.30.0.31:8080'
+  // apiUrl: 'http://192.168.3.42:8080'
 };
 
 /*

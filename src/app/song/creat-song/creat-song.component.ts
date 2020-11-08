@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Song} from '../../model/Song';
 import {SongService} from '../../service/song.service';
+import {Users} from '../../model/Users';
+import {UsersService} from '../../service/users.service';
+import {HttpService} from '../../service/http.service';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-creat-song',
@@ -12,17 +16,16 @@ export class CreatSongComponent implements OnInit {
 
   songForm: FormGroup;
   message: string;
-  song: Song = {
-    id: 0,
-    name: '',
-    description: '',
-    tags: '',
-    avatarUrl: '',
-    fileUrl: ''
-  };
+  user: Users;
+  iduser: string;
+  avaUrl: string;
+  selectImg: any = null;
 
   constructor(private formBuilder: FormBuilder,
-              private songService: SongService) { }
+              private songService: SongService,
+              private userService: UsersService,
+              private httpService: HttpService,
+              private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.songForm = this.formBuilder.group(
@@ -33,14 +36,52 @@ export class CreatSongComponent implements OnInit {
         avatarUrl: ['', [Validators.required]],
         fileUrl: ['', [Validators.required]]
       });
+    this.iduser = this.httpService.getID();
+    console.log(this.iduser);
+    this.userService.getUserById(this.iduser).subscribe(data => {
+      this.user = {
+        id: data.id
+      };
+    });
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    this.song = this.songForm.value;
-    this.songService.createSong(this.song).subscribe(() => {
-      this.message = 'Add successfully';
+    const song = {
+      name: this.songForm.value.name,
+      description: this.songForm.value.description,
+      tags: this.songForm.value.tags,
+      avatarUrl: this.songForm.value.avatarUrl,
+      fileUrl: this.songForm.value.fileUrl,
+      user: this.user
+    };
+    this.songService.createSong(song).subscribe(() => {
     });
+  }
+
+  // tslint:disable-next-line:typedef
+  submit(){
+    if (this.selectImg !== null){
+      const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.avaUrl = url;
+          });
+        })
+      ).subscribe();
+    }
+  }
+// tslint:disable-next-line:typedef
+  showPre(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.selectImg = event.target.files[0];
+      this.submit();
+    } else {
+      this.avaUrl = '';
+      this.selectImg = null;
+    }
   }
 
 }

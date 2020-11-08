@@ -19,8 +19,8 @@ export class SongService {
     return this.http.get<Song[]>(API_URL + '/home/song');
   }
 
-  getById(id: number): Observable<Song> {
-    return this.http.get<Song>(API_URL + '/home/song' + id);
+  getSongById(id: number): Observable<Song> {
+    return this.http.get<Song>(API_URL + '/home/song/' + id);
   }
 
   createSong(song: Song): Observable<Song> {
@@ -28,7 +28,7 @@ export class SongService {
   }
 
   updateSong(song: Song): Observable<Song> {
-    return this.http.put<Song>(API_URL + '/song' + song.id, song, this.httpService.getHttp());
+    return this.http.put<Song>(API_URL + '/song' , song, this.httpService.getHttp());
   }
 
   deleteSong(id: number): Observable<any> {

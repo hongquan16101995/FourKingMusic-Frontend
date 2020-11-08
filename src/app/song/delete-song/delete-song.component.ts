@@ -18,7 +18,7 @@ export class DeleteSongComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params.id;
     if (confirm('Are you sure?')) {
-      this.songService.getById(id).subscribe(data => {
+      this.songService.getSongById(id).subscribe(data => {
         this.song = data;
       });
     }

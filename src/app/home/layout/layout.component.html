@@ -1,10 +1,31 @@
-<app-navbar-menu></app-navbar-menu>
-<header class="masthead">
-  <div class="container d-flex h-100 align-items-center">
-    <div class="mx-auto text-center">
-      <h1 class="mx-auto my-0 text-uppercase">4KMusic</h1>
-      <h2 class="text-white-50 mx-auto mt-2 mb-5"> “Hãy đăng nhập để khám phá thêm nhiều bài hát dành riêng cho bạn”</h2>
+<div id="page-top">
+  <app-navbar-menu></app-navbar-menu>
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">4KMusic</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"> “Hãy đăng nhập để khám phá thêm nhiều bài hát dành riêng cho
+          bạn”</h2>
+      </div>
     </div>
+  </header>
+
+
+ <app-poster></app-poster>
+
+  <div>
+    <app-list-song></app-list-song>
   </div>
-</header>
-<app-list-song></app-list-song>
+
+
+  <div>
+
+    <app-list-playlist></app-list-playlist>
+    <app-singer></app-singer>
+  </div>
+  <div>
+    <app-new-most-songs></app-new-most-songs>
+  </div>
+
+</div>
+<app-footer></app-footer>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-now-playing-bar',
   templateUrl: './now-playing-bar.component.html',

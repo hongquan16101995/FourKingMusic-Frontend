@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {Song} from '../../model/Song';
+import {SongService} from '../../service/song.service';
 
 @Component({
   selector: 'app-user-home',
@@ -8,9 +10,15 @@ import {Router} from '@angular/router';
 })
 export class UserHomeComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  songList: Song[] = [];
+
+  constructor(private route: Router,
+              private songService: SongService) { }
 
   ngOnInit(): void {
+    this.songService.getAllSongs().subscribe(data => {
+      this.songList = data;
+    });
   }
 
   // tslint:disable-next-line:typedef

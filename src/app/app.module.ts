@@ -13,12 +13,22 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreatSongComponent} from './song/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import { NewMostSongsComponent } from './song/new-most-songs/new-most-songs.component';
+import { SingerComponent } from './singer/singer-list/singer.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { ListPlaylistComponent } from './song/list-playlist/list-playlist.component';
+import { PosterComponent } from './core/poster/poster.component';
 import { DeleteSongComponent } from './song/delete-song/delete-song.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
 import { InformationComponent } from './core/information/information.component';
 import { PasswordComponent } from './core/password/password.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { UserEditMysongComponent } from './user/user-edit-mysong/user-edit-mysong.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 
 
@@ -32,12 +42,19 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     LayoutComponent,
     ListSongComponent,
     CreatSongComponent,
+    NewMostSongsComponent,
+    SingerComponent,
+    FooterComponent,
+    ListPlaylistComponent,
+    PosterComponent,
+    CreatSongComponent,
     DeleteSongComponent,
     UserMysongComponent,
     InformationComponent,
     PasswordComponent,
     UserHomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserEditMysongComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +62,9 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     RouterModule
   ],
   providers: [],
