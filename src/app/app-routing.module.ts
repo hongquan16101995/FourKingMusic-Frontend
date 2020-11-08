@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {LayoutComponent} from './home/layout/layout.component';
 import {LoginComponent} from './core/login/login.component';
 import {RegisterComponent} from './core/register/register.component';
-import {CreatSongComponent} from './song/creat-song/creat-song.component';
+import {CreatSongComponent} from './user/creat-song/creat-song.component';
 import {DeleteSongComponent} from './song/delete-song/delete-song.component';
 import {UserMysongComponent} from './user/user-mysong/user-mysong.component';
 import {AuthGuardGuard} from './guard/auth-guard.guard';
