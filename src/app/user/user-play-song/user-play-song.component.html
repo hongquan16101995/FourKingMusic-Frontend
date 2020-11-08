@@ -1,4 +1,4 @@
-<app-navbar-menu></app-navbar-menu>
+<app-navbar-user></app-navbar-user>
 <div>
   <div class="container">
     <section id="song-detail-banner" style="margin-top: 100px">
@@ -13,10 +13,23 @@
               <p><span>Singer</span></p>
             </div>
             <app-now-playing-bar></app-now-playing-bar>
+            <div class="count-like-play text-white pull-right pr-3 mt-5">
+              <i class="fa fa-heart"><span id=count-like class="count-like-play mx-2"></span></i>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    <section class="bg-light p-3 mb-4">
+      <div class="btn btn-info p-2 ml-4 btn-play"><i class="fa fa-play"></i> Play now</div>
+      <span  class="ml-5" id="like-btn">
+        <i id="like" class="fa fa-heart text-danger"></i> Like
+    </span>
+      <span class="ml-5">
+          <i class="fa fa-comment text-danger"></i> Comment
+      </span>
+    </section>
+
     <section class="bg-light p-3 my-4">
       <div class="row">
         <div class="col-7 px-5 br-1">
@@ -41,6 +54,10 @@
           </ul>
         </div>
       </div>
+    </section>
+    <hr />
+    <section class="comment my-4" id="comment">
+      <div></div>
     </section>
   </div>
 </div>

@@ -32,6 +32,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { UserPlaySongComponent } from './user/user-play-song/user-play-song.component';
 
 
 
@@ -61,7 +62,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
     UserProfileComponent,
     NavbarUserComponent,
     FooterUserComponent,
-    PlaySongComponent
+    PlaySongComponent,
+    UserPlaySongComponent
   ],
   imports: [
     BrowserModule,

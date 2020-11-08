@@ -11,6 +11,7 @@ import {UserProfileComponent} from './user/user-profile/user-profile.component';
 import {PlaySongComponent} from './song/play-song/play-song.component';
 import {DeleteSongComponent} from './user/delete-song/delete-song.component';
 import {UserEditMysongComponent} from './user/user-edit-mysong/user-edit-mysong.component';
+import {UserPlaySongComponent} from './user/user-play-song/user-play-song.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'userHome/song/:id',
-    component: PlaySongComponent,
+    component: UserPlaySongComponent,
     canActivate: [AuthGuardGuard]
   },
   {
