@@ -3,6 +3,11 @@
   <div>
     <table class="table table-bordered">
       <tr>
+        <td><img [src]="avaUrl" alt="ko có ảnh"></td>
+        <td><input class="form-control" type="file" formControlName="avatarUrl" (change)="showPre($event)">
+        </td>
+      </tr>
+      <tr>
         <td>Name</td>
         <td><input class="form-control" type="text" formControlName="name">
           <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="text-danger">
@@ -30,14 +35,6 @@
         <td>Hobbies</td>
         <td><input class="form-control" type="text" formControlName="hobbies">
           <div *ngIf="userForm.get('hobbies').hasError('required') && userForm.get('hobbies').touched" class="text-danger">
-            Erros
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>AvatarUrl</td>
-        <td><input class="form-control" type="text" formControlName="avatarUrl">
-          <div *ngIf="userForm.get('avatarUrl').hasError('required') && userForm.get('avatarUrl').touched" class="text-danger">
             Erros
           </div>
         </td>

@@ -24,6 +24,12 @@ import { InformationComponent } from './core/information/information.component';
 import { PasswordComponent } from './core/password/password.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { UserEditMysongComponent } from './user/user-edit-mysong/user-edit-mysong.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { SingerListComponent } from './singer/singer-list/singer-list.component';
 
 
 
@@ -48,7 +54,9 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     InformationComponent,
     PasswordComponent,
     UserHomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserEditMysongComponent,
+    SingerListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +64,9 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     RouterModule
   ],
   providers: [],

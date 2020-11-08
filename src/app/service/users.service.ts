@@ -29,7 +29,7 @@ export class UsersService {
     return this.http.get<Users[]>(API_URL);
   }
 
-  getById(id: string): Observable<Users> {
+  getUserById(id: string): Observable<Users> {
     return this.http.get<Users>(API_URL + '/user/' + id, this.httpService.getHttp());
   }
 

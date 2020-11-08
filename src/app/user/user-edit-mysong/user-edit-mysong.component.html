@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" [routerLink]="['/userHome']">
+      <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
+      4KMusic</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<form (ngSubmit)="onSubmit()" [formGroup]="songForm">
+  <div>
+    <table class="table table-bordered">
+      <tr>
+        <td><img [src]="avaUrl" alt="ko có ảnh"></td>
+        <td><input class="form-control" type="file" formControlName="avatarUrl" (change)="showPre($event)">
+        </td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><input class="form-control" type="text" formControlName="name">
+          <div *ngIf="songForm.get('name').hasError('required') && songForm.get('name').touched" class="text-danger">
+            Erros
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><input class="form-control" type="text" formControlName="description">
+          <div *ngIf="songForm.get('description').hasError('required') && songForm.get('description').touched" class="text-danger">
+            Erros
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Tags</td>
+        <td><input class="form-control" type="text" formControlName="tags">
+        </td>
+      </tr>
+      <tr>
+        <td>File</td>
+        <td><input class="form-control" type="file" formControlName="fileUrl">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button class="btn btn-primary mr-2" type="submit">Update</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+<button class="btn btn-secondary" [routerLink]="['/userHome']">Cancel</button>
+<div class="alert alert-danger" role="alert" style="text-align: center" *ngIf="message">{{message}}</div>
+
+
+

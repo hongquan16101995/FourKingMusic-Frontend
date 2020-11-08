@@ -14,11 +14,20 @@
         <li class="nav-item">
         <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/mysong']">Nhạc của tôi</a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/creatSong']">Tạo bài hát</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/userProfile']">Trang cá nhân</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/userProfile']">Trang cá nhân</a>
+        </li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="logout()">Đăng xuất</a></li>
       </ul>
     </div>
   </div>
 </nav>
-  <app-list-song></app-list-song>
+<div *ngFor="let song of songList">
+  <div *ngIf="song.singers.length == 0">
+    <div><img src="{{song.avatarUrl}}" alt="Ko có ảnh"></div>
+    <div>{{song.name}}</div>
+    <div>
+      <button class="btn btn-primary" [routerLink]="[ song.id, 'userEditMysong']">Update</button>
+    </div>
+  </div>
+</div>
 
