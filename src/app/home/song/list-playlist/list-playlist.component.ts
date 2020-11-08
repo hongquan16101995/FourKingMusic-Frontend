@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Song} from '../../model/Song';
-import {SongService} from '../../service/song.service';
+import {Song} from '../../../model/Song';
+import {SongService} from '../../../service/song.service';
 
 @Component({
   selector: 'app-list-playlist',
@@ -8,7 +8,6 @@ import {SongService} from '../../service/song.service';
   styleUrls: ['./list-playlist.component.scss']
 })
 export class ListPlaylistComponent implements OnInit {
-
   songList: Song[] = [];
   constructor(private songService: SongService) { }
   ngOnInit(): void {

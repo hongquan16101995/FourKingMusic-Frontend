@@ -8,7 +8,7 @@ import {UserMysongComponent} from './user/user-mysong/user-mysong.component';
 import {AuthGuardGuard} from './guard/auth-guard.guard';
 import {UserHomeComponent} from './user/user-home/user-home.component';
 import {UserProfileComponent} from './user/user-profile/user-profile.component';
-import {PlaySongComponent} from './song/play-song/play-song.component';
+import {PlaySongComponent} from './home/song/play-song/play-song.component';
 import {DeleteSongComponent} from './user/delete-song/delete-song.component';
 import {UserEditMysongComponent} from './user/user-edit-mysong/user-edit-mysong.component';
 import {UserPlaySongComponent} from './user/user-play-song/user-play-song.component';
