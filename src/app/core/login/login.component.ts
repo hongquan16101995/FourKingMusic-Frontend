@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    // this.loginForm = this.fb.group({
-    //   username: [''],
-    //   password: ['']
-    // });
+    this.loginForm = this.fb.group({
+      username: [''],
+      password: ['']
+    });
     (window as any).fbAsyncInit = function() {
       FB.init({
         appId      : '3471278576296648',
@@ -43,11 +43,27 @@ export class LoginComponent implements OnInit {
 
   }
 
-loginFacebook() {
-  FB.login((response) => {
-    //do something
-  }, {scope: 'email'});
-}
+  loginFacebook() {
+    FB.login((response) => {
+      //do something
+      console.log(response);
+
+      if (response != null && response.status == 'connected') {
+        localStorage.setItem('token', JSON.stringify(response.authResponse.accessToken));
+        FB.api(
+          "/" + response.authResponse.userID,
+          (res) => {
+            console.log(res);
+            localStorage.setItem('userId', JSON.stringify(res.id));
+            this.router.navigate(['userHome']);
+            if (res && !res.error) {
+              / handle the result /
+            }
+          }
+        );
+      }
+    }, { scope: 'email' });
+  }
 
   // tslint:disable-next-line:typedef
   login() {
