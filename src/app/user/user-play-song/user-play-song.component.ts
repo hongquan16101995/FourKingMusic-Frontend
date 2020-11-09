@@ -13,7 +13,6 @@ import {ActivatedRoute} from '@angular/router';
 export class UserPlaySongComponent implements OnInit {
 
   id: number;
-  songForm: FormGroup;
   song: Song;
   avaUrl: string;
   name: string;
@@ -21,8 +20,7 @@ export class UserPlaySongComponent implements OnInit {
   fileURL: string;
   user: string;
 
-  constructor(private formBuilder: FormBuilder,
-              private songService: SongService,
+  constructor(private songService: SongService,
               private router: ActivatedRoute) {
   }
 
@@ -41,7 +39,6 @@ export class UserPlaySongComponent implements OnInit {
       this.singers = data.singers;
       this.fileURL = data.fileUrl;
       this.user = data.user.name;
-      this.songForm.patchValue(data);
     });
   }
 
