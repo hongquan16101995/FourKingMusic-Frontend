@@ -18,7 +18,9 @@ export class UserEditMysongComponent implements OnInit {
   message = '';
   song: Song;
   avaUrl: string;
+  file: string;
   selectImg: any = null;
+  selectfile: any = null;
 
   constructor(private formBuilder: FormBuilder,
               private songService: SongService,
@@ -30,7 +32,8 @@ export class UserEditMysongComponent implements OnInit {
     this.songForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        description: ['', [Validators.required]]
+        description: ['', [Validators.required]],
+        tags: ['']
       });
     this.songService.getSongById(this.id).subscribe(data => {
       this.song = {
@@ -52,7 +55,7 @@ export class UserEditMysongComponent implements OnInit {
       description: this.songForm.value.description,
       tags: this.songForm.value.tags,
       avatarUrl: this.avaUrl,
-      fileUrl: this.songForm.value.fileUrl,
+      fileUrl: this.file,
       user: this.song.user,
       singers: this.song.singers,
       dateCreated: this.song.dateCreated
@@ -65,7 +68,7 @@ export class UserEditMysongComponent implements OnInit {
   // tslint:disable-next-line:typedef
   submit(){
     if (this.selectImg !== null){
-      const filePath = `avatar/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
         finalize(() => {
@@ -84,6 +87,31 @@ export class UserEditMysongComponent implements OnInit {
     } else {
       this.avaUrl = '';
       this.selectImg = null;
+    }
+  }
+
+  // tslint:disable-next-line:typedef
+  submitFile(){
+    if (this.selectfile !== null){
+      const filePath = `file/${this.selectfile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectfile).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.file = url;
+          });
+        })
+      ).subscribe();
+    }
+  }
+// tslint:disable-next-line:typedef
+  showPreFile(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.selectfile = event.target.files[0];
+      this.submitFile();
+    } else {
+      this.file = '';
+      this.selectfile = null;
     }
   }
 }

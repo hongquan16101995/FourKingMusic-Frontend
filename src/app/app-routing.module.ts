@@ -4,12 +4,14 @@ import {LayoutComponent} from './home/layout/layout.component';
 import {LoginComponent} from './core/login/login.component';
 import {RegisterComponent} from './core/register/register.component';
 import {CreatSongComponent} from './user/creat-song/creat-song.component';
-import {DeleteSongComponent} from './song/delete-song/delete-song.component';
 import {UserMysongComponent} from './user/user-mysong/user-mysong.component';
 import {AuthGuardGuard} from './guard/auth-guard.guard';
 import {UserHomeComponent} from './user/user-home/user-home.component';
 import {UserProfileComponent} from './user/user-profile/user-profile.component';
+import {PlaySongComponent} from './home/song/play-song/play-song.component';
+import {DeleteSongComponent} from './user/delete-song/delete-song.component';
 import {UserEditMysongComponent} from './user/user-edit-mysong/user-edit-mysong.component';
+import {UserPlaySongComponent} from './user/user-play-song/user-play-song.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,15 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
+    path: 'song/:id',
+    component: PlaySongComponent
+  },
+  {
+    path: 'userHome/song/:id',
+    component: UserPlaySongComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
     path: 'creatSong',
     component: CreatSongComponent,
     canActivate: [AuthGuardGuard]
@@ -30,11 +41,6 @@ const routes: Routes = [
   {
     path: 'deleteSong',
     component: DeleteSongComponent,
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'mysong',
-    component: UserMysongComponent,
     canActivate: [AuthGuardGuard]
   },
   {
@@ -48,7 +54,12 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard]
   },
   {
-    path: 'userHome/:id/userEditMysong',
+    path: 'mysong',
+    component: UserMysongComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'mysong/:id/userEditMysong',
     component: UserEditMysongComponent,
     canActivate: [AuthGuardGuard]
   }
