@@ -1,6 +1,6 @@
 <app-navbar-menu></app-navbar-menu>
 <div>
-  <div class="container">
+  <div class="container" [formGroup]="songForm">
     <section id="song-detail-banner" style="margin-top: 100px">
       <div class="bg-img" style="background: url()  center / cover no-repeat rgb(83, 62, 56);">
         <div class="lammonen row mx-0" style="background-color: rgba(0,0,0,.65);">
@@ -9,10 +9,19 @@
           </div>
           <div class="col-9">
             <div class="py-4 text-white mb-5">
-              <h2>Ten bai hat</h2>
-              <p><span>Singer</span></p>
+              <img [src]="avaUrl" alt="ko có ảnh" height="200px" width="200px">
+              <h2>{{name}}</h2>
+              <p *ngFor="let singer of singers"><span>{{singer.name}}</span></p>
+              <p *ngIf="singers.length == 0"><span>{{user}}</span></p>
             </div>
-            <app-now-playing-bar></app-now-playing-bar>
+
+            <div>
+              <audio src="{{fileURL}}" preload="auto" controls autoplay loop>
+              </audio>
+            </div>
+
+
+
           </div>
         </div>
       </div>

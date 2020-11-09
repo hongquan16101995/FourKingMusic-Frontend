@@ -9,10 +9,15 @@
           </div>
           <div class="col-9">
             <div class="py-4 text-white mb-5">
-              <h2>Ten bai hat</h2>
-              <p><span>Singer</span></p>
+              <img [src]="avaUrl" alt="ko có ảnh" height="200px" width="200px">
+              <h2>{{name}}</h2>
+              <p *ngFor="let singer of singers"><span>{{singer.name}}</span></p>
+              <p *ngIf="singers.length == 0"><span>{{user}}</span></p>
             </div>
-            <app-now-playing-bar></app-now-playing-bar>
+            <div>
+              <audio src="{{fileURL}}" preload="auto" controls autoplay loop>
+              </audio>
+            </div>
             <div class="count-like-play text-white pull-right pr-3 mt-5">
               <i class="fa fa-heart"><span id=count-like class="count-like-play mx-2"></span></i>
             </div>
