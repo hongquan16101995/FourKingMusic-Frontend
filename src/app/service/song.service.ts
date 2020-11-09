@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Song} from '../model/Song';
 import {HttpService} from './http.service';
@@ -27,15 +27,16 @@ export class SongService {
     return this.http.get<Song>(API_URL + '/home/song/' + id);
   }
 
-  createSong(song: Song): Observable<Song> {
-    return this.http.post<Song>(API_URL + '/song', song, this.httpService.getHttp());
+  createSong(song: Song): Observable<any> {
+    return this.http.post(API_URL + '/song', song, this.httpService.getHttp());
   }
 
   updateSong(song: Song): Observable<Song> {
-    return this.http.put<Song>(API_URL + '/song' , song, this.httpService.getHttp());
+    return this.http.put(API_URL + '/song' , song, this.httpService.getHttp());
   }
 
-  deleteSong(id: number): Observable<any> {
-    return this.http.delete(API_URL + '/song' + id, this.httpService.getHttp());
+  deleteSong(id: number, userId: number): Observable<any> {
+    // @ts-ignore
+    return this.http.delete(API_URL + '/song' + id, userId, this.httpService.getHttp());
   }
 }

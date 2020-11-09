@@ -20,6 +20,10 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(API_URL + '/home/playlist');
   }
 
+  getAllPlaylistsNew(): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(API_URL + '/home/playlist/new');
+  }
+
   getPlaylistById(id: number): Observable<Playlist> {
     return this.http.get<Playlist>(API_URL + '/home/playlist' + id);
   }
@@ -28,23 +32,25 @@ export class PlaylistService {
     return this.http.post<Playlist[]>(API_URL + '/home/song/search', name);
   }
 
-  createPlaylist(song: Song): Observable<Playlist> {
-    return this.http.post(API_URL + '/playlist', song, this.httpService.getHttp());
+  createPlaylist(playlist: Playlist): Observable<any> {
+    return this.http.post(API_URL + '/playlist', playlist, this.httpService.getHttp());
   }
 
-  updatePlaylist(song: Song): Observable<Playlist> {
-    return this.http.put(API_URL + '/playlist/' + song.id, song, this.httpService.getHttp());
+  updatePlaylist(playlist: Playlist): Observable<any> {
+    return this.http.put(API_URL + '/playlist/update' , playlist  , this.httpService.getHttp());
   }
 
-  updateSongOfPlaylist(id: number, song: Song): Observable<Playlist> {
+  updateSongOfPlaylist(id: number, song: Song): Observable<any> {
     return this.http.put(API_URL + '/playlist/' + id, song, this.httpService.getHttp());
   }
 
-  deletePlaylist(id: number): Observable<Playlist> {
-    return this.http.delete(API_URL + '/playlist/' + id, this.httpService.getHttp());
+  deletePlaylist(id: number, userId: number): Observable<any> {
+    // @ts-ignore
+    return this.http.delete(API_URL + '/playlist/' + id, userId, this.httpService.getHttp());
   }
 
-  deleteSongOfPlaylist(id: number, song: Song): Observable<Playlist> {
-    return this.http.delete(API_URL + '/playlist/song/' + id, this.httpService.getHttp());
+  deleteSongOfPlaylist(id: number, songId: number): Observable<any> {
+    // @ts-ignore
+    return this.http.delete(API_URL + '/playlist/song/' + id, songId, this.httpService.getHttp());
   }
 }
