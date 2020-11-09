@@ -30,6 +30,10 @@ $(function(){
       768: {
         slidesPerView: 3,
         spaceBetween: 20
+      },
+      1680: {
+        slidesPerView: 6,
+        spaceBetween: 40
       }
     }
   }); /*http://idangero.us/swiper/api/*/
