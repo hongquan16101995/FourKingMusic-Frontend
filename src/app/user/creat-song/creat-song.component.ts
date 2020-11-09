@@ -19,7 +19,9 @@ export class CreatSongComponent implements OnInit {
   user: Users;
   iduser: string;
   avaUrl: string;
+  file: string;
   selectImg: any = null;
+  selectfile: any = null;
 
   constructor(private formBuilder: FormBuilder,
               private songService: SongService,
@@ -42,6 +44,7 @@ export class CreatSongComponent implements OnInit {
       this.user = {
         id: data.id
       };
+      this.avaUrl = data.avatarUrl;
     });
   }
 
@@ -81,6 +84,32 @@ export class CreatSongComponent implements OnInit {
     } else {
       this.avaUrl = '';
       this.selectImg = null;
+    }
+  }
+
+  // tslint:disable-next-line:typedef
+  submitFile(){
+    if (this.selectfile !== null){
+      const filePath = `file/${this.selectfile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectfile).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.file = url;
+            console.log(this.file);
+          });
+        })
+      ).subscribe();
+    }
+  }
+// tslint:disable-next-line:typedef
+  showPreFile(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.selectfile = event.target.files[0];
+      this.submitFile();
+    } else {
+      this.file = '';
+      this.selectfile = null;
     }
   }
 
