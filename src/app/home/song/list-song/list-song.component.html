@@ -1,15 +1,11 @@
-<!--<div *ngFor="let song of songList">-->
-<!--  <div><img src="{{song.avatarUrl}}" alt="Ko có ảnh" width="300px" height="300px"></div>-->
-<!--  <div>{{song.name}}</div>-->
-<!--  <div *ngIf="song.singers.length != 0 ; else block">-->
-<!--    <div *ngFor="let singers of song.singers">{{singers.name}}</div>-->
-<!--  </div>-->
-<!--  <ng-template #block>-->
-<!--    <div>{{song.user.name}}</div>-->
-<!--  </ng-template>-->
-<!--</div>-->
+
 <div>
-  <div id="carousel" style="bottom: -100px">
+  <div id="mast-text" style="margin-top: 100px">
+      <div class="text-center">
+        <h1 class="mx-auto my-0">Bài hát nổi bật</h1>
+    </div>
+  </div>
+  <div id="carousel" >
 
     <div class="hideLeft">
       <a [routerLink]="['song',song1.id]">
@@ -53,11 +49,5 @@
       </a>
     </div>
   </div>
-  <div id="mast-text">
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0">Bài hát nổi bật</h1>
-      </div>
-    </div>
-  </div>
+
 </div>
