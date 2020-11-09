@@ -54,8 +54,8 @@ export class CreatSongComponent implements OnInit {
       name: this.songForm.value.name,
       description: this.songForm.value.description,
       tags: this.songForm.value.tags,
-      avatarUrl: this.songForm.value.avatarUrl,
-      fileUrl: this.songForm.value.fileUrl,
+      avatarUrl: this.avaUrl,
+      fileUrl: this.file,
       user: this.user
     };
     this.songService.createSong(song).subscribe(() => {
@@ -96,7 +96,6 @@ export class CreatSongComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             this.file = url;
-            console.log(this.file);
           });
         })
       ).subscribe();
