@@ -1,15 +1,10 @@
-*{
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-}
-
 
 /*Carousel Gallery*/
-.carousel-gallery{
+.carousel-gallery {
   margin: 50px 0;
   padding: 0 30px;
-  .swiper-slide{
+
+  .swiper-slide {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
@@ -20,7 +15,7 @@
     transition-property: -webkit-transform;
     -o-transition-property: transform;
 
-    a{
+    a {
       display: block;
       width: 150px;
       height: 200px;
@@ -28,25 +23,28 @@
       overflow: hidden;
       position: relative;
 
-      -webkit-box-shadow: 3px 2px 20px 0px rgba(0,0,0, .2);
-      -moz-box-shadow: 3px 2px 20px 0px rgba(0,0,0, .2);
-      box-shadow: 3px 2px 20px 0px rgba(0,0,0, .2);
+      -webkit-box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+      -moz-box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+      box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
 
-      &:hover{
-        .image{
-          .overlay{opacity: 1}
+      &:hover {
+        .image {
+          .overlay {
+            opacity: 1
+          }
         }
       }
 
-      .image{
+      .image {
         width: 150px;
         height: 200px;
         background-size: cover;
         background-position: center center;
-        .overlay{
+
+        .overlay {
           width: 150px;
           height: 200px;
-          background-color: rgba(20,20,20, .8);
+          background-color: rgba(20, 20, 20, .8);
           text-align: center;
           opacity: 0;
 
@@ -54,7 +52,7 @@
           -o-transition: all .2s linear;
           transition: all .2s linear;
 
-          em{
+          em {
             color: #fff;
             font-size: 26px;
             position: relative;
@@ -69,34 +67,36 @@
       }
     }
   }
-  .swiper-pagination{
+
+  .swiper-pagination {
     position: relative;
     bottom: auto;
     text-align: center;
     margin-top: 25px;
 
-    .swiper-pagination-bullet{
+    .swiper-pagination-bullet {
       -webkit-transition: all .2s linear;
       -o-transition: all .2s linear;
       transition: all .2s linear;
 
-      &:hover{
+      &:hover {
         opacity: .7;
       }
 
-      &.swiper-pagination-bullet-active{
+      &.swiper-pagination-bullet-active {
         background-color: #d63031;
         transform: scale(1.1, 1.1)
       }
     }
   }
 }
+
 /*# Carousel Gallery*/
 
-.plugins{
+.plugins {
   text-align: center;
 
-  h3{
+  h3 {
     text-align: center;
     margin: 0;
     padding: 0;
@@ -105,7 +105,7 @@
     color: #111;
   }
 
-  a{
+  a {
     display: inline-block;
     font-family: Arial;
     color: #777;
@@ -113,6 +113,8 @@
     margin: 10px;
     transition: all .2s linear;
 
-    &:hover{color: #d63031}
+    &:hover {
+      color: #d63031
+    }
   }
 }

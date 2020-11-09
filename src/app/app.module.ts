@@ -19,8 +19,7 @@ import { FooterComponent } from './home/footer/footer.component';
 import { ListPlaylistComponent } from './home/song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
-import { InformationComponent } from './core/information/information.component';
-import { PasswordComponent } from './core/password/password.component';
+import { PasswordComponent } from './user/password/password.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
@@ -54,7 +53,6 @@ import { UserPlaySongComponent } from './user/user-play-song/user-play-song.comp
     CreatSongComponent,
     DeleteSongComponent,
     UserMysongComponent,
-    InformationComponent,
     PasswordComponent,
     UserHomeComponent,
     UserProfileComponent,

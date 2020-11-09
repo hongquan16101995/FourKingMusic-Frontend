@@ -32,8 +32,6 @@ $(function(){
         spaceBetween: 20
       }
     }
-  }); /*http://idangero.us/swiper/api/*/
-
-
+  });
 
 });
