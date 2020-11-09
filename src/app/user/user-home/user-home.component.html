@@ -11,11 +11,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/mysong']">Nhạc của tôi</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/creatSong']">Tạo bài hát</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/userProfile']">Trang cá nhân</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="logout()">Đăng xuất</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/mysong']">Nhạc của tôi</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/creatSong']">Tạo bài hát</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/userProfile']">Trang cá nhân</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="logout()">Đăng xuất</a></li>
+        <div class="dropdown nav-item">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/mysong']">Nhạc của tôi</a></li>
+            <li><a [routerLink]="['/creatSong']">Tạo bài hát</a></li>
+            <li><a [routerLink]="['/userProfile']">Trang cá nhân</a></li>
+            <li><a (click)="logout()">Đăng xuất</a></li>
+          </ul>
+        </div>
       </ul>
     </div>
   </div>
