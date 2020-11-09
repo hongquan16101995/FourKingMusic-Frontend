@@ -30,6 +30,11 @@ $(function(){
       768: {
         slidesPerView: 3,
         spaceBetween: 20
+      },
+      // when window width is <= 640px
+      1680: {
+        slidesPerView: 6,
+        spaceBetween: 40
       }
     }
   });
