@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './core/login/login.component';
 import {RegisterComponent} from './core/register/register.component';
 import {NavbarMenuComponent} from './home/navbar-menu/navbar-menu.component';
-import {NowPlayingBarComponent} from './home/now-playing-bar/now-playing-bar.component';
 import {LayoutComponent} from './home/layout/layout.component';
 import {ListSongComponent} from './home/song/list-song/list-song.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,7 +18,6 @@ import { FooterComponent } from './home/footer/footer.component';
 import { ListPlaylistComponent } from './home/song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
-import { PasswordComponent } from './core/password/password.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
@@ -32,6 +30,7 @@ import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { UserPlaySongComponent } from './user/user-play-song/user-play-song.component';
+import {PasswordComponent} from './user/password/password.component';
 
 
 
@@ -41,7 +40,6 @@ import { UserPlaySongComponent } from './user/user-play-song/user-play-song.comp
     LoginComponent,
     RegisterComponent,
     NavbarMenuComponent,
-    NowPlayingBarComponent,
     LayoutComponent,
     ListSongComponent,
     CreatSongComponent,

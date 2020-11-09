@@ -2,31 +2,26 @@
 <div>
   <div class="container">
     <section id="song-detail-banner" style="margin-top: 100px">
-      <div class="bg-img" style="background: url()  center / cover no-repeat rgb(83, 62, 56);">
-        <div class="lammonen row mx-0" style="background-color: rgba(0,0,0,.65);">
-          <div class="col-3">
-            <img src="" alt="">
-          </div>
-          <div class="col-9">
-            <div class="py-4 text-white mb-5">
+      <div style="background-color: rgb(109,29,159);">
+        <div class="col-9" style="margin-left: 50px">
+          <div class="py-4 text-white mb-5">
+            <div style="float: left">
               <img [src]="avaUrl" alt="ko có ảnh" height="200px" width="200px">
+            </div>
+            <div style="margin-left: 300px">
               <h2>{{name}}</h2>
               <p *ngFor="let singer of singers"><span>{{singer.name}}</span></p>
               <p *ngIf="singers.length == 0"><span>{{user}}</span></p>
             </div>
-            <div>
-              <audio src="{{fileURL}}" preload="auto" controls autoplay loop>
-              </audio>
-            </div>
-            <div class="count-like-play text-white pull-right pr-3 mt-5">
-              <i class="fa fa-heart"><span id=count-like class="count-like-play mx-2"></span></i>
-            </div>
           </div>
+          <div style="margin-left: 300px; padding-bottom: 20px">
+            <audio src="{{fileURL}}" preload="auto" controls autoplay loop></audio>
+          </div>
+
         </div>
       </div>
     </section>
     <section class="bg-light p-3 mb-4">
-      <div class="btn btn-info p-2 ml-4 btn-play"><i class="fa fa-play"></i> Play now</div>
       <span  class="ml-5" id="like-btn">
         <i id="like" class="fa fa-heart text-danger"></i> Like
     </span>

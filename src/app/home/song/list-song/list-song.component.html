@@ -1,63 +1,53 @@
-<!--<div *ngFor="let song of songList">-->
-<!--  <div><img src="{{song.avatarUrl}}" alt="Ko có ảnh" width="300px" height="300px"></div>-->
-<!--  <div>{{song.name}}</div>-->
-<!--  <div *ngIf="song.singers.length != 0 ; else block">-->
-<!--    <div *ngFor="let singers of song.singers">{{singers.name}}</div>-->
-<!--  </div>-->
-<!--  <ng-template #block>-->
-<!--    <div>{{song.user.name}}</div>-->
-<!--  </ng-template>-->
-<!--</div>-->
+
 <div>
-  <div id="carousel" style="bottom: -100px">
+  <div id="mast-text" style="margin-top: 100px">
+      <div class="text-center">
+        <h1 class="mx-auto my-0">Bài hát nổi bật</h1>
+    </div>
+  </div>
+  <div id="carousel" >
 
     <div class="hideLeft">
-      <a [routerLink]="['song',song1.id]">
+      <a [routerLink]="['song',song1.id]" width="300px" height="300px">
         <img src="{{song1.avatarUrl}}">
       </a>
     </div>
 
     <div class="prevLeftSecond">
-      <a [routerLink]="['song',song2.id]">
+      <a [routerLink]="['song',song2.id]" width="300px" height="300px">
         <img src="{{song2.avatarUrl}}">
       </a>
     </div>
 
     <div class="prev">
       <a [routerLink]="['song',song3.id]">
-        <img src="{{song3.avatarUrl}}">
+        <img src="{{song3.avatarUrl}}" width="300px" height="300px">
       </a>
     </div>
 
     <div class="selected">
-      <a [routerLink]="['song',song4.id]">
+      <a [routerLink]="['song',song4.id]" width="300px" height="300px">
         <img src="{{song4.avatarUrl}}">
       </a>
     </div>
 
     <div class="next">
-      <a [routerLink]="['song',song5.id]">
+      <a [routerLink]="['song',song5.id]" width="300px" height="300px">
         <img src="{{song5.avatarUrl}}">
       </a>
     </div>
 
     <div class="nextRightSecond">
-      <a [routerLink]="['song',song6.id]">
+      <a [routerLink]="['song',song6.id]" width="300px" height="300px">
         <img src="{{song6.avatarUrl}}">
       </a>
     </div>
 
     <div class="hideRight">
-      <a [routerLink]="['song',song7.id]">
+      <a [routerLink]="['song',song7.id]" width="300px" height="300px">
         <img src="{{song7.avatarUrl}}">
       </a>
     </div>
   </div>
-  <div id="mast-text">
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0">Bài hát nổi bật</h1>
-      </div>
-    </div>
-  </div>
+
 </div>
