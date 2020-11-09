@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {Users} from '../../model/Users';
-import {HttpService} from '../../service/http.service';
-import {UsersService} from '../../service/users.service';
+import {Song} from '../../model/Song';
+import {SongService} from '../../service/song.service';
 
 @Component({
   selector: 'app-user-home',
@@ -11,31 +10,14 @@ import {UsersService} from '../../service/users.service';
 })
 export class UserHomeComponent implements OnInit {
 
-  user: Users = {
-    id: 0,
-    name: '',
-    email: '',
-    username: '',
-    password: '',
-    gender: '',
-    hobbies: '',
-    avatarUrl: '',
-    roles: [
-      {
-        id: 0,
-      }
-    ]
-  };
-  userid: string;
+  songList: Song[] = [];
 
   constructor(private route: Router,
-              private httpService: HttpService,
-              private userService: UsersService) { }
+              private songService: SongService) { }
 
   ngOnInit(): void {
-    this.userid = this.httpService.getID();
-    this.userService.getById(this.userid).subscribe(data => {
-
+    this.songService.getAllSongs().subscribe(data => {
+      this.songList = data;
     });
   }
 

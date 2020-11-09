@@ -1,33 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger" [routerLink]="['/userHome']">
-      <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-      4KMusic</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-      Menu
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/mysong']">Nhạc của tôi</a></li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/creatSong']">Tạo bài hát</a></li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/userProfile']">Trang cá nhân</a></li>
-        <li class="nav-item"><a class="nav-link" (click)="logout()">Đăng xuất</a></li>
-        <div class="dropdown nav-item">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-            <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a [routerLink]="['/mysong']">Nhạc của tôi</a></li>
-            <li><a [routerLink]="['/creatSong']">Tạo bài hát</a></li>
-            <li><a [routerLink]="['/userProfile']">Trang cá nhân</a></li>
-            <li><a (click)="logout()">Đăng xuất</a></li>
-          </ul>
-        </div>
-      </ul>
-    </div>
-  </div>
-</nav>
-  <app-list-song></app-list-song>
-
+<app-navbar-user></app-navbar-user>
+<div style="margin: auto">
+  <app-poster></app-poster>
+</div>
+<app-list-song></app-list-song>
+<app-list-playlist></app-list-playlist>
+<app-singer></app-singer>
+<app-list-playlist></app-list-playlist>
+<app-footer-user></app-footer-user>

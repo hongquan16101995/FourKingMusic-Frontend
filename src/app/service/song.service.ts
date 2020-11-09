@@ -20,11 +20,7 @@ export class SongService {
   }
 
   getSongById(id: number): Observable<Song> {
-    return this.http.get<Song>(API_URL + '/home/song' + id);
-  }
-
-  getSongByName(name: string): Observable<Song> {
-    return this.http.post<Song>(API_URL + '/home/song/search', name);
+    return this.http.get<Song>(API_URL + '/home/song/' + id);
   }
 
   createSong(song: Song): Observable<Song> {
@@ -32,7 +28,7 @@ export class SongService {
   }
 
   updateSong(song: Song): Observable<Song> {
-    return this.http.put<Song>(API_URL + '/song' + song.id, song, this.httpService.getHttp());
+    return this.http.put<Song>(API_URL + '/song' , song, this.httpService.getHttp());
   }
 
   deleteSong(id: number): Observable<any> {

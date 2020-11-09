@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Song} from '../../model/Song';
-import {SongService} from '../../service/song.service';
+import {Song} from '../../../model/Song';
+import {SongService} from '../../../service/song.service';
 
 @Component({
-  selector: 'app-list-song',
-  templateUrl: './list-song.component.html',
-  styleUrls: ['./list-song.component.sass']
+  selector: 'app-new-most-songs',
+  templateUrl: './new-most-songs.component.html',
+  styleUrls: ['./new-most-songs.component.css']
 })
-export class ListSongComponent implements OnInit {
+export class NewMostSongsComponent implements OnInit {
 
   songList: Song[] = [];
   song0: Song;
@@ -18,12 +18,14 @@ export class ListSongComponent implements OnInit {
   song5: Song;
   song6: Song;
   song7: Song;
-  constructor(private songService: SongService) { }
+
+  constructor(private songService: SongService) {
+  }
 
   ngOnInit(): void {
     this.songService.getAllSongs().subscribe(data => {
       this.songList = data;
-      for (const i = 0; i < this.songList.length; ) {
+      for (const i = 0; i < this.songList.length;) {
         this.song0 = this.songList[0];
         this.song1 = this.songList[i];
         this.song2 = this.songList[i + 1];
@@ -37,5 +39,4 @@ export class ListSongComponent implements OnInit {
       console.log(data);
     });
   }
-
 }

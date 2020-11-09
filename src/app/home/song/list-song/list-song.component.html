@@ -12,32 +12,45 @@
   <div id="carousel" style="bottom: -100px">
 
     <div class="hideLeft">
-      <img src="{{song1.avatarUrl}}">
-
+      <a [routerLink]="['song',song1.id]">
+        <img src="{{song1.avatarUrl}}">
+      </a>
     </div>
 
     <div class="prevLeftSecond">
-      <img src="{{song2.avatarUrl}}">
+      <a [routerLink]="['song',song2.id]">
+        <img src="{{song2.avatarUrl}}">
+      </a>
     </div>
 
     <div class="prev">
-      <img src="{{song3.avatarUrl}}">
+      <a [routerLink]="['song',song3.id]">
+        <img src="{{song3.avatarUrl}}">
+      </a>
     </div>
 
     <div class="selected">
-      <img src="{{song4.avatarUrl}}">
+      <a [routerLink]="['song',song4.id]">
+        <img src="{{song4.avatarUrl}}">
+      </a>
     </div>
 
     <div class="next">
-      <img src="{{song5.avatarUrl}}">
+      <a [routerLink]="['song',song5.id]">
+        <img src="{{song5.avatarUrl}}">
+      </a>
     </div>
 
     <div class="nextRightSecond">
-      <img src="{{song6.avatarUrl}}">
+      <a [routerLink]="['song',song6.id]">
+        <img src="{{song6.avatarUrl}}">
+      </a>
     </div>
 
     <div class="hideRight">
-      <img src="{{song7.avatarUrl}}">
+      <a [routerLink]="['song',song7.id]">
+        <img src="{{song7.avatarUrl}}">
+      </a>
     </div>
   </div>
   <div id="mast-text">

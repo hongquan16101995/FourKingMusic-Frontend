@@ -4,7 +4,8 @@ import {UsersService} from '../../service/users.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '../../service/http.service';
 import {Users} from '../../model/Users';
-import {Message} from '../../model/message';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,56 +16,42 @@ export class UserProfileComponent implements OnInit {
 
   id: number;
   userForm: FormGroup;
-  message: Message;
-  user: Users = {
-    id: 0,
-    name: '',
-    email: '',
-    username: '',
-    password: '',
-    gender: '',
-    hobbies: '',
-    avatarUrl: '',
-    roles: [
-      {
-        id: 0,
-      }
-    ]
-  };
-  userid: string;
+  message = '';
+  user: Users;
+  iduser: string;
+  avaUrl: string;
+  selectImg: any = null;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UsersService,
               private route: Router,
               private router: ActivatedRoute,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private storage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
-    // this.userForm = this.formBuilder.group(
-    //   {
-    //     name: ['', [Validators.required]],
-    //     email: ['', [Validators.required]],
-    //     gender: ['', [Validators.required]],
-    //     hobbies: ['', [Validators.required]],
-    //     avatarUrl: ['', [Validators.required]]
-    //   });
+    this.userForm = this.formBuilder.group(
+      {
+        name: ['', [Validators.required]],
+        email: ['', [Validators.required]],
+        gender: ['', [Validators.required]],
+        hobbies: ['', [Validators.required]],
+        avatarUrl: ['', [Validators.required]]
+      });
     // @ts-ignore
-    this.userid = this.httpService.getID();
-    this.userService.getById(this.userid).subscribe(data => {
-      this.userForm = this.formBuilder.group(
-        {
-          name: [data.name, [Validators.required]],
-          email: [data.email, [Validators.required]],
-          gender: [data.gender, [Validators.required]],
-          hobbies: [data.hobbies, [Validators.required]],
-          avatarUrl: [data.avatarUrl, [Validators.required]]
-        });
-      this.user.id = data.id;
-      this.user.username = data.username;
-      this.user.password = data.password;
-      this.user.roles = data.roles;
+    this.iduser = this.httpService.getID();
+    console.log(this.iduser);
+    this.userService.getUserById(this.iduser).subscribe(data => {
+      this.user = {
+        id: data.id,
+        roles: data.roles,
+        username: data.username,
+        password: data.password
+      };
+      this.avaUrl = data.avatarUrl;
+      this.userForm.patchValue(data);
     });
     console.log(this.user);
   }
@@ -77,17 +64,40 @@ export class UserProfileComponent implements OnInit {
       name: this.userForm.value.name,
       email: this.userForm.value.email,
       username: this.user.username,
-      password: this.user.password,
+      password:  this.user.password,
       gender: this.userForm.value.gender,
       hobbies: this.userForm.value.hobbies,
-      avatarUrl: this.userForm.value.avatarUrl,
+      avatarUrl: this.avaUrl,
       roles: this.user.roles
     };
     this.userService.updateUser(user1).subscribe(data => {
-      this.message = {
-        message: data
-      };
+      console.log(user1);
     });
+  }
+
+  // tslint:disable-next-line:typedef
+  submit(){
+    if (this.selectImg !== null){
+      const filePath = `avataruser/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.avaUrl = url;
+          });
+        })
+      ).subscribe();
+    }
+  }
+// tslint:disable-next-line:typedef
+  showPre(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.selectImg = event.target.files[0];
+      this.submit();
+    } else {
+      this.avaUrl = '';
+      this.selectImg = null;
+    }
   }
 
 }
