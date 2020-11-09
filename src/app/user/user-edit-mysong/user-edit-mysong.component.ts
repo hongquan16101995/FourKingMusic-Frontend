@@ -55,7 +55,7 @@ export class UserEditMysongComponent implements OnInit {
       description: this.songForm.value.description,
       tags: this.songForm.value.tags,
       avatarUrl: this.avaUrl,
-      fileUrl: this.songForm.value.fileUrl,
+      fileUrl: this.file,
       user: this.song.user,
       singers: this.song.singers,
       dateCreated: this.song.dateCreated

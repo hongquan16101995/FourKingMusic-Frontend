@@ -96,6 +96,7 @@ export class CreatSongComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             this.file = url;
+            console.log(this.file);
           });
         })
       ).subscribe();
