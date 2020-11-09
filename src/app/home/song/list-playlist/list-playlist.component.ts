@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Song} from '../../model/Song';
-import {SongService} from '../../service/song.service';
+import {Song} from '../../../model/Song';
+import {SongService} from '../../../service/song.service';
 
 @Component({
-  selector: 'app-singer',
-  templateUrl: './singer.component.html',
-  styleUrls: ['./singer.component.scss']
+  selector: 'app-list-playlist',
+  templateUrl: './list-playlist.component.html',
+  styleUrls: ['./list-playlist.component.scss']
 })
-export class SingerComponent implements OnInit {
-
+export class ListPlaylistComponent implements OnInit {
   songList: Song[] = [];
   constructor(private songService: SongService) { }
   ngOnInit(): void {

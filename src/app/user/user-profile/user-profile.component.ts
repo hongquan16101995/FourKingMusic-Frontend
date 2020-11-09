@@ -4,6 +4,8 @@ import {UsersService} from '../../service/users.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '../../service/http.service';
 import {Users} from '../../model/Users';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,12 +19,15 @@ export class UserProfileComponent implements OnInit {
   message = '';
   user: Users;
   iduser: string;
+  avaUrl: string;
+  selectImg: any = null;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UsersService,
               private route: Router,
               private router: ActivatedRoute,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private storage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
@@ -38,13 +43,14 @@ export class UserProfileComponent implements OnInit {
     // @ts-ignore
     this.iduser = this.httpService.getID();
     console.log(this.iduser);
-    this.userService.getById(this.iduser).subscribe(data => {
+    this.userService.getUserById(this.iduser).subscribe(data => {
       this.user = {
         id: data.id,
         role: data.role,
         username: data.username,
         password: data.password
       };
+      this.avaUrl = data.avatarUrl;
       this.userForm.patchValue(data);
     });
       console.log(this.user);
@@ -61,12 +67,37 @@ export class UserProfileComponent implements OnInit {
       password:  this.user.password,
       gender: this.userForm.value.gender,
       hobbies: this.userForm.value.hobbies,
-      avatarUrl: this.userForm.value.avatarUrl,
+      avatarUrl: this.avaUrl,
       role: this.user.role
     };
     this.userService.updateUser(user1).subscribe(data => {
-      this.message = JSON.stringify(data);
+      console.log(user1);
     });
+  }
+
+  // tslint:disable-next-line:typedef
+  submit(){
+    if (this.selectImg !== null){
+      const filePath = `avataruser/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.avaUrl = url;
+          });
+        })
+      ).subscribe();
+    }
+  }
+// tslint:disable-next-line:typedef
+  showPre(event: any){
+    if (event.target.files && event.target.files[0]){
+      this.selectImg = event.target.files[0];
+      this.submit();
+    } else {
+      this.avaUrl = '';
+      this.selectImg = null;
+    }
   }
 
 }

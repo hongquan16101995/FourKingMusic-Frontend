@@ -1,0 +1,51 @@
+<app-navbar-user></app-navbar-user>
+<div>
+<form (ngSubmit)="onSubmit()" [formGroup]="songForm">
+  <div>
+    <table class="table table-bordered">
+      <tr>
+        <td><img [src]="avaUrl" alt="ko có ảnh" height="50px" width="50px"></td>
+        <td><input class="form-control" type="file" formControlName="avatarUrl" (change)="showPre($event)">
+        </td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><input class="form-control" type="text" formControlName="name">
+          <div *ngIf="songForm.get('name').hasError('required') && songForm.get('name').touched" class="text-danger">
+            Erros
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><input class="form-control" type="text" formControlName="description">
+          <div *ngIf="songForm.get('description').hasError('required') && songForm.get('description').touched" class="text-danger">
+            Erros
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Tags</td>
+        <td><input class="form-control" type="text" formControlName="tags">
+        </td>
+      </tr>
+      <tr>
+        <td>File</td>
+        <td><input class="form-control" type="file" formControlName="fileUrl">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button  type="submit">Update</button>
+          <button class="button-cancel" [routerLink]="['/userHome']" type="button">Cancel</button>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</form>
+<div class="alert alert-danger" role="alert" style="text-align: center" *ngIf="message">{{message}}</div>
+</div>
+
+
+

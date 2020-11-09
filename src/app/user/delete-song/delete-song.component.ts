@@ -3,6 +3,7 @@ import {Song} from '../../model/Song';
 import {SongService} from '../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
 
+
 @Component({
   selector: 'app-delete-song',
   templateUrl: './delete-song.component.html',
@@ -18,7 +19,7 @@ export class DeleteSongComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params.id;
     if (confirm('Are you sure?')) {
-      this.songService.getById(id).subscribe(data => {
+      this.songService.getSongById(id).subscribe(data => {
         this.song = data;
       });
     }
