@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit {
       };
       this.userForm.patchValue(data);
     });
-    console.log(this.user);
+      console.log(this.user);
   }
 
   // tslint:disable-next-line:typedef
