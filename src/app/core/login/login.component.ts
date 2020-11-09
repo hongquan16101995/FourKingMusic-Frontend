@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 
+declare var FB: any;
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,36 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      username: [''],
-      password: ['']
-    });
+    // this.loginForm = this.fb.group({
+    //   username: [''],
+    //   password: ['']
+    // });
+    (window as any).fbAsyncInit = function() {
+      FB.init({
+        appId      : '3471278576296648',
+        cookie: true,
+        status: true,
+        xfbml      : true,
+        version    : 'v8.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
   }
+
+loginFacebook() {
+  FB.login((response) => {
+    //do something
+  }, {scope: 'email'});
+}
 
   // tslint:disable-next-line:typedef
   login() {
