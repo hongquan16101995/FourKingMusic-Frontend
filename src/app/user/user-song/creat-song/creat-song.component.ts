@@ -17,7 +17,7 @@ export class CreatSongComponent implements OnInit {
   songForm: FormGroup;
   message: string;
   user: Users;
-  iduser: string;
+  userid: string;
   avaUrl: string;
   file: string;
   selectImg: any = null;
@@ -38,9 +38,8 @@ export class CreatSongComponent implements OnInit {
         avatarUrl: ['', [Validators.required]],
         fileUrl: ['', [Validators.required]]
       });
-    this.iduser = this.httpService.getID();
-    console.log(this.iduser);
-    this.userService.getUserById(this.iduser).subscribe(data => {
+    this.userid = this.httpService.getID();
+    this.userService.getUserById(this.userid).subscribe(data => {
       this.user = {
         id: data.id
       };

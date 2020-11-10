@@ -8,9 +8,9 @@
             <li class="list-group-item pb-1" *ngFor="let song of songList">
               <a class="name-of-song" [routerLink]="['song',song.id]" >
                 <img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2">
-                <h6 class="mb-1 text-dark">{{song.name}}</h6>
+                <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
               </a>
-              <p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p>
+              <span style="float: left"><p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p></span>
             </li>
           </ul>
           <a class="text-info" href="">
@@ -23,9 +23,9 @@
             <li class="list-group-item pb-1" *ngFor="let song of songList">
               <a class="name-of-song">
                 <img src="{{song.avatarUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
-                <h6 class="mb-1 text-dark">{{song.name}}</h6>
+                <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
               </a>
-              <p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p>
+              <span style="float: left"><p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p></span>
             </li>
 
           </ul>

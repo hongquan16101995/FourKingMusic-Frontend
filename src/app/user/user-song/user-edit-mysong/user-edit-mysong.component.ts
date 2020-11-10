@@ -39,7 +39,6 @@ export class UserEditMysongComponent implements OnInit {
       this.song = {
         id: data.id,
         user: data.user,
-        singers: data.singers,
         dateCreated: data.dateCreated
       };
       this.avaUrl = data.avatarUrl;
@@ -57,11 +56,10 @@ export class UserEditMysongComponent implements OnInit {
       avatarUrl: this.avaUrl,
       fileUrl: this.file,
       user: this.song.user,
-      singers: this.song.singers,
       dateCreated: this.song.dateCreated
     };
-    console.log(song1.id);
-    this.songService.updateSong(song1).subscribe(() => {
+    this.songService.updateSong(song1).subscribe(res => {
+      this.message = res.message;
     });
   }
 

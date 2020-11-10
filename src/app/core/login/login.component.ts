@@ -13,21 +13,6 @@ import {Users} from '../../model/Users';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  user: Users = {
-    id: 0,
-    name: '',
-    email: '',
-    username: '',
-    password: '',
-    gender: '',
-    hobbies: '',
-    avatarUrl: '',
-    roles: [
-      {
-        id: 0,
-      }
-    ]
-  };
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
               private router: Router) { }
@@ -43,9 +28,6 @@ export class LoginComponent implements OnInit {
   login() {
     const data = this.loginForm.value;
     this.loginService.login(data).subscribe(res => {
-      this.user = res.user;
-      console.log(res.user);
-      console.log(this.user);
       // tslint:disable-next-line:triple-equals
       if (res.id != null) {
         const jwt = res.token;
@@ -53,7 +35,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userId', JSON.stringify(res.id));
         this.router.navigate(['userHome']);
       } else {
-        console.log(res);
+        alert('Đăng nhập thất bại!');
       }
     });
   }

@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   userForm: FormGroup;
   message = '';
   user: Users;
-  iduser: string;
+  userid: string;
   avaUrl: string;
   selectImg: any = null;
 
@@ -41,9 +41,9 @@ export class UserProfileComponent implements OnInit {
         avatarUrl: ['', [Validators.required]]
       });
     // @ts-ignore
-    this.iduser = this.httpService.getID();
-    console.log(this.iduser);
-    this.userService.getUserById(this.iduser).subscribe(data => {
+    this.userid = this.httpService.getID();
+    console.log(this.userid);
+    this.userService.getUserById(this.userid).subscribe(data => {
       this.user = {
         id: data.id,
         roles: data.roles,
@@ -70,8 +70,8 @@ export class UserProfileComponent implements OnInit {
       avatarUrl: this.avaUrl,
       roles: this.user.roles
     };
-    this.userService.updateUser(user1).subscribe(data => {
-      console.log(user1);
+    this.userService.updateUser(user1).subscribe(res => {
+      this.message = res.message;
     });
   }
 

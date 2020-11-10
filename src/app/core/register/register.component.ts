@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LoginService} from '../../service/login.service';
+import {Message} from '../../model/Message';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import {LoginService} from '../../service/login.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
+  message: Message;
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
               private router: Router) { }
@@ -34,10 +36,11 @@ export class RegisterComponent implements OnInit {
     };
     this.loginService.register(user).subscribe(res => {
       // tslint:disable-next-line:triple-equals
-      if (res.message == 'User registered successfully!') {
+      if (res.message != null) {
         this.router.navigate(['login']);
       } else {
-        console.log(res);
+        this.message.message = res.message;
+        alert(this.message);
       }
     });
   }

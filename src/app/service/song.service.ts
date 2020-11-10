@@ -27,16 +27,21 @@ export class SongService {
     return this.http.get<Song>(API_URL + '/home/song/' + id);
   }
 
+  getSongByUser(userid: number): Observable<Song[]> {
+    // @ts-ignore
+    return this.http.get<Song[]>(API_URL + '/user/song', userid, this.httpService.getHttp());
+  }
+
   createSong(song: Song): Observable<any> {
     return this.http.post(API_URL + '/song', song, this.httpService.getHttp());
   }
 
-  updateSong(song: Song): Observable<Song> {
+  updateSong(song: Song): Observable<any> {
     return this.http.put(API_URL + '/song' , song, this.httpService.getHttp());
   }
 
   deleteSong(id: number, userId: number): Observable<any> {
     // @ts-ignore
-    return this.http.delete(API_URL + '/song' + id, userId, this.httpService.getHttp());
+    return this.http.delete(API_URL + '/song/' + id, userId, this.httpService.getHttp());
   }
 }
