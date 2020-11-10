@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Song} from '../../model/Song';
-import {SongService} from '../../service/song.service';
-import {ActivatedRoute} from '@angular/router';
+import {SongService} from '../../../service/song.service';
+import {Users} from '../../../model/Users';
+import {UsersService} from '../../../service/users.service';
+import {HttpService} from '../../../service/http.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-user-edit-mysong',
-  templateUrl: './user-edit-mysong.component.html',
-  styleUrls: ['./user-edit-mysong.component.css']
+  selector: 'app-creat-song',
+  templateUrl: './creat-song.component.html',
+  styleUrls: ['./creat-song.component.css']
 })
-export class UserEditMysongComponent implements OnInit {
+export class CreatSongComponent implements OnInit {
 
-  id: number;
   songForm: FormGroup;
-  message = '';
-  song: Song;
+  message: string;
+  user: Users;
+  userid: string;
   avaUrl: string;
   file: string;
   selectImg: any = null;
@@ -24,44 +25,39 @@ export class UserEditMysongComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private songService: SongService,
-              private router: ActivatedRoute,
+              private userService: UsersService,
+              private httpService: HttpService,
               private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
-    this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.songForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
         description: ['', [Validators.required]],
-        tags: ['']
+        tags: ['', [Validators.required]],
+        avatarUrl: ['', [Validators.required]],
+        fileUrl: ['', [Validators.required]]
       });
-    this.songService.getSongById(this.id).subscribe(data => {
-      this.song = {
-        id: data.id,
-        user: data.user,
-        singers: data.singers,
-        dateCreated: data.dateCreated
+    this.userid = this.httpService.getID();
+    this.userService.getUserById(this.userid).subscribe(data => {
+      this.user = {
+        id: data.id
       };
       this.avaUrl = data.avatarUrl;
-      this.songForm.patchValue(data);
     });
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    const song1 = {
-      id: this.song.id,
+    const song = {
       name: this.songForm.value.name,
       description: this.songForm.value.description,
       tags: this.songForm.value.tags,
       avatarUrl: this.avaUrl,
       fileUrl: this.file,
-      user: this.song.user,
-      singers: this.song.singers,
-      dateCreated: this.song.dateCreated
+      user: this.user
     };
-    console.log(song1.id);
-    this.songService.updateSong(song1).subscribe(() => {
+    this.songService.createSong(song).subscribe(() => {
     });
   }
 
@@ -114,4 +110,5 @@ export class UserEditMysongComponent implements OnInit {
       this.selectfile = null;
     }
   }
+
 }

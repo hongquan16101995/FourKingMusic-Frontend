@@ -28,8 +28,11 @@ import { ListNewSongComponent } from './home/song/list-new-song/list-new-song.co
 import { ListAllComponent } from './home/song/list-all/list-all.component';
 import { PlayPlaylistComponent } from './home/song/play-playlist/play-playlist.component';
 import { UserPlayPlaylistComponent } from './user/user-play-playlist/user-play-playlist.component';
-import {CreatSongComponent} from './user/creat-song/creat-song.component';
-import {DeleteSongComponent} from './user/delete-song/delete-song.component';
+import {CreatSongComponent} from './user/user-song/creat-song/creat-song.component';
+import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.component';
+import {UserPlaySongComponent} from './user/user-song/user-play-song/user-play-song.component';
+import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
+import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import {DeleteSongComponent} from './user/delete-song/delete-song.component';
     ListNewSongComponent,
     ListAllComponent,
     PlayPlaylistComponent,
-    UserPlayPlaylistComponent
+    UserPlayPlaylistComponent,
+    UserPlaySongComponent,
+    UserEditMysongComponent,
+    UserMysongComponent
   ],
   imports: [
     BrowserModule,

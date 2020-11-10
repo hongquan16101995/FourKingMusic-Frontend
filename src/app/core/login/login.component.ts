@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
+import {Users} from '../../model/Users';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userId', JSON.stringify(res.id));
         this.router.navigate(['userHome']);
       } else {
-        console.log(res);
+        alert('Đăng nhập thất bại!');
       }
     });
   }
