@@ -12,6 +12,8 @@ import {PlaySongComponent} from './home/song/play-song/play-song.component';
 import {DeleteSongComponent} from './user/delete-song/delete-song.component';
 import {UserEditMysongComponent} from './user/user-edit-mysong/user-edit-mysong.component';
 import {UserPlaySongComponent} from './user/user-play-song/user-play-song.component';
+import {PlayPlaylistComponent} from './home/song/play-playlist/play-playlist.component';
+import {UserPlayPlaylistComponent} from './user/user-play-playlist/user-play-playlist.component';
 
 const routes: Routes = [
   {
@@ -29,8 +31,16 @@ const routes: Routes = [
     component: PlaySongComponent
   },
   {
+    path: 'playlist/:id',
+    component: PlayPlaylistComponent
+  },
+  {
     path: 'userHome/song/:id',
     component: UserPlaySongComponent,
+    canActivate: [AuthGuardGuard]
+  },  {
+    path: 'userHome/playlist/:id',
+    component: UserPlayPlaylistComponent,
     canActivate: [AuthGuardGuard]
   },
   {
