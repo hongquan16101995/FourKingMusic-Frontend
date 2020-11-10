@@ -1,15 +1,49 @@
-table {
-  width: 400px;
+.box {
+  width: 700px;
   padding: 40px;
   position: absolute;
+  margin-bottom: 100px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: -1px 92px 99px -62px rgb(214, 152, 185), 0 1px 6px 0 rgb(171, 147, 201);
+  margin-bottom: 100px;
+  transform: translate(-50%, -40%);
+  background: #191919;
+  text-align: center;
+  box-shadow: -1px 92px 99px -62px rgba(3, 107, 255, 0.27), 0 1px 6px 0 rgba(10, 48, 255, 0.48);
   border-radius: 5px;
 }
 
-.table button{
+.box h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+}
+
+.box td {
+  padding-right: 30px;
+  text-align: left;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.box input[type = "text"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.box button {
   border: 0;
   background: none;
   display: block;
@@ -25,14 +59,35 @@ table {
   width: 10%;
 }
 
+.box input[type = "text"]:focus {
+  width: 350px;
+  -webkit-animation: 9s colorChange alternate;
+  transition: height 0.3s, width 0.3s 0.1s;
+  input: focus border
+}
 
-.table button[type = "submit"] {
+.box button[type = "submit"] {
   border: 0;
   background: none;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #5acd8b;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.box button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #cc2e2e;
   padding: 14px 40px;
   outline: none;
   color: white;
@@ -43,28 +98,10 @@ table {
   text-decoration: none;
 }
 
-
-.table button[type = "submit"]:hover {
-  background: #5acd8b;
+.box button[type = "submit"]:hover {
+  background: #2ecc71;
 }
 
-.table .button-cancel{
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #ffa3a3;
-  padding: 14px 40px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor: pointer;
-  width: 200px;
-  text-decoration: none;
-}
-
-.table .button-cancel:hover {
-  background: #ffa3a3;
+.box button:hover {
+  background: #cc2e2e;
 }

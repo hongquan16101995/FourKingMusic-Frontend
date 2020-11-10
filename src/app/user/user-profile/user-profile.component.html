@@ -1,22 +1,22 @@
 <div class="container">
   <app-navbar-user></app-navbar-user>
-  <div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="userForm" style="margin-top: 45px">
+  <div style="margin-top: 60px">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm" >
       <div>
         <table class="box">
           <tr>
-            <th colspan="2" style="padding-top: 40px">
+            <th colspan="3" style="padding-top: 40px">
               <h1>Thông tin cá nhân</h1>
             </th>
           </tr>
           <tr >
-            <td style="padding-top: 30px"><img [src]="avaUrl" width="50px" height="50px"></td>
-            <td><input type="file" formControlName="avatarUrl" (change)="showPre($event)">
-            </td>
+            <td style="padding-top: 30px; padding-left: 60px"><img [src]="avaUrl" width="50px" height="50px"></td>
+            <td colspan="2"><input type="file" formControlName="avatarUrl" (change)="showPre($event)"></td>
           </tr>
           <tr>
-            <td>Name</td>
-            <td><input type="text" formControlName="name">
+            <td style="padding-left: 60px;">Name</td>
+            <td><input type="text" formControlName="name"></td>
+            <td>
               <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched"
                    class="text-danger">
                 Erros
@@ -24,8 +24,9 @@
             </td>
           </tr>
           <tr>
-            <td>Email</td>
-            <td><input type="text" formControlName="email" readonly>
+            <td style="padding-left: 60px;">Email</td>
+            <td><input type="text" formControlName="email" readonly></td>
+            <td>
               <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched"
                    class="text-danger">
                 Erros
@@ -33,8 +34,9 @@
             </td>
           </tr>
           <tr>
-            <td>Gender</td>
-            <td><input type="text" formControlName="gender">
+            <td style="padding-left: 60px;">Gender</td>
+            <td><input type="text" formControlName="gender"></td>
+            <td>
               <div *ngIf="userForm.get('gender').hasError('required') && userForm.get('gender').touched"
                    class="text-danger">
                 Erros
@@ -42,8 +44,9 @@
             </td>
           </tr>
           <tr>
-            <td>Hobbies</td>
-            <td><input type="text" formControlName="hobbies">
+            <td style="padding-left: 60px;">Hobbies</td>
+            <td><input type="text" formControlName="hobbies"></td>
+            <td>
               <div *ngIf="userForm.get('hobbies').hasError('required') && userForm.get('hobbies').touched"
                    class="text-danger">
                 Erros
@@ -51,7 +54,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td colspan="3">
               <button type="submit">Update</button>
               <button class="button-cancel" [routerLink]="['/userHome']">Cancel</button>
             </td>
@@ -60,6 +63,5 @@
       </div>
     </form>
   </div>
-
 </div>
 
