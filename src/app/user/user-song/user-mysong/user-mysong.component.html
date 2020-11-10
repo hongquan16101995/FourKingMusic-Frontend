@@ -1,0 +1,31 @@
+<app-navbar-user></app-navbar-user>
+
+
+<div class="carousel-gallery">
+  <h3 class="mb-1 text-dark" style="padding-bottom: 20px">Bài hát của tôi</h3>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let song of songList">
+        <a href="#" data-fancybox="gallery">
+          <div class="image" style="background-image: url({{song.avatarUrl}})">
+            <div class="overlay">
+              <h6>{{song.name}}</h6>
+              <div *ngIf="song.singers.length != 0 ; else block">
+                <div *ngFor="let singer of song.singers">
+                  {{singer.name}}
+                </div>
+              </div>
+              <ng-template #block>{{song.user.name}}</ng-template>
+            </div>
+          </div>
+        </a>
+        <button class="btn" [routerLink]="[song.id, 'userEditMysong']">Update</button>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+<app-footer-user></app-footer-user>
+
+
+

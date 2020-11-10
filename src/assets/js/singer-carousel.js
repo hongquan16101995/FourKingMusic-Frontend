@@ -1,6 +1,6 @@
 $(function(){
 
-  var swiper = new Swiper('.carousel-gallery .swiper-container', {
+  const swiper = new Swiper('.carousel-gallery .swiper-container', {
     effect: 'slide',
     speed: 900,
     slidesPerView: 5,

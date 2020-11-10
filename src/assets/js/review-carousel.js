@@ -8,12 +8,12 @@ $(function(){
     setSlide(next, current);
   });
   $('#moveLeft').on('click', function(){
-    var prev=current;
+    const prev = current;
     current = current- 1;
     setSlide(prev, current);
   });
   function setSlide(prev, next){
-    var slide= current;
+    let slide = current;
     if(next>total-1){
       slide=0;
       current=0;

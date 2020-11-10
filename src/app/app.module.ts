@@ -1,39 +1,40 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './core/login/login.component';
 import {RegisterComponent} from './core/register/register.component';
 import {NavbarMenuComponent} from './home/navbar-menu/navbar-menu.component';
-import {NowPlayingBarComponent} from './home/now-playing-bar/now-playing-bar.component';
 import {LayoutComponent} from './home/layout/layout.component';
 import {ListSongComponent} from './home/song/list-song/list-song.component';
 import {HttpClientModule} from '@angular/common/http';
-import {CreatSongComponent} from './user/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import { NewMostSongsComponent } from './home/song/new-most-songs/new-most-songs.component';
 import { SingerComponent } from './home/singer/singer-list/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
-import { ListPlaylistComponent } from './home/song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
-import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
-import { PasswordComponent } from './user/password/password.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { NavbarUserComponent } from './user/navbar-user/navbar-user.component';
 import { FooterUserComponent } from './user/footer-user/footer-user.component';
 import { PlaySongComponent } from './home/song/play-song/play-song.component';
-import {DeleteSongComponent} from './user/delete-song/delete-song.component';
-import { UserEditMysongComponent } from './user/user-edit-mysong/user-edit-mysong.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import { UserPlaySongComponent } from './user/user-play-song/user-play-song.component';
-
-
+import {PasswordComponent} from './user/password/password.component';
+import {ListNewPlaylistComponent} from './home/song/list-new-playlist/list-new-playlist.component';
+import { ListNewSongComponent } from './home/song/list-new-song/list-new-song.component';
+import { ListAllComponent } from './home/song/list-all/list-all.component';
+import { PlayPlaylistComponent } from './home/song/play-playlist/play-playlist.component';
+import { UserPlayPlaylistComponent } from './user/user-play-playlist/user-play-playlist.component';
+import {CreatSongComponent} from './user/user-song/creat-song/creat-song.component';
+import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.component';
+import {UserPlaySongComponent} from './user/user-song/user-play-song/user-play-song.component';
+import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
+import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
+import { AllSongsComponent } from './home/song/all-songs/all-songs.component';
+import { AllPlaylistComponent } from './home/song/all-playlist/all-playlist.component';
 
 @NgModule({
   declarations: [
@@ -41,27 +42,31 @@ import { UserPlaySongComponent } from './user/user-play-song/user-play-song.comp
     LoginComponent,
     RegisterComponent,
     NavbarMenuComponent,
-    NowPlayingBarComponent,
     LayoutComponent,
     ListSongComponent,
     CreatSongComponent,
-    NewMostSongsComponent,
     SingerComponent,
     FooterComponent,
-    ListPlaylistComponent,
     PosterComponent,
     CreatSongComponent,
     DeleteSongComponent,
-    UserMysongComponent,
     PasswordComponent,
     UserHomeComponent,
     UserProfileComponent,
-    UserEditMysongComponent,
     UserProfileComponent,
     NavbarUserComponent,
     FooterUserComponent,
     PlaySongComponent,
-    UserPlaySongComponent
+    ListNewPlaylistComponent,
+    ListNewSongComponent,
+    ListAllComponent,
+    PlayPlaylistComponent,
+    UserPlayPlaylistComponent,
+    UserPlaySongComponent,
+    UserEditMysongComponent,
+    UserMysongComponent,
+    AllSongsComponent,
+    AllPlaylistComponent
   ],
   imports: [
     BrowserModule,
