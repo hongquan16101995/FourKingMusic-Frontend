@@ -1,0 +1,120 @@
+
+/*Carousel Gallery*/
+.carousel-gallery {
+  margin: 50px 0;
+  padding: 0 30px;
+
+  .swiper-slide {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
+    -o-transition-property: transform;
+
+    a {
+      display: block;
+      width: 150px;
+      height: 200px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+
+      -webkit-box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+      -moz-box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+      box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+
+      &:hover {
+        .image {
+          .overlay {
+            opacity: 1
+          }
+        }
+      }
+
+      .image {
+        width: 150px;
+        height: 200px;
+        background-size: cover;
+        background-position: center center;
+
+        .overlay {
+          width: 150px;
+          height: 200px;
+          background-color: rgba(20, 20, 20, .8);
+          text-align: center;
+          opacity: 0;
+
+          -webkit-transition: all .2s linear;
+          -o-transition: all .2s linear;
+          transition: all .2s linear;
+
+          em {
+            color: #fff;
+            font-size: 26px;
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-pagination {
+    position: relative;
+    bottom: auto;
+    text-align: center;
+    margin-top: 25px;
+
+    .swiper-pagination-bullet {
+      -webkit-transition: all .2s linear;
+      -o-transition: all .2s linear;
+      transition: all .2s linear;
+
+      &:hover {
+        opacity: .7;
+      }
+
+      &.swiper-pagination-bullet-active {
+        background-color: #d63031;
+        transform: scale(1.1, 1.1)
+      }
+    }
+  }
+}
+
+/*# Carousel Gallery*/
+
+.plugins {
+  text-align: center;
+
+  h3 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-transform: uppercase;
+    color: #111;
+  }
+
+  a {
+    display: inline-block;
+    font-family: Arial;
+    color: #777;
+    font-size: 14px;
+    margin: 10px;
+    transition: all .2s linear;
+
+    &:hover {
+      color: #d63031
+    }
+  }
+}
