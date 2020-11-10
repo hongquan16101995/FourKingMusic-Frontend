@@ -3,17 +3,17 @@ import {Routes, RouterModule} from '@angular/router';
 import {LayoutComponent} from './home/layout/layout.component';
 import {LoginComponent} from './core/login/login.component';
 import {RegisterComponent} from './core/register/register.component';
-import {CreatSongComponent} from './user/creat-song/creat-song.component';
-import {UserMysongComponent} from './user/user-mysong/user-mysong.component';
 import {AuthGuardGuard} from './guard/auth-guard.guard';
 import {UserHomeComponent} from './user/user-home/user-home.component';
 import {UserProfileComponent} from './user/user-profile/user-profile.component';
 import {PlaySongComponent} from './home/song/play-song/play-song.component';
-import {DeleteSongComponent} from './user/delete-song/delete-song.component';
-import {UserEditMysongComponent} from './user/user-edit-mysong/user-edit-mysong.component';
-import {UserPlaySongComponent} from './user/user-play-song/user-play-song.component';
 import {PlayPlaylistComponent} from './home/song/play-playlist/play-playlist.component';
 import {UserPlayPlaylistComponent} from './user/user-play-playlist/user-play-playlist.component';
+import {UserPlaySongComponent} from './user/user-song/user-play-song/user-play-song.component';
+import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.component';
+import {CreatSongComponent} from './user/user-song/creat-song/creat-song.component';
+import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
+import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
 
 const routes: Routes = [
   {

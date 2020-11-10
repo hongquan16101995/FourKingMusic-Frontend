@@ -3,10 +3,10 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let song of songList">
-        <a  data-fancybox="gallery">
+        <a  data-fancybox="gallery" [routerLink]="['/song/', song.id]">
           <div class="image" style="background-image: url({{song.avatarUrl}})" >
             <div class="overlay">
-              <em class="mdi mdi-magnify-plus"></em>
+              <em class="mdi mdi-play-circle"></em>
             </div>
           </div>
         </a>
