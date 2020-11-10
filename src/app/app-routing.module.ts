@@ -16,6 +16,7 @@ import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.comp
 import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
 import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
 import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
+import {PasswordComponent} from './user/password/password.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
   {
     path: 'userProfile',
     component: UserProfileComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'changePassword',
+    component: PasswordComponent,
     canActivate: [AuthGuardGuard]
   },
   {
