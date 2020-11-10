@@ -16,6 +16,7 @@ import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.comp
 import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
 import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
 import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
+import {TestPlayComponent} from './home/song/test-play/test-play.component';
 
 const routes: Routes = [
   {
