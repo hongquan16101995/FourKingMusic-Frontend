@@ -3,11 +3,12 @@ import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 
 @Component({
-  selector: 'app-new-most-songs',
-  templateUrl: './new-most-songs.component.html',
-  styleUrls: ['./new-most-songs.component.css']
+  selector: 'app-list-all',
+  templateUrl: './list-all.component.html',
+  styleUrls: ['./list-all.component.css']
 })
-export class NewMostSongsComponent implements OnInit {
+export class ListAllComponent implements OnInit {
+
 
   songList: Song[] = [];
 
@@ -19,4 +20,5 @@ export class NewMostSongsComponent implements OnInit {
       this.songList = data;
     });
   }
+
 }
