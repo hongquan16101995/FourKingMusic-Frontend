@@ -16,6 +16,7 @@ export const environment = {
   // apiUrl: 'http://localhost:8080'
   // apiUrl: 'http://10.30.0.88:8080'
   apiUrl: 'http://10.30.0.31:8080'
+  // apiUrl: 'http://192.168.3.42:8080'
 };
 
 /*
