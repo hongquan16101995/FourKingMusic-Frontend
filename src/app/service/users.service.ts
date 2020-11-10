@@ -16,10 +16,6 @@ export class UsersService {
   constructor(private http: HttpClient,
               private httpService: HttpService) { }
 
-  changeInfo(user: Users): Observable<any> {
-    return this.http.post(API_URL + '/user/changeinfo', user, this.httpService.getHttp());
-  }
-
   // tslint:disable-next-line:typedef
   changePassword(data: Password): Observable<any> {
     return this.http.post(API_URL + '/user/changepassword', data, this.httpService.getHttp());

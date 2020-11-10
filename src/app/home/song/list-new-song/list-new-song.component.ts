@@ -3,20 +3,20 @@ import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 
 @Component({
-  selector: 'app-new-most-songs',
-  templateUrl: './new-most-songs.component.html',
-  styleUrls: ['./new-most-songs.component.css']
+  selector: 'app-list-new-song',
+  templateUrl: './list-new-song.component.html',
+  styleUrls: ['./list-new-song.component.scss']
 })
-export class NewMostSongsComponent implements OnInit {
+export class ListNewSongComponent implements OnInit {
 
   songList: Song[] = [];
-
-  constructor(private songService: SongService) {
-  }
-
+  constructor(private songService: SongService) { }
   ngOnInit(): void {
     this.songService.getAllSongsNew().subscribe(data => {
       this.songList = data;
+      console.log(data);
     });
   }
+
+
 }

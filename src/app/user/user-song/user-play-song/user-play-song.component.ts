@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {Song} from '../../../model/Song';
-import {Singers} from '../../../model/Singers';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
 
