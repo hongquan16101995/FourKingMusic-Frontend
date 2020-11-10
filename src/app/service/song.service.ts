@@ -28,8 +28,7 @@ export class SongService {
   }
 
   getSongByUser(userid: number): Observable<Song[]> {
-    // @ts-ignore
-    return this.http.get<Song[]>(API_URL + '/user/song', userid, this.httpService.getHttp());
+    return this.http.get<Song[]>(API_URL + '/user/song/' + userid, this.httpService.getHttp());
   }
 
   createSong(song: Song): Observable<any> {
