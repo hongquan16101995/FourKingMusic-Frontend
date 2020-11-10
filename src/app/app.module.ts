@@ -12,10 +12,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreatSongComponent} from './user/creat-song/creat-song.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import { NewMostSongsComponent } from './home/song/new-most-songs/new-most-songs.component';
 import { SingerComponent } from './home/singer/singer-list/singer.component';
 import { FooterComponent } from './home/footer/footer.component';
-import { ListPlaylistComponent } from './home/song/list-playlist/list-playlist.component';
 import { PosterComponent } from './core/poster/poster.component';
 import { UserMysongComponent } from './user/user-mysong/user-mysong.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
@@ -31,8 +29,9 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { UserPlaySongComponent } from './user/user-play-song/user-play-song.component';
 import {PasswordComponent} from './user/password/password.component';
-
-
+import {ListNewPlaylistComponent} from './home/song/list-new-playlist/list-new-playlist.component';
+import { ListNewSongComponent } from './home/song/list-new-song/list-new-song.component';
+import { ListAllComponent } from './home/song/list-all/list-all.component';
 
 @NgModule({
   declarations: [
@@ -43,10 +42,8 @@ import {PasswordComponent} from './user/password/password.component';
     LayoutComponent,
     ListSongComponent,
     CreatSongComponent,
-    NewMostSongsComponent,
     SingerComponent,
     FooterComponent,
-    ListPlaylistComponent,
     PosterComponent,
     CreatSongComponent,
     DeleteSongComponent,
@@ -59,7 +56,10 @@ import {PasswordComponent} from './user/password/password.component';
     NavbarUserComponent,
     FooterUserComponent,
     PlaySongComponent,
-    UserPlaySongComponent
+    UserPlaySongComponent,
+    ListNewPlaylistComponent,
+    ListNewSongComponent,
+    ListAllComponent
   ],
   imports: [
     BrowserModule,

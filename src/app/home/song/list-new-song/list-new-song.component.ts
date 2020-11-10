@@ -3,11 +3,13 @@ import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 
 @Component({
-  selector: 'app-list-playlist',
-  templateUrl: './list-playlist.component.html',
-  styleUrls: ['./list-playlist.component.scss']
+  selector: 'app-list-new-song',
+  templateUrl: './list-new-song.component.html',
+  styleUrls: ['./list-new-song.component.scss']
 })
-export class ListPlaylistComponent implements OnInit {
+export class ListNewSongComponent implements OnInit {
+
+
   songList: Song[] = [];
   constructor(private songService: SongService) { }
   ngOnInit(): void {
@@ -16,4 +18,6 @@ export class ListPlaylistComponent implements OnInit {
       console.log(data);
     });
   }
+
+
 }

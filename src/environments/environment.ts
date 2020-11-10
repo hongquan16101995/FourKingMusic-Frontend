@@ -14,7 +14,8 @@ export const environment = {
     appId: '1:721528225083:web:e1aa0c9538615c95bd8b1e'
   },
   // apiUrl: 'http://localhost:8080'
-  apiUrl: 'http://10.30.0.88:8080'
+  // apiUrl: 'http://10.30.0.88:8080'
+  apiUrl: 'http://10.30.0.31:8080'
   // apiUrl: 'http://192.168.3.42:8080'
 };
 
