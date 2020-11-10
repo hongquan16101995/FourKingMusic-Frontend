@@ -10,13 +10,13 @@ import {SongService} from '../../../service/song.service';
 export class ListSongComponent implements OnInit {
 
   songList: Song[] = [];
-  song1: Song = null;
-  song2: Song = null;
-  song3: Song = null;
-  song4: Song = null;
-  song5: Song = null;
-  song6: Song = null;
-  song7: Song = null;
+  song1: Song;
+  song2: Song;
+  song3: Song;
+  song4: Song;
+  song5: Song;
+  song6: Song;
+  song7: Song;
   constructor(private songService: SongService) { }
 
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class ListSongComponent implements OnInit {
         this.song7 = this.songList[i + 6];
         break;
       }
+      console.log(this.song1);
     });
   }
 
