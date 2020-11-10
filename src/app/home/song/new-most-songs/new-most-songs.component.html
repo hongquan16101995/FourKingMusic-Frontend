@@ -11,6 +11,7 @@
                 <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
               </a>
               <span style="float: left"><p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p></span>
+              <span style="float: left"><p class="mb-0 singer" *ngIf="song.singers.length == 0">{{song.user.name}}</p></span>
             </li>
           </ul>
           <a class="text-info" href="">
@@ -26,6 +27,7 @@
                 <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
               </a>
               <span style="float: left"><p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p></span>
+              <span style="float: left"><p class="mb-0 singer" *ngIf="song.singers.length == 0">{{song.user.name}}</p></span>
             </li>
 
           </ul>
