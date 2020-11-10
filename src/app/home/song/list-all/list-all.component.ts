@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
+import {Playlist} from '../../../model/Playlist';
+import {PlaylistService} from '../../../service/playlist.service';
 
 @Component({
   selector: 'app-list-all',
@@ -11,13 +13,18 @@ export class ListAllComponent implements OnInit {
 
 
   songList: Song[] = [];
+  playlists: Playlist[] = [];
 
-  constructor(private songService: SongService) {
+  constructor(private songService: SongService,
+              private playlistService: PlaylistService) {
   }
 
   ngOnInit(): void {
-    this.songService.getAllSongsNew().subscribe(data => {
-      this.songList = data;
+    this.songService.getAllSongs().subscribe(res => {
+      this.songList = res;
+    });
+    this.playlistService.getAllPlaylists().subscribe(res => {
+      this.playlists = res;
     });
   }
 
