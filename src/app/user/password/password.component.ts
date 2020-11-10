@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
 import {UsersService} from '../../service/users.service';
 
 @Component({
@@ -12,8 +11,7 @@ export class PasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
   constructor(private fb: FormBuilder,
-              private userService: UsersService,
-              private router: Router) { }
+              private userService: UsersService) { }
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group({
@@ -32,11 +30,7 @@ export class PasswordComponent implements OnInit {
     this.userService.changePassword(data)
       .subscribe(res => {
       // tslint:disable-next-line:triple-equals
-      if (res.message != null) {
-        console.log(res.message);
-      } else {
-        console.log(res.message);
-      }
+      alert(res.message);
     });
   }
 }

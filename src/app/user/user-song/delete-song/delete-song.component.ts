@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Song} from '../../model/Song';
-import {SongService} from '../../service/song.service';
+import {Song} from '../../../model/Song';
+import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
+import {HttpService} from '../../../service/http.service';
 
 
 @Component({
@@ -12,8 +13,9 @@ import {ActivatedRoute} from '@angular/router';
 export class DeleteSongComponent implements OnInit {
 
   song: Song = {};
-
+  userid: number;
   constructor(private songService: SongService,
+              private httpService: HttpService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,7 +28,8 @@ export class DeleteSongComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.songService.deleteSong(this.song.id).subscribe(() => {
+    this.userid = Number(this.httpService.getID());
+    this.songService.deleteSong(this.song.id, this.userid).subscribe(() => {
       alert('Deleted song successfully');
     });
   }
