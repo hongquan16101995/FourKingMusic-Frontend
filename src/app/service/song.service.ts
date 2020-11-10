@@ -31,6 +31,10 @@ export class SongService {
     return this.http.get<Song[]>(API_URL + '/user/song/' + userid, this.httpService.getHttp());
   }
 
+  getSongByName(name: string): Observable<Song[]> {
+    return this.http.post<Song[]>(API_URL + '/home/song/search' , name);
+  }
+
   createSong(song: Song): Observable<any> {
     return this.http.post(API_URL + '/song', song, this.httpService.getHttp());
   }

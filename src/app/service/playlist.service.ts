@@ -22,7 +22,7 @@ export class PlaylistService {
     return this.http.get<Playlist>(API_URL + '/home/playlist' + id);
   }
   getPlaylistByName(name: string): Observable<Playlist[]> {
-    return this.http.post<Playlist[]>(API_URL + '/home/song/search', name);
+    return this.http.post<Playlist[]>(API_URL + '/home/playlist/search', name);
   }
   createPlaylist(playlist: Playlist): Observable<any> {
     return this.http.post(API_URL + '/playlist', playlist, this.httpService.getHttp());
