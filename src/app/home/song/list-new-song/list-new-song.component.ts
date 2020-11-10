@@ -12,7 +12,7 @@ export class ListNewSongComponent implements OnInit {
   songList: Song[] = [];
   constructor(private songService: SongService) { }
   ngOnInit(): void {
-    this.songService.getAllSongs().subscribe(data => {
+    this.songService.getAllSongsNew().subscribe(data => {
       this.songList = data;
       console.log(data);
     });

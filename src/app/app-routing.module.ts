@@ -9,11 +9,13 @@ import {UserProfileComponent} from './user/user-profile/user-profile.component';
 import {PlaySongComponent} from './home/song/play-song/play-song.component';
 import {PlayPlaylistComponent} from './home/song/play-playlist/play-playlist.component';
 import {UserPlayPlaylistComponent} from './user/user-play-playlist/user-play-playlist.component';
+import {AllSongsComponent} from './home/song/all-songs/all-songs.component';
 import {UserPlaySongComponent} from './user/user-song/user-play-song/user-play-song.component';
 import {CreatSongComponent} from './user/user-song/creat-song/creat-song.component';
 import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.component';
 import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
 import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
+import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
 
 const routes: Routes = [
   {
@@ -72,6 +74,24 @@ const routes: Routes = [
     path: 'mysong/:id/userEditMysong',
     component: UserEditMysongComponent,
     canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'songs',
+    component: AllSongsComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'songs',
+    component: AllSongsComponent
+  },
+  {
+    path: 'playlists',
+    component: AllPlaylistComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'playlists',
+    component: AllPlaylistComponent
   }
   ];
 
