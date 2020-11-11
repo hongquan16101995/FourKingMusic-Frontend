@@ -10,9 +10,14 @@
               <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
             </a>
             <div *ngFor="let like of likesongs">
-              <div *ngIf="like.song.id == song.id && like.user.id == userId">
+              <div *ngIf="like.song.id == song.id">
+                <p>{{song.id}}</p>
+                <p>{{like.song.id}}</p>
                 <p>{{like.status}}</p>
-                <button (click)="likesong(like.status, song.countLike, like.id, song.id)">{{song.countLike}}</button>
+                <p>{{song.countLike}}</p>
+                <div>
+                  <button (click)="likesong(like.status,song.countLike)">Like</button>
+                </div>
               </div>
             </div>
           </li>
