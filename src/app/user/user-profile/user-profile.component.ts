@@ -6,6 +6,7 @@ import {HttpService} from '../../service/http.service';
 import {Users} from '../../model/Users';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+import {Role} from '../../model/Role';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,13 +15,13 @@ import {finalize} from 'rxjs/operators';
 })
 export class UserProfileComponent implements OnInit {
 
-  id: number;
   userForm: FormGroup;
   message = '';
   user: Users;
   userid: string;
   avaUrl: string;
   selectImg: any = null;
+  roles: Role[];
 
   constructor(private formBuilder: FormBuilder,
               private userService: UsersService,
@@ -31,7 +32,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.userForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
@@ -40,25 +40,25 @@ export class UserProfileComponent implements OnInit {
         hobbies: ['', [Validators.required]],
         avatarUrl: ['', [Validators.required]]
       });
-    // @ts-ignore
     this.userid = this.httpService.getID();
-    console.log(this.userid);
     this.userService.getUserById(this.userid).subscribe(data => {
-      this.user = {
-        id: data.id,
-        roles: data.roles,
-        username: data.username,
-        password: data.password
-      };
+      this.user = data;
+      // this.user = {
+      //   id: data.id,
+      //   roles: data.roles,
+      //   username: data.username,
+      //   password: data.password
+      // };
+      this.roles = data.role;
+      console.log(this.roles);
+      console.log(this.user);
       this.avaUrl = data.avatarUrl;
-      this.userForm.patchValue(data);
+      this.userForm.patchValue(this.user);
     });
-    console.log(this.user);
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    // console.log(this.user);
     const user1 = {
       id: this.user.id,
       name: this.userForm.value.name,
@@ -68,7 +68,7 @@ export class UserProfileComponent implements OnInit {
       gender: this.userForm.value.gender,
       hobbies: this.userForm.value.hobbies,
       avatarUrl: this.avaUrl,
-      roles: this.user.roles
+      role: this.user.role
     };
     this.userService.updateUser(user1).subscribe(res => {
       this.message = res.message;

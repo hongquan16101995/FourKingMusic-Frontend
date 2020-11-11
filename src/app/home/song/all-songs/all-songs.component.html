@@ -1,4 +1,3 @@
-
 <section id="newmostsongs">
   <div class="new-most-song mt-5">
     <div class="row p-5">
@@ -10,6 +9,12 @@
               <img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2">
               <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
             </a>
+            <div *ngFor="let like of likesongs">
+              <div *ngIf="like.song.id == song.id && like.user.id == userId">
+                <p>{{like.status}}</p>
+                <button (click)="likesong(like.status, song.countLike, like.id, song.id)">{{song.countLike}}</button>
+              </div>
+            </div>
           </li>
         </ul>
       </div>

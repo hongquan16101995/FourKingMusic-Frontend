@@ -9,5 +9,5 @@ export interface Users {
   gender?: string;
   hobbies?: string;
   avatarUrl?: string;
-  roles?: Role[];
+  role?: Role[];
 }
