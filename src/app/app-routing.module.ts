@@ -39,17 +39,22 @@ const routes: Routes = [
     path: 'search', component: ListSongSearchComponent
   },
   {
-    path: 'playlist/:id', component: PlayPlaylistComponent
+    path: 'playlist/:id', component: UserPlayPlaylistComponent
   },
   {
     path: 'song/:id', component: PlaySongComponent
   },
   {
-    path: 'userHome/song/:id',
+    path: 'home',
+    component: UserHomeComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'home/song/:id',
     component: UserPlaySongComponent,
     canActivate: [AuthGuardGuard]
   }, {
-    path: 'userHome/playlist/:id',
+    path: 'home/playlist/:id',
     component: UserPlayPlaylistComponent,
     canActivate: [AuthGuardGuard]
   },
@@ -61,11 +66,6 @@ const routes: Routes = [
   {
     path: 'deleteSong',
     component: DeleteSongComponent,
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'userHome',
-    component: UserHomeComponent,
     canActivate: [AuthGuardGuard]
   },
   {
@@ -84,7 +84,7 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard]
   },
   {
-    path: 'mysong/:id/userEditMysong',
+    path: 'mysong/:id/edit',
     component: UserEditMysongComponent,
     canActivate: [AuthGuardGuard]
   },
