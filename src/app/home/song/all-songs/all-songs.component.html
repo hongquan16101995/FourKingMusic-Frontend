@@ -11,8 +11,8 @@
             </a>
             <div *ngFor="let like of likesongs">
               <div *ngIf="like.song.id == song.id && like.user.id == userId">
-                <p>{{like.status}}</p>
-                <button (click)="likesong(like.status, song.countLike, like.id, song.id)">{{song.countLike}}</button>
+                <p>{{status}}</p>
+                <button (click)="likesong(like.status, song.countLike, like.id, song.id)">{{countLike}}</button>
               </div>
             </div>
           </li>

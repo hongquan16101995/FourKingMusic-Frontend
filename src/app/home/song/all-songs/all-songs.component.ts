@@ -17,6 +17,8 @@ export class AllSongsComponent implements OnInit {
   song: Song;
   like: Likesong;
   userId: number;
+  status: boolean;
+  countLike: number;
 
   constructor(private songService: SongService,
               private likesongService: LikesongService,
@@ -31,6 +33,9 @@ export class AllSongsComponent implements OnInit {
       this.likesongs = res;
     });
     this.userId = Number(this.httpClient.getID());
+    for (let like of this.likesongs){
+      like.status;
+    }
   }
 
   // tslint:disable-next-line:typedef
@@ -52,6 +57,8 @@ export class AllSongsComponent implements OnInit {
       data2--;
       data1 = true;
     }
+    this.status = data1;
+    this.countLike = data2;
     // this.song.countLike = data2;
     // this.likesongService.updateLikesong(this.like).subscribe( res => {
     //   alert(res.message);
