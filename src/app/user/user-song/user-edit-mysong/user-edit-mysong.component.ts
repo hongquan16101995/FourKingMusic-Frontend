@@ -18,9 +18,9 @@ export class UserEditMysongComponent implements OnInit {
   message = '';
   song: Song;
   avaUrl: string;
-  file: string;
+  fileUrl: string;
   selectImg: any = null;
-  selectfile: any = null;
+  selectFile: any = null;
 
   constructor(private formBuilder: FormBuilder,
               private songService: SongService,
@@ -32,17 +32,14 @@ export class UserEditMysongComponent implements OnInit {
     this.songForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        description: ['', [Validators.required]],
+        description: [''],
         tags: ['']
       });
-    this.songService.getSongById(this.id).subscribe(data => {
-      this.song = {
-        id: data.id,
-        user: data.user,
-        dateCreated: data.dateCreated
-      };
-      this.avaUrl = data.avatarUrl;
-      this.songForm.patchValue(data);
+    this.songService.getSongById(this.id).subscribe(res => {
+      this.song = res;
+      this.avaUrl = res.avatarUrl;
+      this.fileUrl = res.fileUrl;
+      this.songForm.patchValue(res);
     });
   }
 
@@ -54,17 +51,17 @@ export class UserEditMysongComponent implements OnInit {
       description: this.songForm.value.description,
       tags: this.songForm.value.tags,
       avatarUrl: this.avaUrl,
-      fileUrl: this.file,
+      fileUrl: this.fileUrl,
       user: this.song.user,
       dateCreated: this.song.dateCreated
     };
     this.songService.updateSong(song1).subscribe(res => {
-      this.message = res.message;
+      alert(res.message);
     });
   }
 
   // tslint:disable-next-line:typedef
-  submit(){
+  submitAvatar(){
     if (this.selectImg !== null){
       const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
@@ -77,39 +74,41 @@ export class UserEditMysongComponent implements OnInit {
       ).subscribe();
     }
   }
-// tslint:disable-next-line:typedef
+
+  // tslint:disable-next-line:typedef
   showPre(event: any){
     if (event.target.files && event.target.files[0]){
       this.selectImg = event.target.files[0];
-      this.submit();
+      this.submitAvatar();
     } else {
-      this.avaUrl = '';
+      this.avaUrl = this.song.avatarUrl;
       this.selectImg = null;
     }
   }
 
   // tslint:disable-next-line:typedef
   submitFile(){
-    if (this.selectfile !== null){
-      const filePath = `file/${this.selectfile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    if (this.selectFile !== null){
+      const filePath = `file/${this.selectFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectfile).snapshotChanges().pipe(
+      this.storage.upload(filePath, this.selectFile).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
-            this.file = url;
+            this.fileUrl = url;
           });
         })
       ).subscribe();
     }
   }
-// tslint:disable-next-line:typedef
+
+  // tslint:disable-next-line:typedef
   showPreFile(event: any){
     if (event.target.files && event.target.files[0]){
-      this.selectfile = event.target.files[0];
+      this.selectFile = event.target.files[0];
       this.submitFile();
     } else {
-      this.file = '';
-      this.selectfile = null;
+      this.fileUrl = this.song.fileUrl;
+      this.selectFile = null;
     }
   }
 }

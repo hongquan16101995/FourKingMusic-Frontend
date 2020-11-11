@@ -16,7 +16,6 @@ import {Role} from '../../model/Role';
 export class UserProfileComponent implements OnInit {
 
   userForm: FormGroup;
-  message = '';
   user: Users;
   userid: string;
   avaUrl: string;
@@ -35,24 +34,15 @@ export class UserProfileComponent implements OnInit {
     this.userForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        email: ['', [Validators.required]],
-        gender: ['', [Validators.required]],
-        hobbies: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        gender: [''],
+        hobbies: [''],
         avatarUrl: ['', [Validators.required]]
       });
     this.userid = this.httpService.getID();
-    this.userService.getUserById(this.userid).subscribe(data => {
-      this.user = data;
-      // this.user = {
-      //   id: data.id,
-      //   roles: data.roles,
-      //   username: data.username,
-      //   password: data.password
-      // };
-      this.roles = data.role;
-      console.log(this.roles);
-      console.log(this.user);
-      this.avaUrl = data.avatarUrl;
+    this.userService.getUserById(this.userid).subscribe(res => {
+      this.user = res;
+      this.avaUrl = res.avatarUrl;
       this.userForm.patchValue(this.user);
     });
   }
@@ -71,12 +61,12 @@ export class UserProfileComponent implements OnInit {
       role: this.user.role
     };
     this.userService.updateUser(user1).subscribe(res => {
-      this.message = res.message;
+      alert(res.message);
     });
   }
 
   // tslint:disable-next-line:typedef
-  submit(){
+  sendToFirebase(){
     if (this.selectImg !== null){
       const filePath = `avataruser/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
@@ -89,15 +79,15 @@ export class UserProfileComponent implements OnInit {
       ).subscribe();
     }
   }
-// tslint:disable-next-line:typedef
+
+  // tslint:disable-next-line:typedef
   showPre(event: any){
     if (event.target.files && event.target.files[0]){
       this.selectImg = event.target.files[0];
-      this.submit();
+      this.sendToFirebase();
     } else {
-      this.avaUrl = '';
+      this.avaUrl = this.user.avatarUrl;
       this.selectImg = null;
     }
   }
-
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Playlist} from '../../../model/Playlist';
 import {PlaylistService} from '../../../service/playlist.service';
 

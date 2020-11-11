@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SongService} from '../../../service/song.service';
 import {Users} from '../../../model/Users';
@@ -19,31 +19,30 @@ export class CreatSongComponent implements OnInit {
   user: Users;
   userid: string;
   avaUrl: string;
-  file: string;
+  fileUrl: string;
   selectImg: any = null;
-  selectfile: any = null;
+  selectFile: any = null;
 
   constructor(private formBuilder: FormBuilder,
               private songService: SongService,
               private userService: UsersService,
               private httpService: HttpService,
-              private storage: AngularFireStorage) { }
+              private storage: AngularFireStorage) {
+  }
 
   ngOnInit(): void {
     this.songForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        description: ['', [Validators.required]],
-        tags: ['', [Validators.required]],
+        description: [''],
+        tags: [''],
         avatarUrl: ['', [Validators.required]],
         fileUrl: ['', [Validators.required]]
       });
     this.userid = this.httpService.getID();
-    this.userService.getUserById(this.userid).subscribe(data => {
-      this.user = {
-        id: data.id
-      };
-      this.avaUrl = data.avatarUrl;
+    this.userService.getUserById(this.userid).subscribe(res => {
+      this.user = res;
+      this.avaUrl = res.avatarUrl;
     });
   }
 
@@ -54,16 +53,18 @@ export class CreatSongComponent implements OnInit {
       description: this.songForm.value.description,
       tags: this.songForm.value.tags,
       avatarUrl: this.avaUrl,
-      fileUrl: this.file,
+      fileUrl: this.fileUrl,
       user: this.user
     };
-    this.songService.createSong(song).subscribe(() => {
+    this.songService.createSong(song).subscribe(res => {
+      alert(res.message);
+      this.songForm.reset();
     });
   }
 
   // tslint:disable-next-line:typedef
-  submit(){
-    if (this.selectImg !== null){
+  submitAvatar() {
+    if (this.selectImg !== null) {
       const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
@@ -75,40 +76,40 @@ export class CreatSongComponent implements OnInit {
       ).subscribe();
     }
   }
-// tslint:disable-next-line:typedef
-  showPre(event: any){
-    if (event.target.files && event.target.files[0]){
+
+  // tslint:disable-next-line:typedef
+  showPreAvtar(event: any) {
+    if (event.target.files && event.target.files[0]) {
       this.selectImg = event.target.files[0];
-      this.submit();
+      this.submitAvatar();
     } else {
-      this.avaUrl = '';
       this.selectImg = null;
     }
   }
 
   // tslint:disable-next-line:typedef
-  submitFile(){
-    if (this.selectfile !== null){
-      const filePath = `file/${this.selectfile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+  submitFile() {
+    if (this.selectFile !== null) {
+      const filePath = `file/${this.selectFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectfile).snapshotChanges().pipe(
+      this.storage.upload(filePath, this.selectFile).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
-            this.file = url;
+            this.fileUrl = url;
           });
         })
       ).subscribe();
     }
   }
-// tslint:disable-next-line:typedef
-  showPreFile(event: any){
-    if (event.target.files && event.target.files[0]){
-      this.selectfile = event.target.files[0];
+
+  // tslint:disable-next-line:typedef
+  showPreFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.selectFile = event.target.files[0];
       this.submitFile();
     } else {
-      this.file = '';
-      this.selectfile = null;
+      this.fileUrl = '';
+      this.selectFile = null;
     }
   }
-
 }

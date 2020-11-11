@@ -32,7 +32,6 @@ export class ListSongComponent implements OnInit {
         this.song7 = this.songList[i + 6];
         break;
       }
-      console.log(this.song1);
     });
   }
 

@@ -22,7 +22,6 @@ export class AllSongsComponent implements OnInit {
   userId: number;
   countLike: number;
   status: boolean;
-  a: number;
   p: number;
 
   constructor(private songService: SongService,
