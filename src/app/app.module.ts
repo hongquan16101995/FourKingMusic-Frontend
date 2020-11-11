@@ -35,7 +35,8 @@ import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-ed
 import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
 import { AllSongsComponent } from './home/song/all-songs/all-songs.component';
 import { AllPlaylistComponent } from './home/song/all-playlist/all-playlist.component';
-import { TestLikeComponent } from './home/song/test-like/test-like.component';
+import { TestPlayComponent } from './home/song/test-play/test-play.component';
+import { LikeSongComponent } from './home/song/like-song/like-song.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { TestLikeComponent } from './home/song/test-like/test-like.component';
     UserMysongComponent,
     AllSongsComponent,
     AllPlaylistComponent,
-    TestLikeComponent
+    TestPlayComponent,
+    LikeSongComponent
   ],
   imports: [
     BrowserModule,
