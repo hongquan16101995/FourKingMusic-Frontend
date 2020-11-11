@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
-import {Users} from '../../model/Users';
 
 declare var FB: any;
 
@@ -53,6 +52,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', JSON.stringify(response.authResponse.accessToken));
         FB.api(
           "/" + response.authResponse.userID,
+          'GET',
+          {"fields":"picture"},
           (res) => {
             console.log(res);
             localStorage.setItem('userId', JSON.stringify(res.id));
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit {
             if (res && !res.error) {
               / handle the result /
             }
+            console.log(res.id);
           }
         );
       }
