@@ -42,8 +42,8 @@ export class PlaylistService {
     return this.http.put(API_URL + '/playlist/update' , playlist  , this.httpService.getHttp());
   }
 
-  updateSongOfPlaylist(id: number, song: Song): Observable<any> {
-    return this.http.put(API_URL + '/playlist/' + id, song, this.httpService.getHttp());
+  updateSongOfPlaylist(id: number, songId: number): Observable<any> {
+    return this.http.put(API_URL + '/playlist/' + id, songId, this.httpService.getHttp());
   }
 
   deletePlaylist(id: number): Observable<any> {

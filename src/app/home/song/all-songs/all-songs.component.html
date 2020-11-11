@@ -1,5 +1,7 @@
 <div class="container">
-  <app-navbar-menu></app-navbar-menu>
+  <div *ngIf="!userId"><app-navbar-menu></app-navbar-menu></div>
+  <div *ngIf="userId"><app-navbar-user></app-navbar-user></div>
+
   <section class="newmostsongs">
     <div class="new-most-song mt-5">
       <div class="row p-5">
@@ -15,6 +17,12 @@
                     <p *ngFor="let singer of song.singers">{{singer.name}}</p>
                     <p *ngIf="song.singers.length == 0">{{song.user.name}}</p>
               </span>
+<!--              <div>{{song.countLike}}</div>-->
+<!--              <button (click)="likesong(song.id)">{{status}}</button>-->
+              <select (change)="addSongInPlaylist(ref.value, song.id)" #ref>
+                <option></option>
+                <option *ngFor="let list of playlists" value="{{list.id}}">{{list.name}}</option>
+              </select>
             </li>
           </ul>
         </div>

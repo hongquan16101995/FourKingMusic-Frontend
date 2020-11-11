@@ -4,6 +4,10 @@ import {SongService} from '../../../service/song.service';
 import {LikesongService} from '../../../service/likesong.service';
 import {Likesong} from '../../../model/Likesong';
 import {HttpService} from '../../../service/http.service';
+import {PlaylistService} from '../../../service/playlist.service';
+import {Playlist} from '../../../model/Playlist';
+import {UsersService} from '../../../service/users.service';
+import {Users} from '../../../model/Users';
 
 @Component({
   selector: 'app-all-songs',
@@ -13,62 +17,50 @@ import {HttpService} from '../../../service/http.service';
 export class AllSongsComponent implements OnInit {
 
   songList: Song[];
-  likesongs: Likesong[];
-  song: Song;
+  playlists: Playlist[];
   like: Likesong;
   userId: number;
-  status: boolean;
   countLike: number;
+  status: boolean;
+  a: number;
 
   constructor(private songService: SongService,
+              private playlistService: PlaylistService,
               private likesongService: LikesongService,
+              private userService: UsersService,
               private httpClient: HttpService) {
   }
 
   ngOnInit(): void {
     this.songService.getAllSongs().subscribe(res => {
       this.songList = res;
-    });
-    this.likesongService.getAllLikesong().subscribe(res => {
-      this.likesongs = res;
+      for (const s of this.songList){
+        this.likesongService.getLikesongByUserAndSong(this.userId, s.id).subscribe(data => {
+          this.status = data;
+        });
+      }
     });
     this.userId = Number(this.httpClient.getID());
-    for (let like of this.likesongs){
-      like.status;
-    }
+    this.playlistService.getPlaylistByUser(this.userId).subscribe( res => {
+      this.playlists = res;
+    });
   }
 
   // tslint:disable-next-line:typedef
-  likesong(data1, data2, data3, data4) {
-    // this.likesongService.getLikesong(data3).subscribe(res => {
-    //   this.like = res;
-    //   console.log(this.like);
-    // });
-    //
-    // this.songService.getSongById(data4).subscribe( res => {
-    //   this.song = res;
-    // });
-
-    // this.like.status = !this.like.status;
-    if (data1 === true){
-      data2++;
-      data1 = false;
-    }else {
-      data2--;
-      data1 = true;
-    }
-    this.status = data1;
-    this.countLike = data2;
-    // this.song.countLike = data2;
-    // this.likesongService.updateLikesong(this.like).subscribe( res => {
-    //   alert(res.message);
-    // });
-    // this.songService.updateSong(this.song).subscribe();
-    // this.songService.getAllSongs().subscribe(res => {
-    //   this.songList = res;
-    // });
-    console.log(data1);
-    console.log(data2);
+  likesong(data) {
+    this.likesongService.getLikesongByUserAndSong(this.userId, data).subscribe(res => {
+      this.like = res;
+      this.status = this.like.status;
+    });
   }
 
+  // tslint:disable-next-line:typedef
+  addSongInPlaylist(listID, songId){
+    this.playlistService.updateSongOfPlaylist(listID, songId).subscribe( res => {
+      this.playlistService.getPlaylistByUser(this.userId).subscribe( res => {
+        this.playlists = res;
+      });
+      alert(res.message);
+    });
+  }
 }
