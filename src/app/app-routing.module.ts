@@ -16,12 +16,12 @@ import {DeleteSongComponent} from './user/user-song/delete-song/delete-song.comp
 import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.component';
 import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
 import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
-import {TestPlayComponent} from './home/song/test-play/test-play.component';
+import {ListSongSearchComponent} from './home/song/list-song-search/list-song-search.component';
+import {PasswordComponent} from './user/password/password.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LayoutComponent
+    path: '', component: LayoutComponent
   },
   {
     path: 'login', component: LoginComponent
@@ -30,18 +30,25 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'song/:id',
-    component: PlaySongComponent
+    path: 'songs', component: AllSongsComponent
   },
   {
-    path: 'playlist/:id',
-    component: PlayPlaylistComponent
+    path: 'playlists', component: AllPlaylistComponent
+  },
+  {
+    path: 'search', component: ListSongSearchComponent
+  },
+  {
+    path: 'playlist/:id', component: PlayPlaylistComponent
+  },
+  {
+    path: 'song/:id', component: PlaySongComponent
   },
   {
     path: 'userHome/song/:id',
     component: UserPlaySongComponent,
     canActivate: [AuthGuardGuard]
-  },  {
+  }, {
     path: 'userHome/playlist/:id',
     component: UserPlayPlaylistComponent,
     canActivate: [AuthGuardGuard]
@@ -67,6 +74,11 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard]
   },
   {
+    path: 'changePassword',
+    component: PasswordComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
     path: 'mysong',
     component: UserMysongComponent,
     canActivate: [AuthGuardGuard]
@@ -82,19 +94,11 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard]
   },
   {
-    path: 'songs',
-    component: AllSongsComponent
-  },
-  {
     path: 'playlists',
     component: AllPlaylistComponent,
     canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'playlists',
-    component: AllPlaylistComponent
   }
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

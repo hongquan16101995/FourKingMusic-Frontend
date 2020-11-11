@@ -6,10 +6,11 @@
         <a [routerLink]="['playlist',playlist.id]" data-fancybox="gallery">
           <div class="image" style="background-image: url({{playlist.avatarUrl}})" >
             <div class="overlay">
-              <em class="mdi mdi-play-circle"></em>
+              <em class="mdi mdi-magnify-plus"></em>
             </div>
           </div>
         </a>
+        <h6 style="margin-top: 10px; margin-left: 10px">{{playlist.name}}</h6>
       </div>
     </div>
     <div class="swiper-pagination"></div>

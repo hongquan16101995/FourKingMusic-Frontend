@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top amplitude-stop" id="mainNav">
   <div class="container">
     <a class="navbar-brand js-scroll-trigger" [routerLink]="['']">
       <span style="color: #6f42c1;" class="fa-stack fa-sm">
@@ -16,8 +16,8 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li style="margin-top: 20px ; margin-right: 20px" class="nav-item">
-          <form class="form-inline">
-            <input class="form-control mr-xl-2 " type="search" placeholder="Tìm kiếm" aria-label="Search" size="70" >
+          <form class="form-inline" [formGroup]="searchForm"  (ngSubmit)="search()">
+            <input class="form-control mr-xl-2 " type="text" placeholder="Tìm kiếm" aria-label="Search" size="70" formControlName="nameSearch" >
           </form>
         </li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/login']">Đăng nhập</a></li>

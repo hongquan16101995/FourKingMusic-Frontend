@@ -3,6 +3,7 @@ import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
 import {Singers} from '../../../model/Singers';
+declare var Amplitude: any;
 
 @Component({
   selector: 'app-play-song',
@@ -31,17 +32,22 @@ export class PlaySongComponent implements OnInit {
         id: data.id,
         user: data.user,
         singers: data.singers,
-        dateCreated: data.dateCreated
+        dateCreated: data.dateCreated,
       };
       this.avaUrl = data.avatarUrl;
       this.name = data.name;
       this.singers = data.singers;
       this.fileURL = data.fileUrl;
       this.user = data.user.name;
+
+      Amplitude.init({
+        songs: [
+          {
+            url: data.fileUrl,
+            cover_art_url: data.avatarUrl
+          },
+        ],
+      });
     });
   }
 }
-
-
-
-
