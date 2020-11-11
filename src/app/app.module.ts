@@ -36,6 +36,7 @@ import {UserMysongComponent} from './user/user-song/user-mysong/user-mysong.comp
 import { AllSongsComponent } from './home/song/all-songs/all-songs.component';
 import { AllPlaylistComponent } from './home/song/all-playlist/all-playlist.component';
 import { ListSongSearchComponent } from './home/song/list-song-search/list-song-search.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ListSongSearchComponent } from './home/song/list-song-search/list-song-
     ListSongSearchComponent
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

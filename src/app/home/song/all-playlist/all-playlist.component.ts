@@ -8,7 +8,7 @@ import {PlaylistService} from '../../../service/playlist.service';
   styleUrls: ['./all-playlist.component.css']
 })
 export class AllPlaylistComponent implements OnInit {
-
+p = 1;
   playlists: Playlist[] = [];
 
   constructor( private playlistService: PlaylistService) { }

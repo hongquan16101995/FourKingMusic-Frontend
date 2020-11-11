@@ -19,6 +19,7 @@ export class AllSongsComponent implements OnInit {
   userId: number;
   status: boolean;
   countLike: number;
+  p: number;
 
   constructor(private songService: SongService,
               private likesongService: LikesongService,
@@ -39,6 +40,7 @@ export class AllSongsComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
+
   likesong(data1, data2, data3, data4) {
     // this.likesongService.getLikesong(data3).subscribe(res => {
     //   this.like = res;
