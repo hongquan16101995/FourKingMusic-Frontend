@@ -4,6 +4,10 @@ import {SongService} from '../../../service/song.service';
 import {HttpService} from '../../../service/http.service';
 import {PlaylistService} from '../../../service/playlist.service';
 import {Playlist} from '../../../model/Playlist';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Users} from '../../../model/Users';
+import {UsersService} from '../../../service/users.service';
 
 @Component({
   selector: 'app-user-mysong',
@@ -15,21 +19,68 @@ export class UserMysongComponent implements OnInit {
   songList: Song[] = [];
   playlists: Playlist[] = [];
   userid: number;
+  user: Users;
+  song: Song;
+  playlistForm: FormGroup;
 
   constructor(private songService: SongService,
               private httpService: HttpService,
-              private playlistService: PlaylistService) {
+              private userService: UsersService,
+              private playlistService: PlaylistService,
+              private form: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.playlistForm = this.form.group({
+      name: [''],
+    });
     this.userid = Number(this.httpService.getID());
+    this.userService.getUserById(String(this.userid)).subscribe(data => {
+      this.user = data;
+    });
     this.songService.getSongByUser(this.userid).subscribe(data => {
       this.songList = data;
     });
-
-    this.userid = Number(this.httpService.getID());
     this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
       this.playlists = data;
     });
+  }
+
+  onDeleteSong(id): void {
+    if (confirm('Are you sure?')) {
+      this.userid = Number(this.httpService.getID());
+      this.songService.deleteSong(id).subscribe(res => {
+        this.songService.getSongByUser(this.userid).subscribe(data => {
+          this.songList = data;
+        });
+        alert(res.message);
+      });
+    }
+  }
+
+  // tslint:disable-next-line:typedef
+  createPlaylist(){
+    const playlist = {
+      name: this.playlistForm.value.name,
+      user: this.user,
+    };
+    this.playlistService.createPlaylist(playlist).subscribe(res => {
+      this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
+        this.playlists = data;
+      });
+      alert(res.message);
+    });
+  }
+
+  onDeletePlaylist(id): void {
+    if (confirm('Are you sure?')) {
+      this.userid = Number(this.httpService.getID());
+      this.playlistService.deletePlaylist(id).subscribe(res => {
+        this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
+          this.playlists = data;
+        });
+        alert(res.message);
+      });
+    }
   }
 }

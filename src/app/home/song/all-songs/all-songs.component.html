@@ -15,12 +15,6 @@
                     <p *ngFor="let singer of song.singers">{{singer.name}}</p>
                     <p *ngIf="song.singers.length == 0">{{song.user.name}}</p>
               </span>
-              <div *ngFor="let like of likesongs">
-                <div *ngIf="like.song.id == song.id && like.user.id == userId">
-                  <p>{{status}}</p>
-                  <button (click)="likesong(like.status, song.countLike, like.id, song.id)">{{countLike}}</button>
-                </div>
-              </div>
             </li>
           </ul>
         </div>

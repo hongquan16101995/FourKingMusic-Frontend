@@ -43,8 +43,7 @@ export class SongService {
     return this.http.put(API_URL + '/song' , song, this.httpService.getHttp());
   }
 
-  deleteSong(id: number, userId: number): Observable<any> {
-    // @ts-ignore
-    return this.http.delete(API_URL + '/song/' + id, userId, this.httpService.getHttp());
+  deleteSong(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/song/' + id, this.httpService.getHttp());
   }
 }

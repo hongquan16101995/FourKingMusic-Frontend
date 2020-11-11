@@ -29,7 +29,7 @@ export class DeleteSongComponent implements OnInit {
 
   onDelete(): void {
     this.userid = Number(this.httpService.getID());
-    this.songService.deleteSong(this.song.id, this.userid).subscribe(() => {
+    this.songService.deleteSong(this.song.id).subscribe(() => {
       alert('Deleted song successfully');
     });
   }
