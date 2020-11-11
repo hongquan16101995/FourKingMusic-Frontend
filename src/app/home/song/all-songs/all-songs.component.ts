@@ -15,12 +15,11 @@ import {Users} from '../../../model/Users';
 })
 export class AllSongsComponent implements OnInit, Likesong{
 
-  songList: Song[];
-  likesongs: Likesong[];
+  songList: Song[] = [];
+  likesongs: Likesong[] = [];
   status: boolean;
   song: Song;
   user: Users;
-  like: Likesong;
   userId: number;
   constructor(private songService: SongService,
               private likesongService: LikesongService,
@@ -32,54 +31,35 @@ export class AllSongsComponent implements OnInit, Likesong{
     this.songService.getAllSongs().subscribe(res => {
       this.songList = res;
       console.log(this.songList);
+      this.userId = Number(this.httpClient.getID());
+      this.likesongService.getAllLikesong().subscribe(res => {
+        this.likesongs = res;
+        console.log(this.likesongs);
+      });
+      // this.likesongService.getLikesong(this.song.id).subscribe(res => {
+      //   this.like = res;
+      //   console.log(this.like);
+      // });
     });
-    this.likesongService.getAllLikesong().subscribe(res => {
-      this.likesongs = res;
-      console.log(this.likesongs);
-
-    });
-    this.userId = Number(this.httpClient.getID());
     console.log(this.userId);
-
-    this.likesongService.getLikesong(this.song.id).subscribe(res => {
-      this.like = res;
-      console.log(this.like);
-    });
   }
 
   // tslint:disable-next-line:typedef
-  likesong(data1, data2) {
-    this.songService.getSongById(this.song.id).subscribe(res => {
-      this.song = res;
-      console.log(this.song);
-    });
-
-    // this.like.status = !this.like.status;
-    if (data1 === true){
-      data2--;
-      data1 = false;
-      console.log(data1);
-      console.log(data2);
+  likesong(song, like) {
+    if (like.status){
+      song.countLike--;
+      like.status = false;
     }else {
-      data2++;
-      data1 = true;
-      console.log(data1);
-      console.log(data2);
-      this.song.countLike = data2;
+      song.countLike++;
+      like.status = true;
     }
-    console.log(data2);
-    this.likesongService.updateLikesong(this.like).subscribe( res => {
-      // alert(res.message);
-      console.log(data2);
+    this.likesongService.updateLikesong(like).subscribe( () => {
+      this.songService.updateSong(song).subscribe(() => {
+        this.songService.getAllSongs().subscribe(res => {
+          this.songList = res;
+        });
+      });
     });
-    this.songService.updateSong(this.song).subscribe();
-    console.log(data1);
-    this.songService.getAllSongs().subscribe(res => {
-      this.songList = res;
-      console.log(res);
-    });
-    console.log(data1);
-    console.log(data2);
   }
 
 }
