@@ -33,13 +33,37 @@ export class TestPlayComponent implements OnInit {
         id: data.id,
         user: data.user,
         singers: data.singers,
-        dateCreated: data.dateCreated,
+        dateCreated: data.dateCreated
       };
       this.avaUrl = data.avatarUrl;
       this.name = data.name;
       this.singers = data.singers;
       this.fileURL = data.fileUrl;
       this.user = data.user.name;
+      Amplitude.init({
+        songs: [
+          {
+            url: data.fileUrl,
+            cover_art_url: data.avatarUrl
+          },
+        ],
+        callbacks: {
+          // tslint:disable-next-line:typedef
+          play() {
+            document.getElementById('album-art').style.visibility = 'hidden';
+            document.getElementById('large-visualization').style.visibility = 'visible';
+          },
+
+          // tslint:disable-next-line:typedef
+          pause() {
+            document.getElementById('album-art').style.visibility = 'visible';
+            document.getElementById('large-visualization').style.visibility = 'hidden';
+          }
+        },
+        waveforms: {
+          sample_rate: 50
+        }
+      });
     });
 
     /*
@@ -59,94 +83,53 @@ export class TestPlayComponent implements OnInit {
 
     const songElements = document.getElementsByClassName('song');
 
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < songElements.length; i++) {
-      /*
-      Ensure that on mouseover, CSS styles don't get messed up for active songs.
-      */
-      // tslint:disable-next-line:typedef
-      songElements[i].addEventListener('mouseover', function() {
-        this.style.backgroundColor = '#00A0FF';
-
-        this.querySelectorAll('.song-meta-data .song-title')[0].style.color = '#FFFFFF';
-        this.querySelectorAll('.song-meta-data .song-artist')[0].style.color = '#FFFFFF';
-
-        if (!this.classList.contains('amplitude-active-song-container')) {
-          this.querySelectorAll('.play-button-container')[0].style.display = 'block';
-        }
-
-        this.querySelectorAll('img.bandcamp-grey')[0].style.display = 'none';
-        this.querySelectorAll('img.bandcamp-white')[0].style.display = 'block';
-        this.querySelectorAll('.song-duration')[0].style.color = '#FFFFFF';
-      });
-
-      /*
-      Ensure that on mouseout, CSS styles don't get messed up for active songs.
-      */
-      // tslint:disable-next-line:typedef
-      songElements[i].addEventListener('mouseout', function() {
-        this.style.backgroundColor = '#FFFFFF';
-        this.querySelectorAll('.song-meta-data .song-title')[0].style.color = '#272726';
-        this.querySelectorAll('.song-meta-data .song-artist')[0].style.color = '#607D8B';
-        this.querySelectorAll('.play-button-container')[0].style.display = 'none';
-        this.querySelectorAll('img.bandcamp-grey')[0].style.display = 'block';
-        this.querySelectorAll('img.bandcamp-white')[0].style.display = 'none';
-        this.querySelectorAll('.song-duration')[0].style.color = '#607D8B';
-      });
-
-      /*
-      Show and hide the play button container on the song when the song is clicked.
-      */
-      // tslint:disable-next-line:typedef
-      songElements[i].addEventListener('click', function() {
-        this.querySelectorAll('.play-button-container')[0].style.display = 'none';
-      });
-    }
+    // // tslint:disable-next-line:prefer-for-of
+    // for (let i = 0; i < songElements.length; i++) {
+    //   /*
+    //   Ensure that on mouseover, CSS styles don't get messed up for active songs.
+    //   */
+    //   // tslint:disable-next-line:typedef
+    //   songElements[i].addEventListener('mouseover', function() {
+    //     this.style.backgroundColor = '#00A0FF';
+    //
+    //     this.querySelectorAll('.song-meta-data .song-title')[0].style.color = '#FFFFFF';
+    //     this.querySelectorAll('.song-meta-data .song-artist')[0].style.color = '#FFFFFF';
+    //
+    //     if (!this.classList.contains('amplitude-active-song-container')) {
+    //       this.querySelectorAll('.play-button-container')[0].style.display = 'block';
+    //     }
+    //
+    //     this.querySelectorAll('img.bandcamp-grey')[0].style.display = 'none';
+    //     this.querySelectorAll('img.bandcamp-white')[0].style.display = 'block';
+    //     this.querySelectorAll('.song-duration')[0].style.color = '#FFFFFF';
+    //   });
+    //
+    //   /*
+    //   Ensure that on mouseout, CSS styles don't get messed up for active songs.
+    //   */
+    //   // tslint:disable-next-line:typedef
+    //   songElements[i].addEventListener('mouseout', function() {
+    //     this.style.backgroundColor = '#FFFFFF';
+    //     this.querySelectorAll('.song-meta-data .song-title')[0].style.color = '#272726';
+    //     this.querySelectorAll('.song-meta-data .song-artist')[0].style.color = '#607D8B';
+    //     this.querySelectorAll('.play-button-container')[0].style.display = 'none';
+    //     this.querySelectorAll('img.bandcamp-grey')[0].style.display = 'block';
+    //     this.querySelectorAll('img.bandcamp-white')[0].style.display = 'none';
+    //     this.querySelectorAll('.song-duration')[0].style.color = '#607D8B';
+    //   });
+    //
+    //   /*
+    //   Show and hide the play button container on the song when the song is clicked.
+    //   */
+    //   // tslint:disable-next-line:typedef
+    //   songElements[i].addEventListener('click', function() {
+    //     this.querySelectorAll('.play-button-container')[0].style.display = 'none';
+    //   });
+    // }
 
     /*
     Initializes AmplitudeJS
     */
-    Amplitude.init({
-      songs: [
-        {
-          name: this.name,
-          artist: this.user,
-          album: this.singers,
-          url: this.fileURL,
-          cover_art_url: this.avaUrl
-        },
-        {
-          name: 'The Gun',
-          artist: 'Lorn',
-          album: 'Ask The Dust',
-          url: 'https://www.mboxdrive.com/Dung-lo-anh-doi-ma-Mr-Siro.mp3',
-          cover_art_url: 'https://521dimensions.com/img/open-source/amplitudejs/album-art/ask-the-dust.jpg'
-        },
-        {
-          name: 'The Gun',
-          artist: 'Lorn',
-          album: 'Ask The Dust',
-          url: 'https://www.mboxdrive.com/Big%20City%20Boi%20-%20Binz_%20Touliver.mp3',
-          cover_art_url: 'https://521dimensions.com/img/open-source/amplitudejs/album-art/ask-the-dust.jpg'
-        }
-      ],
-      callbacks: {
-        // tslint:disable-next-line:typedef
-        play() {
-          document.getElementById('album-art').style.visibility = 'hidden';
-          document.getElementById('large-visualization').style.visibility = 'visible';
-        },
-
-        // tslint:disable-next-line:typedef
-        pause() {
-          document.getElementById('album-art').style.visibility = 'visible';
-          document.getElementById('large-visualization').style.visibility = 'hidden';
-        }
-      },
-      waveforms: {
-        sample_rate: 50
-      }
-    });
-    document.getElementById('large-visualization').style.height = document.getElementById('album-art').offsetWidth + 'px';
+    // document.getElementById('large-visualization').style.height = document.getElementById('album-art').offsetWidth + 'px';
   }
 }

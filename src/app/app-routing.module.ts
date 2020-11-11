@@ -18,6 +18,7 @@ import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-ed
 import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
 import {ListSongSearchComponent} from './home/song/list-song-search/list-song-search.component';
 import {PasswordComponent} from './user/password/password.component';
+import {TestPlayComponent} from './home/song/test-play/test-play.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'song/:id',
-    component: PlaySongComponent
+    component: TestPlayComponent
   },
   {
     path: 'playlist/:id',

@@ -57,7 +57,9 @@ export class CreatSongComponent implements OnInit {
       fileUrl: this.file,
       user: this.user
     };
-    this.songService.createSong(song).subscribe(() => {
+    this.songService.createSong(song).subscribe( res => {
+      this.songForm.reset();
+      alert(res.message);
     });
   }
 
