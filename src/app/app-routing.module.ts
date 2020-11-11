@@ -21,8 +21,7 @@ import {PasswordComponent} from './user/password/password.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LayoutComponent
+    path: '', component: LayoutComponent
   },
   {
     path: 'login', component: LoginComponent
@@ -31,18 +30,25 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'song/:id',
-    component: PlaySongComponent
+    path: 'songs', component: AllSongsComponent
   },
   {
-    path: 'playlist/:id',
-    component: PlayPlaylistComponent
+    path: 'playlists', component: AllPlaylistComponent
+  },
+  {
+    path: 'search', component: ListSongSearchComponent
+  },
+  {
+    path: 'playlist/:id', component: PlayPlaylistComponent
+  },
+  {
+    path: 'song/:id', component: PlaySongComponent
   },
   {
     path: 'userHome/song/:id',
     component: UserPlaySongComponent,
     canActivate: [AuthGuardGuard]
-  },  {
+  }, {
     path: 'userHome/playlist/:id',
     component: UserPlayPlaylistComponent,
     canActivate: [AuthGuardGuard]
@@ -88,23 +94,11 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard]
   },
   {
-    path: 'songs',
-    component: AllSongsComponent
-  },
-  {
     path: 'playlists',
     component: AllPlaylistComponent,
     canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'playlists',
-    component: AllPlaylistComponent
-  },
-  {
-    path: 'search',
-    component: ListSongSearchComponent
   }
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
