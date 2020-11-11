@@ -23,6 +23,7 @@ export class AllSongsComponent implements OnInit {
   countLike: number;
   status: boolean;
   a: number;
+  p: number;
 
   constructor(private songService: SongService,
               private playlistService: PlaylistService,
@@ -34,14 +35,14 @@ export class AllSongsComponent implements OnInit {
   ngOnInit(): void {
     this.songService.getAllSongs().subscribe(res => {
       this.songList = res;
-      for (const s of this.songList){
+      for (const s of this.songList) {
         this.likesongService.getLikesongByUserAndSong(this.userId, s.id).subscribe(data => {
           this.status = data;
         });
       }
     });
     this.userId = Number(this.httpClient.getID());
-    this.playlistService.getPlaylistByUser(this.userId).subscribe( res => {
+    this.playlistService.getPlaylistByUser(this.userId).subscribe(res => {
       this.playlists = res;
     });
   }
@@ -55,9 +56,9 @@ export class AllSongsComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  addSongInPlaylist(listID, songId){
-    this.playlistService.updateSongOfPlaylist(listID, songId).subscribe( res => {
-      this.playlistService.getPlaylistByUser(this.userId).subscribe( res => {
+  addSongInPlaylist(listID, songId) {
+    this.playlistService.updateSongOfPlaylist(listID, songId).subscribe(res => {
+      this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {
         this.playlists = res;
       });
       alert(res.message);

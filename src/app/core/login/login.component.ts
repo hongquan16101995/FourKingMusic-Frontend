@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         const jwt = res.token;
         localStorage.setItem('token', JSON.stringify(jwt));
         localStorage.setItem('userId', JSON.stringify(res.id));
-        this.router.navigate(['userHome']);
+        this.router.navigate(['home']);
       } else {
         alert('Đăng nhập thất bại!');
       }

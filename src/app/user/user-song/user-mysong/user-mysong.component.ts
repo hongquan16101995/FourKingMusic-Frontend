@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 import {HttpService} from '../../../service/http.service';
@@ -16,6 +16,12 @@ import {UsersService} from '../../../service/users.service';
 })
 export class UserMysongComponent implements OnInit {
 
+  @Input() id: string;
+  @Input() maxSize: number;
+  @Output() pageChange: EventEmitter<number>;
+  @Output() pageBoundsCorrection: EventEmitter<number>;
+  p: number;
+  page: number;
   songList: Song[] = [];
   playlists: Playlist[] = [];
   userid: number;
@@ -59,7 +65,7 @@ export class UserMysongComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  createPlaylist(){
+  createPlaylist() {
     const playlist = {
       name: this.playlistForm.value.name,
       user: this.user,
