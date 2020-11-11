@@ -2,7 +2,7 @@
 div#amplitude-player {
   background-color: #f1f1f1;
   box-shadow: 0 2px 12px 8px rgba(0, 0, 0, 0.1);
-  margin: 100px auto;
+  margin: 200px auto;
   display: flex;
   max-width: 700px;
 }

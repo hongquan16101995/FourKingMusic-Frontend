@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {Users} from '../../model/Users';
+import {UsersService} from '../../service/users.service';
 
 @Component({
   selector: 'app-navbar-user',
@@ -7,10 +9,17 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar-user.component.css']
 })
 export class NavbarUserComponent implements OnInit {
-
-  constructor(private route: Router) { }
+  user: Users;
+  userid: string;
+  avaUrl: string;
+  constructor(private route: Router,
+              private userService: UsersService,) { }
 
   ngOnInit(): void {
+    this.userService.getUserById(this.userid).subscribe(res => {
+      this.user = res;
+      this.avaUrl = res.avatarUrl;
+    });
   }
 
   // tslint:disable-next-line:typedef
