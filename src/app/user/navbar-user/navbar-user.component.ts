@@ -10,10 +10,8 @@ import {HttpService} from '../../service/http.service';
   styleUrls: ['./navbar-user.component.css']
 })
 export class NavbarUserComponent implements OnInit {
-
   user: Users;
   userid: string;
-
   constructor(private route: Router,
               private userService: UsersService,
               private httpService: HttpService) { }
