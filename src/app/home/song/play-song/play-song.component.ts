@@ -11,11 +11,8 @@ declare var Amplitude: any;
   styleUrls: ['./play-song.component.css']
 })
 export class PlaySongComponent implements OnInit {
-
   id: number;
   song: Song;
-
-
   constructor(private songService: SongService,
               private router: ActivatedRoute) {
   }

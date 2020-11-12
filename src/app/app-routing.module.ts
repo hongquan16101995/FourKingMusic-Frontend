@@ -17,6 +17,8 @@ import {ListSongSearchComponent} from './home/song/list-song-search/list-song-se
 import {PasswordComponent} from './user/password/password.component';
 import {SingerSongsComponent} from './home/singer/singer-songs/singer-songs.component';
 import {UserPlaylistComponent} from './user/user-playlist/user-playlist.component';
+import {PlayPlaylistComponent} from './home/song/play-playlist/play-playlist.component';
+import {UserPlayPlaylistComponent} from './user/user-play-playlist/user-play-playlist.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,9 @@ const routes: Routes = [
     path: 'singer/:id', component: SingerSongsComponent
   },
   {
+    path: 'playlist/play/:id', component: PlayPlaylistComponent
+  },
+  {
     path: 'home',
     component: UserHomeComponent,
     canActivate: [AuthGuardGuard]
@@ -54,6 +59,11 @@ const routes: Routes = [
   {
     path: 'home/song/:id',
     component: UserPlaySongComponent,
+    canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'home/playlist/play/:id',
+    component: UserPlayPlaylistComponent,
     canActivate: [AuthGuardGuard]
   },
   {

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Song} from '../../../model/Song';
-import {PlaylistService} from '../../../service/playlist.service';
+import {Song} from '../../model/Song';
+import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 declare var $: any;
-
 @Component({
-  selector: 'app-play-playlist',
-  templateUrl: './play-playlist.component.html',
-  styleUrls: ['./play-playlist.component.css']
+  selector: 'app-user-play-playlist',
+  templateUrl: './user-play-playlist.component.html',
+  styleUrls: ['./user-play-playlist.component.css']
 })
-export class PlayPlaylistComponent implements OnInit {
+export class UserPlayPlaylistComponent implements OnInit {
+
 
   id: number;
   songlist: Song[];

@@ -12,7 +12,7 @@ import {Users} from '../../../model/Users';
 @Component({
   selector: 'app-all-songs',
   templateUrl: './all-songs.component.html',
-  styleUrls: ['./all-songs.component.css']
+  styleUrls: ['./all-songs.component.scss']
 })
 export class AllSongsComponent implements OnInit {
 
@@ -37,6 +37,7 @@ export class AllSongsComponent implements OnInit {
     this.songService.getAllSongs().subscribe(res => {
       this.songList = res;
       console.log(this.songList);
+      // tslint:disable-next-line:no-shadowed-variable
       this.playlistService.getPlaylistByUser(this.userId).subscribe(res => {
         this.playlists = res;
       });
@@ -49,19 +50,19 @@ export class AllSongsComponent implements OnInit {
       this.playlistService.getPlaylistByUser(this.userId).subscribe(playlist => {
         this.playlists = playlist;
       });
-  });
+    });
   }
 
   // tslint:disable-next-line:typedef
   likesong(song, like) {
-    if (like.status){
+    if (like.status) {
       song.countLike--;
       like.status = false;
-    }else {
+    } else {
       song.countLike++;
       like.status = true;
     }
-    this.likesongService.updateLikesong(like).subscribe( () => {
+    this.likesongService.updateLikesong(like).subscribe(() => {
       this.songService.updateSong(song).subscribe(() => {
         this.songService.getAllSongs().subscribe(res => {
           this.songList = res;
