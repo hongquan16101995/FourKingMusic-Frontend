@@ -5,6 +5,7 @@ import {Users} from '../model/Users';
 import {environment} from '../../environments/environment';
 import {HttpService} from './http.service';
 import {Password} from '../model/Password';
+import {Song} from '../model/Song';
 
 const API_URL = `${environment.apiUrl}`;
 
