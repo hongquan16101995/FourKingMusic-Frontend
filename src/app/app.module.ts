@@ -35,8 +35,8 @@ import {AllSongsComponent} from './home/song/all-songs/all-songs.component';
 import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
 import {ListSongSearchComponent} from './home/song/list-song-search/list-song-search.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { SingerSongsComponent } from './home/singer/singer-songs/singer-songs.component';
 import { UserPlaylistComponent } from './user/user-playlist/user-playlist.component';
+import {SingerSongsComponent} from './home/singer/singer-songs/singer-songs.component';
 
 @NgModule({
   declarations: [
