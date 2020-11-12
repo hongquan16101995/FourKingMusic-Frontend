@@ -1,9 +1,14 @@
 <app-navbar-menu></app-navbar-menu>
 <form class="box" [formGroup]="loginForm" (ngSubmit)="login()">
   <h1>Đăng nhập</h1>
-  <input type="text" name="" placeholder="Tên đăng nhập">
-  <input type="password" name="" placeholder="Mật khẩu">
-  <a type="submit">Đăng nhập</a>
+  <input formControlName="username" type="text" name="" placeholder="Tên đăng nhập">
+  <input formControlName="password" type="password" name="" placeholder="Mật khẩu">
+  <button type="submit">Đăng nhập</button>
+  <button type="button" (click)="loginFacebook()">
+    <span>
+    <i class="fab fa-facebook fa-lg"></i>
+  </span> Đăng nhập với Facebook
+  </button>
 </form>
 
 <div class="lines">

@@ -1,0 +1,47 @@
+<div class="container">
+  <div *ngIf="!userId">
+    <app-navbar-menu></app-navbar-menu>
+  </div>
+  <div *ngIf="userId">
+    <app-navbar-user></app-navbar-user>
+  </div>
+
+
+  <section class="newmostsongs">
+    <div class="new-most-song mt-5">
+      <div class="row p-5">
+        <div class="col">
+          <h4 class="font-weight-bold">Playlist</h4>
+          <table class="table table-striped table-light">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ảnh bìa</th>
+              <th scope="col">Playlist</th>
+              <th scope="col">Người tạo</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let playlist of playlists | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <tr>
+              <td> {{i + 1}}</td>
+              <td scope="row">
+                <img width="40" height="40" src="{{playlist.avatarUrl}}" class="img thumbnail pull-left mr-2">
+              </td>
+              <td>
+                <a *ngIf="!userId" class="name-of-song" [routerLink]="['/playlist',playlist.id]">{{playlist.name}}</a>
+                <a *ngIf="userId" class="name-of-song"
+                   [routerLink]="['/home/playlist',playlist.id]">{{playlist.name}}</a>
+              </td>
+              <td><a >{{playlist.user.username}}</a></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="text-center mt-3">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer-user></app-footer-user>
+</div>

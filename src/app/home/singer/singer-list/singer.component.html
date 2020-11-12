@@ -1,0 +1,19 @@
+<div class="carousel-gallery">
+  <h3 class="mb-1 text-dark" style="padding-bottom: 20px"><b>Ca sĩ</b></h3>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let singer of singerList">
+        <a data-fancybox="gallery" [routerLink]="['/singer',singer.id]">
+          <div class="image" style="background-image: url({{singer.avatarUrl}})">
+            <div class="overlay">
+              <em class="mdi mdi-magnify-plus"></em>
+            </div>
+          </div>
+        </a>
+        <h6 style="margin-top: 10px; margin-left: 10px">{{singer.name}}</h6>
+      </div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>

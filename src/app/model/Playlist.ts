@@ -4,6 +4,7 @@ import {Users} from './Users';
 export interface Playlist {
   id?: number;
   name?: string;
-  song?: Song[];
+  avatarUrl?: string;
+  songs?: Song[];
   user?: Users;
 }

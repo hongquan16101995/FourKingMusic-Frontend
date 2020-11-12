@@ -10,7 +10,8 @@ export interface Song {
   avatarUrl?: string;
   fileUrl?: string;
   dateCreated?: string;
+  countLike?: number;
   user?: Users;
   singers?: Singers[];
-  playlist?: Playlist[];
+  playlists?: Playlist[];
 }

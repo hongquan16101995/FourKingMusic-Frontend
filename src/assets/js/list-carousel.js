@@ -1,17 +1,18 @@
 function moveToSelected(element) {
 
-  if (element == "next") {
-    var selected = $(".selected").next();
-  } else if (element == "prev") {
-    var selected = $(".selected").prev();
+  let selected;
+  if (element === "next") {
+    selected = $(".selected").next();
+  } else if (element === "prev") {
+    selected = $(".selected").prev();
   } else {
-    var selected = element;
+    selected = element;
   }
 
-  var next = $(selected).next();
-  var prev = $(selected).prev();
-  var prevSecond = $(prev).prev();
-  var nextSecond = $(next).next();
+  const next = $(selected).next();
+  const prev = $(selected).prev();
+  const prevSecond = $(prev).prev();
+  const nextSecond = $(next).next();
 
   $(selected).removeClass().addClass("selected");
 
@@ -40,16 +41,4 @@ $(document).keydown(function(e) {
     default: return;
   }
   e.preventDefault();
-});
-
-$('#carousel div').click(function() {
-  moveToSelected($(this));
-});
-
-$('#prev').click(function() {
-  moveToSelected('prev');
-});
-
-$('#next').click(function() {
-  moveToSelected('next');
 });

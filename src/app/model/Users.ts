@@ -1,5 +1,4 @@
 import {Role} from './Role';
-import {Playlist} from './Playlist';
 
 export interface Users {
   id?: number;
@@ -10,6 +9,5 @@ export interface Users {
   gender?: string;
   hobbies?: string;
   avatarUrl?: string;
-  role?: Role;
-  playlist?: Playlist[];
+  role?: Role[];
 }

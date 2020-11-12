@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {SongService} from '../../service/song.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -7,8 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarMenuComponent implements OnInit {
 
-  constructor() { }
+
+  searchForm: FormGroup;
+
+  constructor(private songService: SongService,
+              private router: Router,
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
+    this.searchForm = this.formBuilder.group(
+      {
+        nameSearch: ['']
+      });
+  }
+
+  // tslint:disable-next-line:typedef
+  search() {
+    this.router.navigate(['/search'], { queryParams: { name: this.searchForm.value.nameSearch } });
   }
 }

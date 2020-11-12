@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Song} from '../model/Song';
+import {HttpService} from './http.service';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -11,25 +12,42 @@ const API_URL = `${environment.apiUrl}`;
 })
 export class SongService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private httpService: HttpService) { }
 
   getAllSongs(): Observable<Song[]> {
-    return this.http.get<Song[]>(API_URL + '/song');
+    return this.http.get<Song[]>(API_URL + '/home/song');
   }
 
-  getById(id: number): Observable<Song> {
-    return this.http.get<Song>(API_URL + '/song' + id);
+  getAllSongsNew(): Observable<Song[]> {
+    return this.http.get<Song[]>(API_URL + '/home/song/new');
   }
 
-  createSong(song: Song): Observable<Song> {
-    return this.http.post<Song>(API_URL + '/song', song);
+  getSongById(id: number): Observable<Song> {
+    return this.http.get<Song>(API_URL + '/home/song/' + id);
   }
 
-  updateSong(song: Song): Observable<Song> {
-    return this.http.put<Song>(API_URL + '/song' + song.id, song);
+  getSongByUser(userid: number): Observable<Song[]> {
+    return this.http.get<Song[]>(API_URL + '/user/song/' + userid, this.httpService.getHttp());
   }
 
-  deleteOneBook(id: number): Observable<any> {
-    return this.http.delete(API_URL + '/song' + id);
+  getSongBySinger(singerid: number): Observable<Song[]> {
+    return this.http.get<Song[]>(API_URL + '/home/singer/' + singerid);
+  }
+
+  getSongByName(name: string): Observable<Song[]> {
+    return this.http.post<Song[]>(API_URL + '/home/song/search' , name);
+  }
+
+  createSong(song: Song): Observable<any> {
+    return this.http.post(API_URL + '/song', song, this.httpService.getHttp());
+  }
+
+  updateSong(song: Song): Observable<any> {
+    return this.http.put(API_URL + '/song' , song, this.httpService.getHttp());
+  }
+
+  deleteSong(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/song/' + id, this.httpService.getHttp());
   }
 }

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 
+declare var FB: any;
 
 @Component({
   selector: 'app-login',
@@ -18,22 +19,67 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [''],
+      username: [''],
       password: ['']
     });
+    (window as any).fbAsyncInit = function() {
+      FB.init({
+        appId      : '3471278576296648',
+        cookie: true,
+        status: true,
+        xfbml      : true,
+        version    : 'v8.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  }
+
+  loginFacebook() {
+    FB.login((response) => {
+      //do something
+      console.log(response);
+
+      if (response != null && response.status == 'connected') {
+        localStorage.setItem('token', JSON.stringify(response.authResponse.accessToken));
+        FB.api(
+          "/" + response.authResponse.userID,
+          'GET',
+          {"fields":"picture"},
+          (res) => {
+            console.log(res);
+            localStorage.setItem('userId', JSON.stringify(res.id));
+            this.router.navigate(['userHome']);
+            if (res && !res.error) {
+              / handle the result /
+            }
+            console.log(res.id);
+          }
+        );
+      }
+    }, { scope: 'email' });
   }
 
   // tslint:disable-next-line:typedef
   login() {
-    let data = this.loginForm.value;
+    const data = this.loginForm.value;
     this.loginService.login(data).subscribe(res => {
       // tslint:disable-next-line:triple-equals
-      if (res.status == 'success') {
-        let jwt = res.data.token;
-        localStorage.setItem('token', JSON.stringify(jwt));
-        this.router.navigate(['admin']);
+      if (res.id != null) {
+        const jwt = res.token;
+        sessionStorage.setItem('token', JSON.stringify(jwt));
+        sessionStorage.setItem('userId', JSON.stringify(res.id));
+        this.router.navigate(['home']);
       } else {
-        console.log(res);
+        alert('Đăng nhập thất bại!');
       }
     });
   }
