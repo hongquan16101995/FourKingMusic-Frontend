@@ -28,14 +28,24 @@
                       <p *ngIf="song.singers.length === 0">{{song.user.name}}</p>
                     </div>
               </span>
-              <!--              <div>{{song.countLike}}</div>-->
-              <!--              <button (click)="likesong(song.id)">{{status}}</button>-->
-              <div *ngIf="userId">
-                <select style="float: right" (change)="addSongInPlaylist(ref.value, song.id)" #ref>
-                  <option></option>
-                  <option *ngFor="let list of playlists" value="{{list.id}}">{{list.name}}</option>
-                </select>
+
+<!--              <div *ngIf="userId">-->
+<!--                <select style="float: right" (change)="addSongInPlaylist(ref.value, song.id)" #ref>-->
+<!--                  <option></option>-->
+<!--                  <option *ngFor="let list of playlists" value="{{list.id}}">{{list.name}}</option>-->
+<!--                </select>-->
+<!--              </div>-->
+
+              <div>
+                <ng-container *ngFor="let like of likesongs">
+                  <ng-container *ngIf="like.song.id == song.id && like.user.id == userId">
+                    <p>{{like.status}}</p>
+                    <p>{{song.countLike}}</p>
+                    <button (click)="likesong(song, like)">Like</button>
+                  </ng-container>
+                </ng-container>
               </div>
+
             </li>
           </ul>
           <div class="text-center mt-3">
