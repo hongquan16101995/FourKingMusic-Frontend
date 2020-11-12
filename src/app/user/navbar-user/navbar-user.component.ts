@@ -12,13 +12,16 @@ export class NavbarUserComponent implements OnInit {
   user: Users;
   userid: string;
   avaUrl: string;
+  name: string;
   constructor(private route: Router,
-              private userService: UsersService,) { }
+              private userService: UsersService) { }
 
   ngOnInit(): void {
     this.userService.getUserById(this.userid).subscribe(res => {
       this.user = res;
       this.avaUrl = res.avatarUrl;
+      this.name = res.name;
+      console.log(res.name);
     });
   }
 

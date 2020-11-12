@@ -6,7 +6,7 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class HttpService {
 
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   // tslint:disable-next-line:variable-name
   headers_object = new HttpHeaders().set('Authorization', 'Bearer' + this.token);
   httpOptions = {
@@ -28,6 +28,6 @@ export class HttpService {
 
   // tslint:disable-next-line:typedef
   getID(): string {
-    return this.id = localStorage.getItem('userId');
+    return this.id = sessionStorage.getItem('userId');
   }
 }
