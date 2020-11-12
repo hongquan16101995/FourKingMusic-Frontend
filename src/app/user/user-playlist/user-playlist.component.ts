@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {Song} from '../../model/Song';
 import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 import {HttpService} from '../../service/http.service';
+import {Song} from '../../model/Song';
 import {Playlist} from '../../model/Playlist';
 
 @Component({
-  selector: 'app-user-play-playlist',
-  templateUrl: './user-play-playlist.component.html',
-  styleUrls: ['./user-play-playlist.component.css']
+  selector: 'app-user-playlist',
+  templateUrl: './user-playlist.component.html',
+  styleUrls: ['./user-playlist.component.css']
 })
-export class UserPlayPlaylistComponent implements OnInit {
+export class UserPlaylistComponent implements OnInit {
+
 
   constructor(private playlistService: PlaylistService,
               private router: ActivatedRoute,
