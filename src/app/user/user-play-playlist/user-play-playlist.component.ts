@@ -23,12 +23,14 @@ export class UserPlayPlaylistComponent implements OnInit {
   playlist: Playlist;
 
   ngOnInit(): void {
+    this.userId = Number(this.httpClient.getID());
     this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
+      this.playlist = res;
       this.songList = res.songs;
     });
-    this.userId = Number(this.httpClient.getID());
   }
+
   // tslint:disable-next-line:typedef
   onDeleteSongWithoutPlaylist(id){
     this.playlistService.deleteSongOfPlaylist(this.id, id).subscribe(res => {

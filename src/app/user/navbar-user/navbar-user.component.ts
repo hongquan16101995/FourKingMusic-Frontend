@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Users} from '../../model/Users';
 import {UsersService} from '../../service/users.service';
+import {HttpService} from '../../service/http.service';
 
 @Component({
   selector: 'app-navbar-user',
@@ -11,17 +12,14 @@ import {UsersService} from '../../service/users.service';
 export class NavbarUserComponent implements OnInit {
   user: Users;
   userid: string;
-  avaUrl: string;
-  name: string;
   constructor(private route: Router,
-              private userService: UsersService) { }
+              private userService: UsersService,
+              private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.userid = this.httpService.getID();
     this.userService.getUserById(this.userid).subscribe(res => {
       this.user = res;
-      this.avaUrl = res.avatarUrl;
-      this.name = res.name;
-      console.log(res.name);
     });
   }
 
