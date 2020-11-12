@@ -1,5 +1,6 @@
 import {Users} from './Users';
 import {Singers} from './Singers';
+import {Playlist} from './Playlist';
 
 export interface Song {
   id?: number;
@@ -9,6 +10,8 @@ export interface Song {
   avatarUrl?: string;
   fileUrl?: string;
   dateCreated?: string;
+  countLike?: number;
   user?: Users;
   singers?: Singers[];
+  playlists?: Playlist[];
 }

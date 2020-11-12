@@ -31,6 +31,10 @@ export class SongService {
     return this.http.get<Song[]>(API_URL + '/user/song/' + userid, this.httpService.getHttp());
   }
 
+  getSongBySinger(singerid: number): Observable<Song[]> {
+    return this.http.get<Song[]>(API_URL + '/home/singer/' + singerid);
+  }
+
   getSongByName(name: string): Observable<Song[]> {
     return this.http.post<Song[]>(API_URL + '/home/song/search' , name);
   }
@@ -43,8 +47,7 @@ export class SongService {
     return this.http.put(API_URL + '/song' , song, this.httpService.getHttp());
   }
 
-  deleteSong(id: number, userId: number): Observable<any> {
-    // @ts-ignore
-    return this.http.delete(API_URL + '/song/' + id, userId, this.httpService.getHttp());
+  deleteSong(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/song/' + id, this.httpService.getHttp());
   }
 }
