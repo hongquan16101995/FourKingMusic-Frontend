@@ -1,51 +1,59 @@
-<app-navbar-user></app-navbar-user>
-<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
-  <div>
-    <table class="table table-bordered">
-      <tr>
-        <td><img [src]="avaUrl" alt="ko có ảnh" width="50px" height="50px"></td>
-        <td><input class="form-control" type="file" formControlName="avatarUrl" (change)="showPre($event)">
-        </td>
-      </tr>
-      <tr>
-        <td>Name</td>
-        <td><input class="form-control" type="text" formControlName="name">
-          <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="text-danger">
-            Erros
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td><input class="form-control" type="text" formControlName="email" readonly>
-          <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="text-danger">
-            Erros
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td><input class="form-control" type="text" formControlName="gender">
-          <div *ngIf="userForm.get('gender').hasError('required') && userForm.get('gender').touched" class="text-danger">
-            Erros
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Hobbies</td>
-        <td><input class="form-control" type="text" formControlName="hobbies">
-          <div *ngIf="userForm.get('hobbies').hasError('required') && userForm.get('hobbies').touched" class="text-danger">
-            Erros
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button type="submit">Update</button>
-          <button class="button-cancel" [routerLink]="['/userHome']">Cancel</button>
-        </td>
-      </tr>
-    </table>
+<div class="container">
+  <app-navbar-user></app-navbar-user>
+  <div style="margin-top: 60px">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm" >
+      <div>
+        <table class="box">
+          <tr>
+            <th colspan="3" style="padding-top: 40px">
+              <h1>Thông tin cá nhân</h1>
+            </th>
+          </tr>
+          <tr >
+            <td style="padding-top: 30px; padding-left: 60px"><img [src]="avaUrl" alt="Lỗi hiển thị" width="50px" height="50px"></td>
+            <td colspan="2"><input type="file" formControlName="avatarUrl" (change)="showPre($event)"></td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">Tên</td>
+            <td><input type="text" formControlName="name"></td>
+            <td>
+              <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched"
+                   class="text-danger">
+                Không được để trống ô này!
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">Email</td>
+            <td><input type="text" formControlName="email"></td>
+            <td>
+              <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched"
+                   class="text-danger">
+                Không được để trống ô này!
+              </div>
+              <div *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched"
+                   class="text-danger">
+                Email không đúng định dạng!
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">Giớ tính</td>
+            <td><input type="text" formControlName="gender"></td>
+          </tr>
+          <tr>
+            <td style="padding-left: 60px;">Sở thích</td>
+            <td><input type="text" formControlName="hobbies"></td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <button type="submit">Cập nhật</button>
+              <button class="button-cancel" [routerLink]="['/home']">Thoát</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
   </div>
-</form>
-<div class="alert alert-danger" role="alert" style="text-align: center" *ngIf="message">{{message}}</div>
+</div>
+

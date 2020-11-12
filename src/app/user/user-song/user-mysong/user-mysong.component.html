@@ -1,31 +1,72 @@
-<app-navbar-user></app-navbar-user>
-
-
-<div class="carousel-gallery">
-  <h3 class="mb-1 text-dark" style="padding-bottom: 20px">Bài hát của tôi</h3>
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let song of songList">
-        <a href="#" data-fancybox="gallery">
-          <div class="image" style="background-image: url({{song.avatarUrl}})">
-            <div class="overlay">
-              <h6>{{song.name}}</h6>
-              <div *ngIf="song.singers.length != 0 ; else block">
-                <div *ngFor="let singer of song.singers">
-                  {{singer.name}}
-                </div>
-              </div>
-              <ng-template #block>{{song.user.name}}</ng-template>
-            </div>
+<div class="container">
+  <app-navbar-user></app-navbar-user>
+  <section id="newmostsongs">
+    <div class="new-most-song mt-5">
+      <div class="row p-5">
+        <div class="col-6">
+          <h4 class="font-weight-bold">Bài hát</h4>
+          <ul class="list-group br-1"
+              *ngFor="let song of songList | paginate: { id: 'song', itemsPerPage: 10, currentPage: p };">
+            <li class="list-group-item pb-1">
+              <a [routerLink]="['/home/song/', song.id]">
+                <img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2">
+                <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
+              </a>
+              <span><b style="float: right" (click)="onDeleteSong(song.id)"><i class="fas fa-trash-alt fa-lg"></i></b></span>
+              <span><a style="float: right" [routerLink]="[song.id, 'edit']"><i class="fas fa-edit fa-lg"></i>&nbsp;|&nbsp;</a></span>
+            </li>
+          </ul>
+          <div class="text-center mt-2">
+            <pagination-controls id="song" (pageChange)="p = $event"></pagination-controls>
           </div>
-        </a>
-        <button class="btn" [routerLink]="[song.id, 'userEditMysong']">Update</button>
+        </div>
+        <div class="col-6">
+          <div>
+            <h4>Playlist
+              <a style="float: right" data-toggle="modal" data-target="#myModal">Create</a>
+            </h4>
+          </div>
+          <ul class="list-group br-1"
+              *ngFor="let playlist of playlists  | paginate: { id: 'playlist', itemsPerPage: 10, currentPage: page };">
+            <li class="list-group-item pb-1">
+              <a class="name-of-song" [routerLink]="['/home/playlist',playlist.id]">
+                <img src="{{playlist.avatarUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
+                <h6 class="mb-1 text-dark"><b>{{playlist.name}}</b></h6>
+              </a>
+              <span><a style="float: right" (click)="onDeletePlaylist(playlist.id)"><i class="fas fa-trash-alt fa-lg"></i></a></span>
+            </li>
+          </ul>
+          <div class="text-center mt-2">
+            <pagination-controls id="playlist" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
-</div>
-<app-footer-user></app-footer-user>
+  </section>
 
+  <!--tạo playlist-->
+  <form (ngSubmit)="createPlaylist()" [formGroup]="playlistForm">
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Tạo playlist</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <input type="text" placeholder="Tên playlist" formControlName="name">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info">Create</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!--tạo playlist-->
+
+  <app-footer-user></app-footer-user>
+</div>
 
 

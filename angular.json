@@ -25,7 +25,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/css/styles.css"
+              "src/assets/css/styles.css",
+              "src/assets/css/adminlte.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

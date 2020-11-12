@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top amplitude-stop" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" [routerLink]="['/userHome']">
+    <a class="navbar-brand js-scroll-trigger" [routerLink]="['/home']">
            <span style="color: #6f42c1;" class="fa-stack fa-sm">
         <i class="fas fa-circle fa-stack-2x"></i>
         <i class="fas fa-music fa-stack-1x fa-inverse fa-spin"></i>
@@ -14,13 +14,57 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/mysong']">Nhạc của tôi</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/creatSong']">Tạo bài hát</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/userProfile']">Trang cá nhân</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/changePassword']">Đổi mật khẩu</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="logout()">Đăng xuất</a></li>
+
+
+        <li class="dropdown user user-menu open">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+            <img src="" class="user-image" alt="Avatar">
+            <span class="hidden-xs">sadas</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="user-header">
+              <img src="" class="img-circle" alt="Avatar">
+              <p> sadasd
+                <small>Member since Nov. 2020</small>
+              </p>
+            </li>
+            <!-- Menu Body -->
+            <li class="user-body">
+              <div class="row">
+                <div class="col-xs-4 text-center">
+                  <a [routerLink]="['/mysong']">Nhạc của tôi</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4 text-center">
+                  <a [routerLink]="['/creatSong']">Tạo bài hát</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4 text-center">
+                  <a [routerLink]="['/userProfile']">Trang cá nhân</a>
+                </div>
+              </div>
+              <!-- /.row -->
+            </li>
+            <!-- Menu Footer-->
+            <li class="user-footer">
+              <div>
+                <a class="page-link link-muted" [routerLink]="['/changePassword']">Đổi mật khẩu</a>
+              </div>
+              <div>
+                <a class="page-link link-muted" (click)="logout()">Đăng xuất</a>
+              </div>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
+
+
+
 </nav>
+
+

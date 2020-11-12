@@ -23,8 +23,12 @@ export class LikesongService {
     return this.http.get<any>(API_URL + '/likesong/' + id);
   }
 
+  getLikesongByUserAndSong(userid: number, songid: number): Observable<any> {
+    return this.http.post(API_URL + '/likesong/' + songid, userid);
+  }
+
   updateLikesong(likesong: Likesong): Observable<any> {
-    return this.http.post<any>(API_URL + '/likesong', likesong);
+    return this.http.post(API_URL + '/likesong', likesong);
   }
 
 

@@ -5,6 +5,6 @@ export interface Playlist {
   id?: number;
   name?: string;
   avatarUrl?: string;
-  song?: Song[];
+  songs?: Song[];
   user?: Users;
 }

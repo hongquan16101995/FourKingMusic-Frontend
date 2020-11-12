@@ -155,7 +155,7 @@ sup {
 }
 
 a {
-  color: #64a19d;
+  color: #000000;
   text-decoration: none;
   background-color: transparent;
 }
@@ -9820,6 +9820,7 @@ button.bg-black:focus {
 
 .text-center {
   text-align: center !important;
+  margin-left: 20px;
 }
 
 @media (min-width: 576px) {
@@ -10344,5 +10345,5 @@ body {
 }
 
 .footer {
-  padding: 5rem 0;
+  padding: 1rem 0;
 }

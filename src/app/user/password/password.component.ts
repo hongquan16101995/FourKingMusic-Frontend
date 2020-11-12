@@ -10,6 +10,7 @@ import {UsersService} from '../../service/users.service';
 export class PasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
+
   constructor(private fb: FormBuilder,
               private userService: UsersService) { }
 
@@ -27,9 +28,7 @@ export class PasswordComponent implements OnInit {
       password: this.passwordForm.value.oldpassword,
       newpassword: this.passwordForm.value.newpassword
     };
-    this.userService.changePassword(data)
-      .subscribe(res => {
-      // tslint:disable-next-line:triple-equals
+    this.userService.changePassword(data).subscribe(res => {
       alert(res.message);
     });
   }
