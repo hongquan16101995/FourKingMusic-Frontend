@@ -1,41 +1,42 @@
-<div class="container">
-  <app-navbar-menu></app-navbar-menu>
-  <div style="transform: translate(0%, 10%);">
-    <div id="blue-playlist-container">
-
-      <!-- Amplitude Player -->
-      <div id="amplitude-player">
-
-        <!-- Left Side Player -->
-
-        <!-- End Left Side Player -->
-
-        <!-- Right Side Player -->
-        <div id="amplitude-right">
-          <div *ngFor="let song of songs ; let i = index">
-            <div class="song amplitude-song-container amplitude-play-pause" (click)="sendValue(song.fileUrl,song.avatarUrl)">
-              <div class="song-now-playing-icon-container">
-                <div class="play-button-container">
-                </div>
-                <span class="mdi mdi-volume-high"></span>
-              </div>
-              <div class="song-meta-data">
-                <span class="song-title">{{song.name}}</span>
-                <span class="song-artist" *ngFor="let singer of song.singers">{{singer.name}}</span>
-                <span class="song-artist" *ngIf="song.singers.length == 0">{{song.user.name}}</span>
-              </div>
-            </div>
+<div id="app-cover">
+  <div id="bg-artwork"></div>
+  <div id="bg-layer"></div>
+  <div id="player">
+    <div id="player-track">
+      <div id="album-name"></div>
+      <div id="track-name"></div>
+      <div id="track-time">
+        <div id="current-time"></div>
+        <div id="track-length"></div>
+      </div>
+      <div id="s-area">
+        <div id="ins-time"></div>
+        <div id="s-hover"></div>
+        <div id="seek-bar"></div>
+      </div>
+    </div>
+    <div id="player-content">
+      <div id="album-art">
+        <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg" class="active" id="_1">
+        <div id="buffer-box">Buffering ...</div>
+      </div>
+      <div id="player-controls">
+        <div class="control">
+          <div class="button" id="play-previous">
+            <i class="fas fa-backward"></i>
           </div>
         </div>
-        <!-- End Right Side Player -->
-        <div >
-          <div><img [src]="xadsad" alt="ko có ảnh" width="300px" height="150px"></div>
-          <audio autoplay controls [src]="abc">
-          </audio>
+        <div class="control">
+          <div class="button" id="play-pause-button">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="control">
+          <div class="button" id="play-next">
+            <i class="fas fa-forward"></i>
+          </div>
         </div>
       </div>
-      <!-- End Amplitdue Player -->
     </div>
   </div>
 </div>
-

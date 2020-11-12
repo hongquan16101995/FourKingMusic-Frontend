@@ -4,7 +4,7 @@
     <div class="new-most-song mt-5">
       <div class="row p-5">
         <div class="col-6">
-          <table class="table">
+          <table class="table col-6">
             <tr>
               <th>
                 <h4 class="font-weight-bold">Bài hát</h4>
@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody *ngFor="let song of songList | paginate: { id: 'song', itemsPerPage: 10, currentPage: p }; let i = index">
-            <tr>
+            <tr >
               <th scope="row">{{i + 1}}</th>
               <td><img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>
               <td><a [routerLink]="['/home/song/', song.id]"><b>{{song.name}}</b></a></td>
@@ -49,7 +49,7 @@
             </tr>
           </table>
           <table class="table table-striped table-light">
-            <thead class="thead-dark">
+            <thead class="thead-dark" >
             <tr>
               <th scope="col">#</th>
               <th scope="col">Ảnh</th>
