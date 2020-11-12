@@ -9820,6 +9820,7 @@ button.bg-black:focus {
 
 .text-center {
   text-align: center !important;
+  margin-left: 20px;
 }
 
 @media (min-width: 576px) {

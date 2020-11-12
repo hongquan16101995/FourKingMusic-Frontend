@@ -41,14 +41,14 @@ export class UserMysongComponent implements OnInit {
       name: [''],
     });
     this.userid = Number(this.httpService.getID());
-    this.userService.getUserById(String(this.userid)).subscribe(data => {
-      this.user = data;
+    this.userService.getUserById(String(this.userid)).subscribe(res => {
+      this.user = res;
     });
-    this.songService.getSongByUser(this.userid).subscribe(data => {
-      this.songList = data;
+    this.songService.getSongByUser(this.userid).subscribe(res => {
+      this.songList = res;
     });
-    this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
-      this.playlists = data;
+    this.playlistService.getPlaylistByUser(this.userid).subscribe(res => {
+      this.playlists = res;
     });
   }
 
