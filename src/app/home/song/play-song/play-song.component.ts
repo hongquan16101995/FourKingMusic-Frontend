@@ -26,12 +26,12 @@ export class PlaySongComponent implements OnInit {
     this.songService.getSongById(this.id).subscribe(res => {
       this.song = res;
       Amplitude.init({
-        song: [
+        songs: [
           {
             url: this.song.fileUrl,
             cover_art_url: this.song.avatarUrl
-          }
-        ]
+          },
+        ],
       });
     });
   }
