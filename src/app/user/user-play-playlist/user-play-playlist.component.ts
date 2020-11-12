@@ -17,22 +17,24 @@ export class UserPlayPlaylistComponent implements OnInit {
               private httpClient: HttpService) { }
 
   songList: Song[];
-  id: number;
+  playlistid: number;
   userId: number;
   p: number;
   playlist: Playlist;
 
   ngOnInit(): void {
-    this.id = Number(this.router.snapshot.paramMap.get('id'));
-    this.playlistService.getPlaylistById(this.id).subscribe(res => {
+    this.userId = Number(this.httpClient.getID());
+    this.playlistid = Number(this.router.snapshot.paramMap.get('id'));
+    this.playlistService.getPlaylistById(this.playlistid).subscribe(res => {
+      this.playlist = res;
       this.songList = res.songs;
     });
-    this.userId = Number(this.httpClient.getID());
   }
+
   // tslint:disable-next-line:typedef
   onDeleteSongWithoutPlaylist(id){
-    this.playlistService.deleteSongOfPlaylist(this.id, id).subscribe(res => {
-      this.playlistService.getPlaylistById(this.id).subscribe(data => {
+    this.playlistService.deleteSongOfPlaylist(this.playlistid, id).subscribe(res => {
+      this.playlistService.getPlaylistById(this.playlistid).subscribe(data => {
         this.songList = data.songs;
       });
       alert(res.message);

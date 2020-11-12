@@ -30,8 +30,8 @@
                      <p class="mb-0 singer" *ngFor="let singer of song.singers">{{singer.name}}</p>
                   </span>
                 </div>
+                <div *ngIf="userId == playlist.user.id"><button (click)="onDeleteSongWithoutPlaylist(song.id)">Delete</button></div>
 
-                <button (click)="onDeleteSongWithoutPlaylist(song.id)">Delete</button>
               </div>
             </li>
           </ul>
