@@ -16,4 +16,8 @@ export class SingerService {
   getAllSinger(): Observable<Singers[]> {
     return this.http.get<Singers[]>(API_URL + '/home/singer');
   }
+
+  getSingerById(singerId: number): Observable<Singers> {
+    return this.http.get<Singers>(API_URL + '/home/' + singerId);
+  }
 }

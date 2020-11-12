@@ -4,15 +4,14 @@
     <div class="new-most-song mt-5">
       <div class="row p-5">
         <div class="col-6">
-          <table class="table">
+          <table class="table col-6">
             <tr>
               <th>
                 <h4 class="font-weight-bold">Bài hát</h4>
               </th>
             </tr>
           </table>
-          <table class="table table-striped table-light"
-                 *ngFor="let song of songList | paginate: { id: 'song', itemsPerPage: 10, currentPage: p }; let i = index">
+          <table class="table table-striped table-light">
             <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -22,13 +21,13 @@
               <th scope="col">Xóa</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
+            <tbody *ngFor="let song of songList | paginate: { id: 'song', itemsPerPage: 10, currentPage: p }; let i = index">
+            <tr >
               <th scope="row">{{i + 1}}</th>
               <td><img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>
               <td><a [routerLink]="['/home/song/', song.id]"><b>{{song.name}}</b></a></td>
-              <td><b (click)="onDeleteSong(song.id)"><i class="fas fa-trash-alt fa-lg"></i></b></td>
               <td><a [routerLink]="[song.id, 'edit']"><i class="fas fa-edit fa-lg"></i>&nbsp;|&nbsp;</a></td>
+              <td><b (click)="onDeleteSong(song.id)"><i class="fas fa-trash-alt fa-lg"></i></b></td>
             </tr>
             </tbody>
           </table>
@@ -49,9 +48,8 @@
               </th>
             </tr>
           </table>
-          <table class="table table-striped table-light"
-                 *ngFor="let playlist of playlists  | paginate: { id: 'playlist', itemsPerPage: 10, currentPage: page }; let i = index">
-            <thead class="thead-dark">
+          <table class="table table-striped table-light">
+            <thead class="thead-dark" >
             <tr>
               <th scope="col">#</th>
               <th scope="col">Ảnh</th>
@@ -59,7 +57,7 @@
               <th scope="col">Xóa</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let playlist of playlists  | paginate: { id: 'playlist', itemsPerPage: 10, currentPage: page }; let i = index">
             <tr>
               <th scope="row">{{i + 1}}</th>
               <td><img width="40" height="40" src="{{playlist.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>

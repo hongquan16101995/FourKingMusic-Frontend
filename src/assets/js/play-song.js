@@ -59,20 +59,6 @@ Initializes AmplitudeJS
 */
 Amplitude.init({
   "songs": [
-    {
-      "name": "Risin' High (feat Raashan Ahmad)",
-      "artist": "Ancient Astronauts",
-      "album": "We Are to Answer",
-      "url": "https://www.mboxdrive.com/Dung-lo-anh-doi-ma-Mr-Siro.mp3",
-      "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-to-answer.jpg"
-    },
-    {
-      "name": "The Gun",
-      "artist": "Lorn",
-      "album": "Ask The Dust",
-      "url": "https://firebasestorage.googleapis.com/v0/b/uploadfile-1d4bd.appspot.com/o/file%2FAnh-Nho-Em-Tuan-Hung_1604909456203?alt=media&token=37f064db-eb8a-4408-a06f-1428f7c63246",
-      "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/ask-the-dust.jpg"
-    }
   ],
   "callbacks": {
     'play': function(){
