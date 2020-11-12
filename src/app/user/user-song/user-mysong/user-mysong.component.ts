@@ -26,8 +26,6 @@ export class UserMysongComponent implements OnInit {
     this.songService.getSongByUser(this.userid).subscribe(data => {
       this.songList = data;
     });
-
-    this.userid = Number(this.httpService.getID());
     this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
       this.playlists = data;
     });

@@ -62,7 +62,6 @@ export class ListNewSongComponent implements OnInit {
 
       });
 
-      console.log(data);
     });
   }
 
