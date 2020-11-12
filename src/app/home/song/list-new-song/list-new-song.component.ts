@@ -18,8 +18,8 @@ export class ListNewSongComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.songService.getAllSongsNew().subscribe(data => {
-      this.songList = data;
+    this.songService.getAllSongsNew().subscribe(res => {
+      this.songList = res;
       $(() => {
         const swiper = new Swiper('.carousel-gallery .swiper-container', {
           effect: 'slide',
@@ -61,7 +61,6 @@ export class ListNewSongComponent implements OnInit {
         });
 
       });
-
     });
   }
 

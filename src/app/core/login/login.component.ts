@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
       // tslint:disable-next-line:triple-equals
       if (res.id != null) {
         const jwt = res.token;
-        localStorage.setItem('token', JSON.stringify(jwt));
-        localStorage.setItem('userId', JSON.stringify(res.id));
-        this.router.navigate(['userHome']);
+        sessionStorage.setItem('token', JSON.stringify(jwt));
+        sessionStorage.setItem('userId', JSON.stringify(res.id));
+        this.router.navigate(['home']);
       } else {
         alert('Đăng nhập thất bại!');
       }

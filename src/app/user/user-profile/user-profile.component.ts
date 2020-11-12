@@ -6,6 +6,7 @@ import {HttpService} from '../../service/http.service';
 import {Users} from '../../model/Users';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+import {Role} from '../../model/Role';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,13 +15,12 @@ import {finalize} from 'rxjs/operators';
 })
 export class UserProfileComponent implements OnInit {
 
-  id: number;
   userForm: FormGroup;
-  message = '';
   user: Users;
   userid: string;
   avaUrl: string;
   selectImg: any = null;
+  roles: Role[];
 
   constructor(private formBuilder: FormBuilder,
               private userService: UsersService,
@@ -31,34 +31,24 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.userForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        email: ['', [Validators.required]],
-        gender: ['', [Validators.required]],
-        hobbies: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        gender: [''],
+        hobbies: [''],
         avatarUrl: ['', [Validators.required]]
       });
-    // @ts-ignore
     this.userid = this.httpService.getID();
-    console.log(this.userid);
-    this.userService.getUserById(this.userid).subscribe(data => {
-      this.user = {
-        id: data.id,
-        roles: data.roles,
-        username: data.username,
-        password: data.password
-      };
-      this.avaUrl = data.avatarUrl;
-      this.userForm.patchValue(data);
+    this.userService.getUserById(this.userid).subscribe(res => {
+      this.user = res;
+      this.avaUrl = res.avatarUrl;
+      this.userForm.patchValue(this.user);
     });
-    console.log(this.user);
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    // console.log(this.user);
     const user1 = {
       id: this.user.id,
       name: this.userForm.value.name,
@@ -68,15 +58,15 @@ export class UserProfileComponent implements OnInit {
       gender: this.userForm.value.gender,
       hobbies: this.userForm.value.hobbies,
       avatarUrl: this.avaUrl,
-      roles: this.user.roles
+      role: this.user.role
     };
     this.userService.updateUser(user1).subscribe(res => {
-      this.message = res.message;
+      alert(res.message);
     });
   }
 
   // tslint:disable-next-line:typedef
-  submit(){
+  sendToFirebase(){
     if (this.selectImg !== null){
       const filePath = `avataruser/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
@@ -89,15 +79,15 @@ export class UserProfileComponent implements OnInit {
       ).subscribe();
     }
   }
-// tslint:disable-next-line:typedef
+
+  // tslint:disable-next-line:typedef
   showPre(event: any){
     if (event.target.files && event.target.files[0]){
       this.selectImg = event.target.files[0];
-      this.submit();
+      this.sendToFirebase();
     } else {
-      this.avaUrl = '';
+      this.avaUrl = this.user.avatarUrl;
       this.selectImg = null;
     }
   }
-
 }

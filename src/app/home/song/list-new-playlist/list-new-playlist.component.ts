@@ -15,8 +15,8 @@ export class ListNewPlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playlistService.getAllPlaylistsNew().subscribe(data => {
-      this.playlists = data;
+    this.playlistService.getAllPlaylistsNew().subscribe(res => {
+      this.playlists = res;
     });
   }
 }

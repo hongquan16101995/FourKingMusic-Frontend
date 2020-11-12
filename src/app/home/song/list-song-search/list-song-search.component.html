@@ -6,7 +6,7 @@
         <h4 class="font-weight-bold">Bài hát</h4>
         <ul class="list-group br-1" *ngFor="let song of songLists ; index as i">
           <li class="list-group-item pb-1" *ngIf="i < 10" >
-            <a class="name-of-song" [routerLink]="['song',song.id]">
+            <a class="name-of-song" [routerLink]="['/song',song.id]">
               <img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2">
               <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
             </a>
@@ -21,7 +21,7 @@
         <h4 class="font-weight-bold">Playlist</h4>
         <ul class="list-group">
           <li class="list-group-item pb-1" *ngFor="let playlist of playLists">
-            <a class="name-of-song" [routerLink]="['playlist',playlist.id]">
+            <a class="name-of-song" [routerLink]="['/playlist',playlist.id]">
               <img src="{{playlist.avatarUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
               <h6 class="mb-1 text-dark"><b>{{playlist.name}}</b></h6>
             </a>

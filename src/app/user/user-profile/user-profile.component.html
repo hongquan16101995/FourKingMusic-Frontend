@@ -10,53 +10,45 @@
             </th>
           </tr>
           <tr >
-            <td style="padding-top: 30px; padding-left: 60px"><img [src]="avaUrl" width="50px" height="50px"></td>
+            <td style="padding-top: 30px; padding-left: 60px"><img [src]="avaUrl" alt="Lỗi hiển thị" width="50px" height="50px"></td>
             <td colspan="2"><input type="file" formControlName="avatarUrl" (change)="showPre($event)"></td>
           </tr>
           <tr>
-            <td style="padding-left: 60px;">Name</td>
+            <td style="padding-left: 60px;">Tên</td>
             <td><input type="text" formControlName="name"></td>
             <td>
               <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched"
                    class="text-danger">
-                Erros
+                Không được để trống ô này!
               </div>
             </td>
           </tr>
           <tr>
             <td style="padding-left: 60px;">Email</td>
-            <td><input type="text" formControlName="email" readonly></td>
+            <td><input type="text" formControlName="email"></td>
             <td>
               <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched"
                    class="text-danger">
-                Erros
+                Không được để trống ô này!
+              </div>
+              <div *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched"
+                   class="text-danger">
+                Email không đúng định dạng!
               </div>
             </td>
           </tr>
           <tr>
-            <td style="padding-left: 60px;">Gender</td>
+            <td style="padding-left: 60px;">Giớ tính</td>
             <td><input type="text" formControlName="gender"></td>
-            <td>
-              <div *ngIf="userForm.get('gender').hasError('required') && userForm.get('gender').touched"
-                   class="text-danger">
-                Erros
-              </div>
-            </td>
           </tr>
           <tr>
-            <td style="padding-left: 60px;">Hobbies</td>
+            <td style="padding-left: 60px;">Sở thích</td>
             <td><input type="text" formControlName="hobbies"></td>
-            <td>
-              <div *ngIf="userForm.get('hobbies').hasError('required') && userForm.get('hobbies').touched"
-                   class="text-danger">
-                Erros
-              </div>
-            </td>
           </tr>
           <tr>
             <td colspan="3">
-              <button type="submit">Update</button>
-              <button class="button-cancel" [routerLink]="['/userHome']">Cancel</button>
+              <button type="submit">Cập nhật</button>
+              <button class="button-cancel" [routerLink]="['/home']">Thoát</button>
             </td>
           </tr>
         </table>

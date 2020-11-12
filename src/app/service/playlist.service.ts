@@ -5,7 +5,9 @@ import {Observable} from 'rxjs';
 import {Song} from '../model/Song';
 import {environment} from '../../environments/environment';
 import {Playlist} from '../model/Playlist';
+
 const API_URL = `${environment.apiUrl}`;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,17 +42,15 @@ export class PlaylistService {
     return this.http.put(API_URL + '/playlist/update' , playlist  , this.httpService.getHttp());
   }
 
-  updateSongOfPlaylist(id: number, song: Song): Observable<any> {
-    return this.http.put(API_URL + '/playlist/' + id, song, this.httpService.getHttp());
+  updateSongOfPlaylist(id: number, songId: number): Observable<any> {
+    return this.http.put(API_URL + '/playlist/' + id, songId, this.httpService.getHttp());
   }
 
-  deletePlaylist(id: number, userId: number): Observable<any> {
-    // @ts-ignore
-    return this.http.delete(API_URL + '/playlist/' + id, userId, this.httpService.getHttp());
+  deletePlaylist(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/playlist/' + id, this.httpService.getHttp());
   }
 
   deleteSongOfPlaylist(id: number, songId: number): Observable<any> {
-    // @ts-ignore
-    return this.http.delete(API_URL + '/playlist/song/' + id, songId, this.httpService.getHttp());
+    return this.http.delete(API_URL + '/playlist/song/' + id + '/' + songId, this.httpService.getHttp());
   }
 }
