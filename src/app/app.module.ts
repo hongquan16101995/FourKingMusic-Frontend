@@ -27,7 +27,6 @@ import {ListNewPlaylistComponent} from './home/song/list-new-playlist/list-new-p
 import {ListNewSongComponent} from './home/song/list-new-song/list-new-song.component';
 import {ListAllComponent} from './home/song/list-all/list-all.component';
 import {PlayPlaylistComponent} from './home/song/play-playlist/play-playlist.component';
-import {UserPlayPlaylistComponent} from './user/user-play-playlist/user-play-playlist.component';
 import {CreatSongComponent} from './user/user-song/creat-song/creat-song.component';
 import {UserPlaySongComponent} from './user/user-song/user-play-song/user-play-song.component';
 import {UserEditMysongComponent} from './user/user-song/user-edit-mysong/user-edit-mysong.component';
@@ -36,6 +35,8 @@ import {AllSongsComponent} from './home/song/all-songs/all-songs.component';
 import {AllPlaylistComponent} from './home/song/all-playlist/all-playlist.component';
 import {ListSongSearchComponent} from './home/song/list-song-search/list-song-search.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SingerSongsComponent } from './home/singer/singer-songs/singer-songs.component';
+import { UserPlaylistComponent } from './user/user-playlist/user-playlist.component';
 
 @NgModule({
   declarations: [
@@ -61,13 +62,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ListNewSongComponent,
     ListAllComponent,
     PlayPlaylistComponent,
-    UserPlayPlaylistComponent,
     UserPlaySongComponent,
     UserEditMysongComponent,
     UserMysongComponent,
     AllSongsComponent,
     AllPlaylistComponent,
-    ListSongSearchComponent
+    ListSongSearchComponent,
+    SingerSongsComponent,
+    UserPlaylistComponent
   ],
   imports: [
     NgxPaginationModule,

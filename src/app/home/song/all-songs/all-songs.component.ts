@@ -19,10 +19,11 @@ export class AllSongsComponent implements OnInit {
   songList: Song[];
   likesongs: Likesong[] = [];
   playlists: Playlist[];
+  like: Likesong;
+  userId: number;
   status: boolean;
   song: Song;
   user: Users;
-  userId: number;
   p: number;
 
   constructor(private songService: SongService,
@@ -36,6 +37,9 @@ export class AllSongsComponent implements OnInit {
     this.songService.getAllSongs().subscribe(res => {
       this.songList = res;
       console.log(this.songList);
+      this.playlistService.getPlaylistByUser(this.userId).subscribe(res => {
+        this.playlists = res;
+      });
       this.userId = Number(this.httpClient.getID());
       console.log(this.userId);
       this.likesongService.getAllLikesong().subscribe(response => {
@@ -48,18 +52,6 @@ export class AllSongsComponent implements OnInit {
   });
   }
 
-  // tslint:disable-next-line:typedef
-
-
-  // tslint:disable-next-line:typedef
-  // addSongInPlaylist(listID, songId) {
-  //   this.playlistService.updateSongOfPlaylist(listID, songId).subscribe(res => {
-  //     this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {
-  //       this.playlists = res;
-  //     });
-  //     alert(res.message);
-  //   });
-  // }
   // tslint:disable-next-line:typedef
   likesong(song, like) {
     if (like.status){
@@ -75,6 +67,16 @@ export class AllSongsComponent implements OnInit {
           this.songList = res;
         });
       });
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  addSongInPlaylist(listID, songId) {
+    this.playlistService.updateSongOfPlaylist(listID, songId).subscribe(res => {
+      this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {
+        this.playlists = data;
+      });
+      alert(res.message);
     });
   }
 }

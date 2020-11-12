@@ -18,15 +18,15 @@
 
         <li class="dropdown user user-menu open">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            <img src="" class="user-image" alt="Avatar">
-            <span class="hidden-xs">sadas</span>
+            <img src="{{user.avatarUrl}}" class="user-image" alt="Avatar">
+            <span class="hidden-xs">{{user.name}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="" class="img-circle" alt="Avatar">
-              <p> sadasd
-                <small>Member since Nov. 2020</small>
+              <img src="{{user.avatarUrl}}" class="img-circle" alt="Avatar">
+              <p> {{user.name}}
+                <small>{{user.hobbies}}</small>
               </p>
             </li>
             <!-- Menu Body -->
