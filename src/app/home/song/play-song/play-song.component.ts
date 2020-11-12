@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
-
 declare var Amplitude: any;
 
 
@@ -28,7 +27,7 @@ export class PlaySongComponent implements OnInit {
             url: this.song.fileUrl,
             cover_art_url: this.song.avatarUrl
           }
-        ]
+        ],
       });
     });
   }
