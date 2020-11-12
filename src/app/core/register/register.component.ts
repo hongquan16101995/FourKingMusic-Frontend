@@ -12,7 +12,6 @@ import {Message} from '../../model/Message';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  message: Message;
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
               private router: Router) { }
@@ -39,8 +38,7 @@ export class RegisterComponent implements OnInit {
       if (res.message != null) {
         this.router.navigate(['login']);
       } else {
-        this.message.message = res.message;
-        alert(this.message);
+        alert(res.message);
       }
     });
   }

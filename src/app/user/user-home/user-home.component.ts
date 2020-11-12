@@ -16,16 +16,16 @@ export class UserHomeComponent implements OnInit {
               private songService: SongService) { }
 
   ngOnInit(): void {
-    this.songService.getAllSongs().subscribe(data => {
-      this.songList = data;
+    this.songService.getAllSongs().subscribe(res => {
+      this.songList = res;
     });
   }
 
   // tslint:disable-next-line:typedef
   logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.clear();
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id');
+    sessionStorage.clear();
     this.route.navigate(['']);
   }
 

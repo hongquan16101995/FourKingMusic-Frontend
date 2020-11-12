@@ -19,8 +19,8 @@
         <!-- Right Side Player -->
         <div id="player-left-bottom" style="margin: auto" >
           <div class="song-meta-data" style="margin-bottom: 50px; margin-left: 20px">
-            <div class="song-title"><h4><b>{{name}}</b></h4></div>
-            <span class="song-artist" *ngFor="let singer of singers">{{singer.name}}</span>
+            <div class="song-title"><h4><b>{{song.name}}</b></h4></div>
+            <span class="song-artist" *ngFor="let singer of this.song.singers">{{singer.name}}</span>
             <span class="song-artist" *ngIf="song.singers.length == 0">{{song.user.name}}</span>
           </div>
           <div id="time-container">

@@ -24,9 +24,9 @@ export class NavbarUserComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.clear();
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id');
+    sessionStorage.clear();
     this.route.navigate(['']);
   }
 
