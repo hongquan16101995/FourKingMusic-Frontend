@@ -1,6 +1,6 @@
 <div class="container">
   <div>
-    <app-navbar-menu></app-navbar-menu>
+    <app-navbar-user></app-navbar-user>
   </div>
   <div class="new-most-song mt-5">
     <div class="row p-5">
@@ -17,6 +17,42 @@
       </div>
     </div>
   </div>
+
+  <section class="bg-light p-3 mb-4">
+      <span class="ml-5" id="like-btn">
+        <i id="like" class="fa fa-heart text-danger"></i> Like
+    </span>
+    <span class="ml-5">
+          <i class="fa fa-comment text-danger"></i> Comment
+      </span>
+  </section>
+
+  <section class="bg-light p-3 my-4">
+    <div class="row">
+      <div class="col-7 px-5 br-1">
+        <h3 class="mb-3">Lyrics</h3>
+        <div class="lyric-content">
+          <pre></pre>
+        </div>
+      </div>
+      <div class="col-5 px-5">
+        <h3 class="mb-3">Recommend for you</h3>
+        <ul class="list-group">
+          <li class="list-group-item p-0 py-2 bg-light">
+            <div class="name-of-song">
+              <img width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
+              <i class="fa fa-play play-btn position-absolute" style="top: 12px;"></i>
+            </div>
+            <a>
+              <h6 class="mb-1 text-dark"></h6>
+            </a>
+            <p class="mb-0 singer"><span></span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 
   <div class="footer fixed-bottom" style="margin-bottom: 100px">
     <div id="app-cover">
@@ -64,5 +100,10 @@
       </div>
     </div>
   </div>
+
+  <div style="margin-top: 100px">
+    <app-footer-user></app-footer-user>
+  </div>
+
 </div>
 

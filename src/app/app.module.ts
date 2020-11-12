@@ -37,6 +37,7 @@ import {ListSongSearchComponent} from './home/song/list-song-search/list-song-se
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SingerSongsComponent } from './home/singer/singer-songs/singer-songs.component';
 import { UserPlaylistComponent } from './user/user-playlist/user-playlist.component';
+import { UserPlayPlaylistComponent } from './user/user-play-playlist/user-play-playlist.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { UserPlaylistComponent } from './user/user-playlist/user-playlist.compon
     AllPlaylistComponent,
     ListSongSearchComponent,
     SingerSongsComponent,
-    UserPlaylistComponent
+    UserPlaylistComponent,
+    UserPlayPlaylistComponent
   ],
   imports: [
     NgxPaginationModule,
