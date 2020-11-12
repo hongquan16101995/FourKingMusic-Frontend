@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
-import {Singers} from '../../../model/Singers';
 declare var Amplitude: any;
 
 @Component({
