@@ -50,7 +50,6 @@ export class UserPlaySongComponent implements OnInit {
       });
     });
   }
-  // tslint:disable-next-line:typedef
   onEnter(value){
     const cmt = {
       content: value,
