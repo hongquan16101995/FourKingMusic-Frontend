@@ -16,12 +16,12 @@ export class CommentsongService {
               private httpService: HttpService) {
   }
 
-  getAllCommentsong(): Observable<any> {
-    return  this.http.get<any>(API_URL + '/commentsong');
-  }
-  getCommentsong(id: number): Observable<any> {
-    return this.http.get<any>(API_URL + '/commentsong/' + id);
-  }
+  // getAllCommentsong(): Observable<any> {
+  //   return  this.http.get<any>(API_URL + '/commentsong');
+  // }
+  // getCommentsong(id: number): Observable<any> {
+  //   return this.http.get<any>(API_URL + '/commentsong/' + id);
+  // }
   updateCommentsong(commentsong: Commentsong): Observable<any> {
     return this.http.post(API_URL + '/commentsong', commentsong, this.httpService.getHttp());
   }
