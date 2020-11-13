@@ -19,7 +19,6 @@ export class AllSongsComponent implements OnInit {
   songList: Song[];
   likesongs: Likesong[] = [];
   playlists: Playlist[];
-  like: Likesong;
   userId: number;
   status: boolean;
   song: Song;
@@ -36,16 +35,13 @@ export class AllSongsComponent implements OnInit {
   ngOnInit(): void {
     this.songService.getAllSongs().subscribe(res => {
       this.songList = res;
-      console.log(this.songList);
       // tslint:disable-next-line:no-shadowed-variable
       this.playlistService.getPlaylistByUser(this.userId).subscribe(res => {
         this.playlists = res;
       });
       this.userId = Number(this.httpClient.getID());
-      console.log(this.userId);
       this.likesongService.getAllLikesong().subscribe(response => {
         this.likesongs = response;
-        console.log(this.likesongs);
       });
       this.playlistService.getPlaylistByUser(this.userId).subscribe(playlist => {
         this.playlists = playlist;

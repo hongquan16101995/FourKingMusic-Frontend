@@ -8,6 +8,10 @@ import {PlaylistService} from '../../../service/playlist.service';
 import {Playlist} from '../../../model/Playlist';
 import {Likesong} from '../../../model/Likesong';
 import {LikesongService} from '../../../service/likesong.service';
+import {CommentsongService} from '../../../service/commentsong.service';
+import {Commentsong} from '../../../model/Commentsong';
+import {Users} from '../../../model/Users';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 declare var Amplitude: any;
 declare var Swal: any;
@@ -19,33 +23,42 @@ declare var Swal: any;
 })
 export class UserPlaySongComponent implements OnInit {
   songList: Song[];
-  likesongs: Likesong[] = [];
+  likesongs: Likesong[];
+  playlists: Playlist[];
+  commentsong: Commentsong[];
   id: number;
   song: Song;
-  playlists: Playlist[];
   userId: number;
+  user: Users;
+  form: FormGroup;
 
   constructor(private userService: UsersService,
               private songService: SongService,
               private likesongService: LikesongService,
+              private commentsongService: CommentsongService,
               private playlistService: PlaylistService,
               private router: ActivatedRoute,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private formbuild: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.form = this.formbuild.group({
+      comment: ['']
+    });
     this.userId = Number(this.httpService.getID());
-    console.log(this.id);
     this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.playlistService.getPlaylistByUser(this.userId).subscribe(res => {
       this.playlists = res;
     });
-    this.playlistService.getPlaylistByUser(this.userId).subscribe(playlist => {
-      this.playlists = playlist;
+    this.commentsongService.getCommentBySong(this.id).subscribe(res => {
+      this.commentsong = res;
     });
-    this.likesongService.getAllLikesong().subscribe(response => {
-      this.likesongs = response;
-      console.log(this.likesongs);
+    this.likesongService.getAllLikesong().subscribe(res => {
+      this.likesongs = res;
+    });
+    this.userService.getUserById(this.httpService.getID()).subscribe(res => {
+      this.user = res;
     });
     this.songService.getSongById(this.id).subscribe(res => {
       this.song = res;
@@ -74,6 +87,21 @@ export class UserPlaySongComponent implements OnInit {
         this.songService.getSongById(song.id).subscribe(res => {
           this.song = res;
         });
+      });
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  onEnter() {
+    const cmt = {
+      content: this.form.value.comment,
+      user: this.user,
+      song: this.song
+    };
+    this.commentsongService.updateCommentsong(cmt).subscribe(res => {
+      this.commentsongService.getCommentBySong(this.song.id).subscribe( data => {
+        this.commentsong = data;
+        this.form.reset();
       });
     });
   }
