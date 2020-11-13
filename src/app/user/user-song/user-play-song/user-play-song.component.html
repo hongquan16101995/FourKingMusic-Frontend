@@ -93,7 +93,7 @@
         </td>
         <td>
           <span>
-          <i class="fa fa-comment text-danger"></i> Comment
+          <i class="fa fa-comment text-danger"></i> Commentsong
     </span>
         </td>
         <td style="float: right">
@@ -116,12 +116,14 @@
       <div class="col-7 px-5 br-1">
         <h3 class="mb-3">Lyrics</h3>
         <div class="lyric-content">
-<!--          comment-->
-          <div *ngFor="let comment of commentSong">
+          <pre></pre>
+          <div *ngFor="let comment of commentsong">
             <p>{{comment.user.name}}</p>
             <p>{{comment.content}}</p>
           </div>
-          <input type="text" #box (keyup.enter)="onEnter(box.value)">
+          <form [formGroup]="form" (ngSubmit)="onEnter()">
+            <input type="text" formControlName="comment">
+          </form>
         </div>
       </div>
       <div class="col-5 px-5">
