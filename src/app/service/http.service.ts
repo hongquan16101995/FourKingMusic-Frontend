@@ -12,7 +12,6 @@ export class HttpService {
   httpOptions = {
     headers: this.headers_object
   };
-
   id: string;
 
   constructor() { }

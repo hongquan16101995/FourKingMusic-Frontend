@@ -34,30 +34,32 @@ export class LoginComponent implements OnInit {
     };
 
     (function(d, s, id){
+      // tslint:disable-next-line:prefer-const
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
+      if (d.getElementById(id)) {return; }
       js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    } (document, 'script', 'facebook-jssdk'));
 
   }
 
+  // tslint:disable-next-line:typedef
   loginFacebook() {
     FB.login((response) => {
       //do something
       console.log(response);
 
-      if (response != null && response.status == 'connected') {
-        localStorage.setItem('token', JSON.stringify(response.authResponse.accessToken));
+      if (response != null && response.status === 'connected') {
+        sessionStorage.setItem('token', JSON.stringify(response.authResponse.accessToken));
         FB.api(
           "/" + response.authResponse.userID,
           'GET',
-          {"fields":"picture"},
+          {"fields":"picture, email"},
           (res) => {
             console.log(res);
-            localStorage.setItem('userId', JSON.stringify(res.id));
-            this.router.navigate(['userHome']);
+            sessionStorage.setItem('userId', JSON.stringify(res.id));
+            this.router.navigate(['home']);
             if (res && !res.error) {
               / handle the result /
             }
