@@ -19,6 +19,7 @@
               <th scope="col">Bài hát</th>
               <th scope="col">Ca sĩ</th>
               <th scope="col" *ngIf="userId">Playlist</th>
+              <th scope="col">Thích</th>
             </tr>
             </thead>
             <tbody *ngFor="let song of songList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
@@ -44,17 +45,25 @@
                 </select>
               </td>
               <td>
-                <ng-container *ngFor="let like of likesongs">
-                  <ng-container *ngIf="like.song.id == song.id && like.user.id == userId">
-                    <p>{{like.status}}</p>
-                    <p>{{song.countLike}}</p>
-                    <button (click)="likesong(song, like)">Like</button>
-                  </ng-container>
-                </ng-container>
+                <span *ngIf="!userId">
+                  <a [routerLink]="['/login']" style="text-decoration: none">
+                    <span class="mdi mdi-heart-half-full text-danger fa-lg"></span> &nbsp;{{song.countLike}}
+                  </a>
+                </span>
+
+                <div *ngFor="let like of likesongs">
+                  <div *ngIf="like.song.id == song.id && like.user.id == userId">
+                    <a  (click)="likesong(song, like)" style="text-decoration: none">
+                      <i *ngIf="like.status==true" id="like" class="fa fa-heart text-danger"></i>
+                      <i *ngIf="like.status==false"  class="fas fa-heart-broken text-danger"></i> &nbsp;
+                    </a>{{song.countLike}}
+                  </div>
+                </div>
               </td>
             </tr>
             </tbody>
           </table>
+
           <div class="text-center mt-3">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </div>

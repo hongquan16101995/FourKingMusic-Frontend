@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -13,7 +13,7 @@ const API_URL = `${environment.apiUrl}`;
 export class SongService {
 
   constructor(private http: HttpClient,
-              private httpService: HttpService) { }
+              private httpService: HttpService) {}
 
   getAllSongs(): Observable<Song[]> {
     return this.http.get<Song[]>(API_URL + '/home/song');
@@ -39,12 +39,16 @@ export class SongService {
     return this.http.post<Song[]>(API_URL + '/home/song/search' , name);
   }
 
+  getSongByLike(): Observable<Song[]> {
+    return this.http.get<Song[]>(API_URL + '/home/song/like');
+  }
+
   createSong(song: Song): Observable<any> {
     return this.http.post(API_URL + '/song', song, this.httpService.getHttp());
   }
 
   updateSong(song: Song): Observable<any> {
-    return this.http.put(API_URL + '/song' , song, this.httpService.getHttp());
+    return this.http.put(API_URL + '/song', song, this.httpService.getHttp());
   }
 
   deleteSong(id: number): Observable<any> {

@@ -77,13 +77,38 @@
   </div>
 
 
-  <section class="bg-light p-3 mb-4">
-      <span class="ml-5" id="like-btn">
-        <i id="like" class="fa fa-heart text-danger"></i> Like
+  <section class="bg-light p-3 mb-4 container">
+    <table class="table">
+      <tr>
+        <td>
+          <span>
+        <div *ngFor="let like of likesongs">
+          <div *ngIf="like.song.id == song.id && like.user.id == userId">
+            <a (click)="likesong(song, like)" style="text-decoration: none">
+              <i class="fa fa-heart text-danger"></i>
+            </a> {{song.countLike}}
+          </div>
+        </div>
     </span>
-    <span class="ml-5">
+        </td>
+        <td>
+          <span>
           <i class="fa fa-comment text-danger"></i> Comment
-      </span>
+    </span>
+        </td>
+        <td style="float: right">
+          <span>
+       <div *ngIf="userId">
+         <select (change)="addSongInPlaylist(ref.value, song.id)" #ref>
+           <option>  <p> Thêm vào playlist của tôi</p></option>
+           <option *ngFor="let list of playlists" value="{{list.id}}">{{list.name}}</option>
+         </select>
+       </div>
+    </span>
+        </td>
+      </tr>
+    </table>
+
   </section>
 
   <section class="bg-light p-3 my-4">

@@ -12,7 +12,20 @@
     <div class="new-most-song mt-5">
       <div class="row p-5">
         <div class="col">
-          <h4 class="font-weight-bold"></h4>
+          <h4 class="font-weight"><b>Danh sách nhạc</b> : {{playlist.name}}</h4>
+          <table class="table">
+            <tr>
+              <th>
+                <h4 class="font-weight-bold">Playlist</h4>
+              </th>
+              <th>
+                <a *ngIf="!userId" [routerLink]="['/playlist/play', playlist.id]">
+                  <i class="fas fa-play-circle"></i> Play all </a>
+                <a *ngIf="userId" [routerLink]="['/home/playlist/play', playlist.id]">
+                  <i class="fas fa-play-circle"></i> Play all </a>
+              </th>
+            </tr>
+          </table>
           <table class="table table-striped table-light">
             <thead class="thead-dark">
             <tr>
