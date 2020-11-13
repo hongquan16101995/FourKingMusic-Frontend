@@ -5,6 +5,7 @@ import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+declare var Swal: any;
 
 @Component({
   selector: 'app-user-edit-mysong',
@@ -56,7 +57,12 @@ export class UserEditMysongComponent implements OnInit {
       dateCreated: this.song.dateCreated
     };
     this.songService.updateSong(song1).subscribe(res => {
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 

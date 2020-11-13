@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UsersService} from '../../service/users.service';
-
+declare var Swal: any;
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
@@ -29,7 +29,12 @@ export class PasswordComponent implements OnInit {
       newpassword: this.passwordForm.value.newpassword
     };
     this.userService.changePassword(data).subscribe(res => {
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 }

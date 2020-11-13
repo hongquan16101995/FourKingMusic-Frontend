@@ -4,6 +4,7 @@ import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 
 declare var FB: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-login',
@@ -79,7 +80,12 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userId', JSON.stringify(res.id));
         this.router.navigate(['home']);
       } else {
-        alert('Đăng nhập thất bại!');
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Oops...',
+        //   text: 'Đăng nhập thất bại!',
+        //   footer: '<a [routerLink]="[/register]" ]>Nếu bạn chưa tạo tài khoản? Click me!</a>'
+        // });
       }
     });
   }

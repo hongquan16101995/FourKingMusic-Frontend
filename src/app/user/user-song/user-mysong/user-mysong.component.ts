@@ -4,10 +4,10 @@ import {SongService} from '../../../service/song.service';
 import {HttpService} from '../../../service/http.service';
 import {PlaylistService} from '../../../service/playlist.service';
 import {Playlist} from '../../../model/Playlist';
-import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Users} from '../../../model/Users';
 import {UsersService} from '../../../service/users.service';
+declare var Swal: any;
 
 @Component({
   selector: 'app-user-mysong',
@@ -59,7 +59,12 @@ export class UserMysongComponent implements OnInit {
         this.songService.getSongByUser(this.userid).subscribe(data => {
           this.songList = data;
         });
-        alert(res.message);
+        Swal.fire({
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: true,
+          timer: 3000
+        });
       });
     }
   }
@@ -74,7 +79,12 @@ export class UserMysongComponent implements OnInit {
       this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
         this.playlists = data;
       });
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 
@@ -85,7 +95,12 @@ export class UserMysongComponent implements OnInit {
         this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
           this.playlists = data;
         });
-        alert(res.message);
+        Swal.fire({
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: true,
+          timer: 3000
+        });
       });
     }
   }

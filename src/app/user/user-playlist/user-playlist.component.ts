@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {HttpService} from '../../service/http.service';
 import {Song} from '../../model/Song';
 import {Playlist} from '../../model/Playlist';
+declare var Swal: any;
 
 @Component({
   selector: 'app-user-playlist',
@@ -38,7 +39,12 @@ export class UserPlaylistComponent implements OnInit {
       this.playlistService.getPlaylistById(this.id).subscribe(data => {
         this.songList = data.songs;
       });
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 }

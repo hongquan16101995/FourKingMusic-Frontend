@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {LoginService} from '../../service/login.service';
 import {Message} from '../../model/Message';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -38,7 +40,11 @@ export class RegisterComponent implements OnInit {
       if (res.message != null) {
         this.router.navigate(['login']);
       } else {
-        alert(res.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: res.message,
+        });
       }
     });
   }

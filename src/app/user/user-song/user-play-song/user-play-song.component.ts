@@ -10,6 +10,7 @@ import {Likesong} from '../../../model/Likesong';
 import {LikesongService} from '../../../service/likesong.service';
 
 declare var Amplitude: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-user-play-song',
@@ -83,7 +84,12 @@ export class UserPlaySongComponent implements OnInit {
       this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {
         this.playlists = data;
       });
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 }

@@ -61,8 +61,10 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
+  background-color:  #976fe0;
+  background-size: auto;
+  transition: background-position 0.5s;
   text-align: left;
-  background-color: #fff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10084,12 +10086,6 @@ body {
   padding: 0.9rem 0;
 }
 
-#mainNav .navbar-nav .nav-item:hover {
-  color: fade(#fff, 80%);
-  outline: none;
-  background-color: transparent;
-}
-
 #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
   outline: none;
   background-color: transparent;
@@ -10158,7 +10154,6 @@ body {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background-color: #976fe0;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
