@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Song} from '../../model/Song';
 import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
+import {Playlist} from '../../model/Playlist';
 declare var $: any;
 @Component({
   selector: 'app-user-play-playlist',
@@ -13,6 +14,7 @@ export class UserPlayPlaylistComponent implements OnInit {
 
   id: number;
   songlist: Song[];
+  playlist: Playlist;
   p: number;
 
   constructor(private playlistService: PlaylistService,
@@ -22,6 +24,7 @@ export class UserPlayPlaylistComponent implements OnInit {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
       this.songlist = res.songs;
+      this.playlist = res;
       // tslint:disable-next-line:only-arrow-functions
       $(() => {
         const audio = new Audio();
