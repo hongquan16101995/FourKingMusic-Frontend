@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
+      if (d.getElementById(id)) {return; }
       js = d.createElement(s); js.id = id;
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
           (res) => {
             console.log(res);
             localStorage.setItem('userId', JSON.stringify(res.id));
-            this.router.navigate(['userHome']);
+            this.router.navigate(['home']);
             if (res && !res.error) {
               / handle the result /
             }

@@ -19,9 +19,7 @@ export class AllSongsComponent implements OnInit {
   songList: Song[];
   likesongs: Likesong[] = [];
   playlists: Playlist[];
-  like: Likesong;
   userId: number;
-  status: boolean;
   song: Song;
   user: Users;
   p: number;
