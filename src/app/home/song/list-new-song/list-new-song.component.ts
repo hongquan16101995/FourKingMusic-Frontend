@@ -54,7 +54,7 @@ export class ListNewSongComponent implements OnInit {
             },
             // when window width is <= 640px
             1680: {
-              slidesPerView: 6,
+              slidesPerView: 5,
               spaceBetween: 40
             }
           }

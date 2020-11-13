@@ -30,7 +30,6 @@ export class PasswordComponent implements OnInit {
     };
     this.userService.changePassword(data).subscribe(res => {
       Swal.fire({
-        icon: 'success',
         title: res.message,
         showConfirmButton: true,
         timer: 3000
