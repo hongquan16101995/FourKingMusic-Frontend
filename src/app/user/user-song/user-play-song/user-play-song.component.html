@@ -78,7 +78,7 @@
 
 
   <section class="bg-light p-3 mb-4 container">
-    <table class="table">
+    <table class="table" >
       <tr>
         <td>
           <span>
@@ -93,7 +93,7 @@
         </td>
         <td>
           <span>
-          <i class="fa fa-comment text-danger"></i> Commentsong
+          <i class="fa fa-comment text-danger"></i> Bình luận
     </span>
         </td>
         <td style="float: right">
@@ -114,15 +114,24 @@
   <section class="bg-light p-3 my-4">
     <div class="row">
       <div class="col-7 px-5 br-1">
-        <h3 class="mb-3">Lyrics</h3>
+        <h3 class="mb-3">Bình luận</h3>
         <div class="lyric-content">
           <pre></pre>
-          <div *ngFor="let comment of commentsong">
-            <p>{{comment.user.name}}</p>
-            <p>{{comment.content}}</p>
-          </div>
+          <ul *ngFor="let comment of commentsong" class="list-group br-1">
+            <li class="list-group-item pb-1">
+              <div class="name-of-song">
+                <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left" class="img thumbnail pull-left mr-2">
+
+              </div>
+              <span>
+                <h6 class="mb-1 text-dark"><b>{{comment.user.name}}</b></h6>
+               <p>{{comment.content}}</p>
+           </span>
+
+            </li>
+          </ul>
           <form [formGroup]="form" (ngSubmit)="onEnter()">
-            <input type="text" formControlName="comment">
+            <input class="input-group" type="text" formControlName="comment" placeholder="Viết bình luận...">
           </form>
         </div>
       </div>
