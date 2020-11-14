@@ -15,6 +15,8 @@ export class ListSongSearchComponent implements OnInit {
   nameSearch: string;
   songLists: Song[] = [];
   playLists: Playlist[] = [];
+  p: number;
+  page: number;
 
   constructor(private songService: SongService,
               private playlistService: PlaylistService,

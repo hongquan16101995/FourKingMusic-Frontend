@@ -68,6 +68,68 @@
       <!-- End Amplitdue Player -->
     </div>
   </div>
+
+  <section class="bg-light p-3 mb-4 container">
+    <table class="table" >
+      <tr>
+        <td>
+          <span>
+            <a  style="text-decoration: none">
+              <i class="fa fa-heart text-danger"></i>
+            </a> {{song.countLike}}
+    </span>
+        </td>
+        <td>
+          <span>
+          <i class="fa fa-comment text-danger"></i> Bình luận
+    </span>
+        </td>
+      </tr>
+    </table>
+
+  </section>
+
+  <section class="bg-light p-3 my-4">
+    <div class="row">
+      <div class="col-7 px-5 br-1">
+        <h3 class="mb-3">Bình luận</h3>
+        <div class="lyric-content">
+          <pre></pre>
+          <ul *ngFor="let comment of commentsong" class="list-group br-1">
+            <li class="list-group-item pb-1">
+              <div class="name-of-song">
+                <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left" class="img thumbnail pull-left mr-2">
+              </div>
+              <span>
+                <h6 class="mb-1 text-dark"><b>{{comment.user.name}}</b></h6>
+               <p>{{comment.content}}</p>
+           </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-5 px-5">
+        <h3 class="mb-3">Recommend for you</h3>
+        <ul class="list-group">
+          <li class="list-group-item p-0 py-2 bg-light">
+            <div class="name-of-song">
+              <img width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
+              <i class="fa fa-play play-btn position-absolute" style="top: 12px;"></i>
+            </div>
+            <a>
+              <h6 class="mb-1 text-dark"></h6>
+            </a>
+            <p class="mb-0 singer"><span></span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr/>
+  <section class="comment my-4" id="comment">
+    <div></div>
+  </section>
+
   <div>
     <app-footer-user></app-footer-user>
   </div>

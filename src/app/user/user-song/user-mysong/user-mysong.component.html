@@ -1,8 +1,9 @@
 <div class="container">
   <app-navbar-user></app-navbar-user>
+
   <section id="newmostsongs">
     <div class="new-most-song mt-5">
-      <div class="row p-5">
+      <div class="row p-3">
         <div class="col-6">
           <table class="table col-6">
             <tr>
@@ -21,7 +22,7 @@
               <th scope="col">Xóa</th>
             </tr>
             </thead>
-            <tbody *ngFor="let song of songList | paginate: { id: 'song', itemsPerPage: 10, currentPage: p }; let i = index">
+            <tbody *ngFor="let song of songList | paginate: { id: 'song', itemsPerPage: 7, currentPage: p }; let i = index">
             <tr >
               <th scope="row">{{i + 1}}</th>
               <td><img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>
@@ -57,7 +58,7 @@
               <th scope="col">Xóa</th>
             </tr>
             </thead>
-            <tbody *ngFor="let playlist of playlists  | paginate: { id: 'playlist', itemsPerPage: 10, currentPage: page }; let i = index">
+            <tbody *ngFor="let playlist of playlists  | paginate: { id: 'playlist', itemsPerPage: 7, currentPage: page }; let i = index">
             <tr>
               <th scope="row">{{i + 1}}</th>
               <td><img width="40" height="40" src="{{playlist.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>
@@ -95,7 +96,6 @@
     </div>
   </form>
   <!--tạo playlist-->
-  <app-footer-user></app-footer-user>
 </div>
 
 

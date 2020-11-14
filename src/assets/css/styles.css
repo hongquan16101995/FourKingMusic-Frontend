@@ -208,6 +208,8 @@ svg {
 
 table {
   border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 caption {
@@ -7659,11 +7661,6 @@ button.bg-black:focus {
   margin: 3rem !important;
 }
 
-.mt-5,
-.my-5 {
-  margin-top: 3rem !important;
-}
-
 .mr-5,
 .mx-5 {
   margin-right: 3rem !important;
@@ -10254,7 +10251,7 @@ body {
 }
 
 .contact-section {
-  padding-top: 5rem;
+  padding-top: 2rem;
 }
 
 .contact-section .card {

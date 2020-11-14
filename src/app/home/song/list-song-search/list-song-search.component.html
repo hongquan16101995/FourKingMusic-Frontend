@@ -1,47 +1,61 @@
 <div class="container">
 
-<div>
-  <app-navbar-menu></app-navbar-menu>
-</div>
+  <div>
+    <app-navbar-menu></app-navbar-menu>
+  </div>
 
   <section class="container">
     <div class="new-most-song mt-5">
       <div class="row p-5">
         <div class="col-6">
           <h4 class="font-weight-bold">Bài hát</h4>
-          <ul class="list-group br-1" *ngFor="let song of songLists ; index as i">
-            <li class="list-group-item pb-1" *ngIf="i < 10" >
-              <a class="name-of-song" [routerLink]="['/song',song.id]">
-                <img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2">
-                <h6 class="mb-1 text-dark"><b>{{song.name}}</b></h6>
-              </a>
-              <span style="float: left">
-                    <p *ngFor="let singer of song.singers">{{singer.name}}</p>
-                    <p *ngIf="song.singers.length == 0">{{song.user.name}}</p>
-              </span>
-            </li>
-          </ul>
+
+          <table class="table table-striped table-light">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ảnh</th>
+              <th scope="col">Bài hát</th>
+            </tr>
+            </thead>
+            <tbody
+              *ngFor="let song of songLists | paginate: { id: 'song', itemsPerPage: 7, currentPage: p }; let i = index">
+            <tr *ngIf="i < 10">
+              <th scope="row">{{i + 1}}</th>
+              <td><img width="40" height="40" src="{{song.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>
+              <td><a [routerLink]="['/song',song.id]"><b>{{song.name}}</b></a></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="text-center mt-2">
+            <pagination-controls id="song" (pageChange)="p = $event"></pagination-controls>
+          </div>
         </div>
         <div class="col-6">
           <h4 class="font-weight-bold">Playlist</h4>
-          <ul class="list-group">
-            <li class="list-group-item pb-1" *ngFor="let playlist of playLists">
-              <a class="name-of-song" [routerLink]="['/playlist',playlist.id]">
-                <img src="{{playlist.avatarUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
-                <h6 class="mb-1 text-dark"><b>{{playlist.name}}</b></h6>
-              </a>
-              <span style="float: left">
-              <p class="mb-0 singer">{{playlist.user.name}}</p>
-              </span>
-            </li>
-          </ul>
+          <table class="table table-striped table-light">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ảnh</th>
+              <th scope="col">Playlist</th>
+              <th scope="col">Xóa</th>
+            </tr>
+            </thead>
+            <tbody
+              *ngFor="let playlist of playLists | paginate: { id: 'playlist', itemsPerPage: 7, currentPage: page }; let i = index">
+            <tr>
+              <th scope="row">{{i + 1}}</th>
+              <td><img width="40" height="40" src="{{playlist.avatarUrl}}" class="img thumbnail pull-left mr-2"></td>
+              <td><a [routerLink]="['/playlist',playlist.id]"><b>{{playlist.name}}</b></a></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="text-center mt-2">
+            <pagination-controls id="playlist" (pageChange)="page = $event"></pagination-controls>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="footer" style="margin-bottom: 10px">
-    <app-footer-user></app-footer-user>
-  </div>
-
 </div>

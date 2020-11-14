@@ -37,11 +37,6 @@ export class ListNewSongComponent implements OnInit {
             clickable: true
           },
           breakpoints: {
-            // when window width is <= 320px
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 5
-            },
             // when window width is <= 480px
             425: {
               slidesPerView: 2,
@@ -53,9 +48,14 @@ export class ListNewSongComponent implements OnInit {
               spaceBetween: 20
             },
             // when window width is <= 640px
-            1680: {
-              slidesPerView: 5,
-              spaceBetween: 40
+            1024: {
+              slidesPerView: 6,
+              spaceBetween: 20
+            },
+            // when window width is <= 1680px
+            2500: {
+              slidesPerView: 6,
+              spaceBetween: 30
             }
           }
         });
