@@ -6,17 +6,14 @@
   <div *ngIf="userId">
     <app-navbar-user></app-navbar-user>
   </div>
-
-
   <section class="newmostsongs">
     <div class="new-most-song mt-5">
-      <div class="row p-5">
+      <div class="row p-3">
         <div class="col">
-          <h4 class="font-weight"><b>Danh sách nhạc</b> : {{playlist.name}}</h4>
           <table class="table">
             <tr>
               <th>
-                <h4 class="font-weight-bold">Playlist</h4>
+                <h4 class="font-weight-bold">Playlist: {{playlist.name}}</h4>
               </th>
               <th>
                 <a *ngIf="!userId" [routerLink]="['/playlist/play', playlist.id]">
@@ -36,7 +33,7 @@
               <th scope="col" *ngIf="userId == playlist.user.id">Xóa</th>
             </tr>
             </thead>
-            <tbody *ngFor="let song of songList| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <tbody *ngFor="let song of songList| paginate: { itemsPerPage: 7, currentPage: p }; let i = index">
             <tr>
               <th> {{i + 1}}</th>
               <th scope="row">
@@ -59,15 +56,11 @@
             </tr>
             </tbody>
           </table>
-          <div class="text-center mt-3">
+          <div class="text-center">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
-  <app-footer-user></app-footer-user>
-
 </div>

@@ -5,16 +5,17 @@
   transform: translateY(-10%);
   overflow: hidden;
   margin-top: 100px;
-  background-color: #976fe0;
 }
 #carousel div {
   position: absolute;
   transition: transform 1s, left 1s, opacity 1s, z-index 0s;
   opacity: 1;
+  border-radius: 10px;
 }
 #carousel div img {
   width: 400px;
   transition: width 1s;
+  border-radius: 10px;
 }
 #carousel div.hideLeft {
   left: 0%;
@@ -23,6 +24,7 @@
 }
 #carousel div.hideLeft img {
   width: 200px;
+  border-radius: 10px;
 }
 #carousel div.hideRight {
   left: 100%;
@@ -31,6 +33,7 @@
 }
 #carousel div.hideRight img {
   width: 200px;
+  border-radius: 10px;
 }
 #carousel div.prev {
   z-index: 5;
@@ -39,6 +42,7 @@
 }
 #carousel div.prev img {
   width: 300px;
+  border-radius: 10px;
 }
 #carousel div.prevLeftSecond {
   z-index: 4;
@@ -48,6 +52,7 @@
 }
 #carousel div.prevLeftSecond img {
   width: 200px;
+  border-radius: 10px;
 }
 #carousel div.selected {
   z-index: 10;
@@ -61,6 +66,7 @@
 }
 #carousel div.next img {
   width: 300px;
+  border-radius: 10px;
 }
 #carousel div.nextRightSecond {
   z-index: 4;
@@ -70,6 +76,7 @@
 }
 #carousel div.nextRightSecond img {
   width: 200px;
+  border-radius: 10px;
 }
 
 #mast-text h1 {

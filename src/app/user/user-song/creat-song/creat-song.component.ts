@@ -6,6 +6,7 @@ import {UsersService} from '../../../service/users.service';
 import {HttpService} from '../../../service/http.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+declare var Swal: any;
 
 @Component({
   selector: 'app-creat-song',
@@ -57,7 +58,13 @@ export class CreatSongComponent implements OnInit {
       user: this.user
     };
     this.songService.createSong(song).subscribe(res => {
-      alert(res.message);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: false,
+        timer: 3000
+      });
       this.songForm.reset();
     });
   }
