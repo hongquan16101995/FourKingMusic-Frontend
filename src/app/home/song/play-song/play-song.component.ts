@@ -26,6 +26,7 @@ export class PlaySongComponent implements OnInit {
   userId: number;
   song: Song;
   user: Users;
+  p: number;
 
   constructor(private songService: SongService,
               private router: ActivatedRoute,
@@ -40,6 +41,9 @@ export class PlaySongComponent implements OnInit {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.commentsongService.getCommentBySong(this.id).subscribe(res => {
       this.commentsong = res;
+    });
+    this.songService.getSongByLike().subscribe(res => {
+      this.songList = res;
     });
     this.likesongService.getAllLikesong().subscribe(res => {
       this.likesongs = res;
