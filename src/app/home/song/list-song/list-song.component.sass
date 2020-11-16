@@ -5,16 +5,18 @@
   transform: translateY(-10%)
   overflow: hidden
   margin-top: 100px
-  background-color: #976fe0
 
   div
     position: absolute
     transition: transform 1s, left 1s, opacity 1s, z-index 0s
     opacity: 1
+    border-radius: 10px
 
     img
       width: 400px
       transition: width 1s
+      border-radius: 10px
+
 
     &.hideLeft
       left: 0%
@@ -23,6 +25,7 @@
 
       img
         width: 200px
+        border-radius: 10px
 
     &.hideRight
       left: 100%
@@ -31,6 +34,7 @@
 
       img
         width: 200px
+        border-radius: 10px
 
     &.prev
       z-index: 5
@@ -39,6 +43,7 @@
 
       img
         width: 300px
+        border-radius: 10px
 
     &.prevLeftSecond
       z-index: 4
@@ -48,6 +53,7 @@
 
       img
         width: 200px
+        border-radius: 10px
 
     &.selected
       z-index: 10
@@ -61,6 +67,7 @@
 
       img
         width: 300px
+        border-radius: 10px
 
     &.nextRightSecond
       z-index: 4
@@ -70,6 +77,7 @@
 
       img
         width: 200px
+        border-radius: 10px
 
 
 #mast-text h1

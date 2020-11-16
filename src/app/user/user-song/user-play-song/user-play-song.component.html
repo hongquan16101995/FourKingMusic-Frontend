@@ -1,152 +1,111 @@
 <div class="container">
   <app-navbar-user></app-navbar-user>
   <div>
-    <div id="blue-playlist-container">
+    <div class="example-container">
+      <div style="float: left; margin-left: 70px" >
+        <div id="white-player">
+          <div class="white-player-top">
+            <div class="center">
+              <span class="now-playing"><h4><b>{{song.name}}</b></h4></span>
+            </div>
 
-      <!-- Amplitude Player -->
-      <div id="amplitude-player">
-
-        <!-- Left Side Player -->
-        <div id="amplitude-left">
-
-          <img data-amplitude-song-info="cover_art_url" class="album-art"/>
-          <div class="amplitude-visualization" id="large-visualization">
           </div>
-
-        </div>
-        <!-- End Left Side Player -->
-
-        <!-- Right Side Player -->
-        <div id="player-left-bottom" style="margin: auto">
-          <div class="song-meta-data" style="margin-bottom: 50px; margin-left: 20px">
-            <div class="song-title"><h4><b>{{song.name}}</b></h4></div>
-            <span class="song-artist" *ngFor="let singer of this.song.singers">{{singer.name}}</span>
+          <div class="text-center"><b>Ca sĩ: </b>
+            <span class="song-artist" *ngFor="let singer of song.singers">{{singer.name}}</span>
             <span class="song-artist" *ngIf="song.singers.length == 0">{{song.user.name}}</span>
           </div>
-          <div id="time-container">
-          <span class="current-time">
-            <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
-          </span>
-            <div id="progress-container">
-              <div class="amplitude-wave-form">
-              </div>
-              <input type="range" class="amplitude-song-slider"/>
-              <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
-              <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
-            </div>
-            <span class="duration">
-            <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
-          </span>
-          </div>
-          <div id="control-container">
-            <div id="repeat-container">
-              <div class="amplitude-repeat" id="repeat"></div>
-              <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
-            </div>
-            <div id="central-control-container">
-              <div id="central-controls">
-                <div class="amplitude-prev" id="previous"></div>
-                <div class="amplitude-play-pause" id="play-pause"></div>
-                <div class="amplitude-next" id="next"></div>
-              </div>
+
+          <div id="white-player-center">
+            <img data-amplitude-song-info="cover_art_url" class="main-album-art"/>
+
+            <div class="song-meta-data">
+              <span data-amplitude-song-info="name" class="song-name"></span>
+              <span data-amplitude-song-info="artist" class="song-artist"></span>
             </div>
 
-            <div id="volume-container">
-              <div class="volume-controls">
-                <div class="amplitude-mute amplitude-not-muted"></div>
-                <input type="range" class="amplitude-volume-slider"/>
-                <div class="ms-range-fix"></div>
+            <div class="time-progress">
+              <div id="progress-container">
+                <input type="range" class="amplitude-song-slider"/>
+                <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+                <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
               </div>
-              <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle-right"></div>
+
+              <div class="time-container">
+                <span class="current-time">
+                  <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
+                </span>
+                <span class="duration">
+                    <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+                  </span>
+              </div>
             </div>
           </div>
-          <div id="meta-container">
-            <span data-amplitude-song-info="name" class="song-name"></span>
-            <div class="song-artist-album">
-              <span data-amplitude-song-info="artist"></span>
-              <span data-amplitude-song-info="artist"></span>
-              <span data-amplitude-song-info="artist"></span>
-              <span data-amplitude-song-info="album"></span>
-            </div>
+
+          <div id="white-player-controls">
+            <div class="amplitude-repeat" id="repeat"></div>
+            <div class="amplitude-prev" id="previous"></div>
+            <div class="amplitude-play-pause" id="play-pause"></div>
+            <div class="amplitude-next" id="next"></div>
           </div>
         </div>
-        <!-- End Right Side Player -->
       </div>
-      <!-- End Amplitdue Player -->
+
+      <div style="float: right; margin-top: 100px; width: 700px">
+        <section class="bg-light p-3 mb-4 container" style="border-radius: 5px">
+          <table class="table">
+            <tr>
+              <td>
+                <span>
+                  <div *ngFor="let like of likesongs">
+                      <div *ngIf="like.song.id == song.id && like.user.id == userId">
+                      <a (click)="likesong(song, like)" style="text-decoration: none">
+                      <i class="fa fa-heart text-danger"></i>
+                     </a> {{song.countLike}}
+                   </div>
+                  </div>
+                 </span>
+              </td>
+              <td style="float: right">
+                  <span><div *ngIf="userId">
+                   <select (change)="addSongInPlaylist(ref.value, song.id)" #ref>
+                     <option>  <p> Thêm vào playlist của tôi</p></option>
+                     <option *ngFor="let list of playlists" value="{{list.id}}">{{list.name}}</option>
+                  </select>
+                  </div>
+                  </span>
+              </td>
+            </tr>
+          </table>
+        </section>
+        <section class="bg-light p-3 my-4" style="border-radius: 5px">
+          <div>
+            <div class="px-5">
+              <h3 class="mb-3">Bình luận</h3>
+              <div>
+                <ul class="list-group br-1" *ngFor="let comment of commentsong | paginate: { itemsPerPage: 4, currentPage: p };" >
+                  <li class="list-group-item pb-1">
+                    <div class="name-of-song">
+                      <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left"
+                           class="img thumbnail pull-left mr-2">
+                    </div>
+                    <span>
+                       <h6 class="mb-1 text-dark"><b>{{comment.user.name}}</b></h6>
+                         <p>{{comment.content}}</p>
+                    </span>
+                  </li>
+                </ul>
+                <div class="text-center">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onEnter()">
+                  <input class="input-group" type="text" formControlName="comment" placeholder="Viết bình luận...">
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
-
-
-  <section class="bg-light p-3 mb-4 container">
-    <table class="table">
-      <tr>
-        <td>
-          <span>
-        <div *ngFor="let like of likesongs">
-          <div *ngIf="like.song.id == song.id && like.user.id == userId">
-            <a (click)="likesong(song, like)" style="text-decoration: none">
-              <i class="fa fa-heart text-danger"></i>
-            </a> {{song.countLike}}
-          </div>
-        </div>
-    </span>
-        </td>
-        <td>
-          <span>
-          <i class="fa fa-comment text-danger"></i> Commentsong
-    </span>
-        </td>
-        <td style="float: right">
-          <span>
-       <div *ngIf="userId">
-         <select (change)="addSongInPlaylist(ref.value, song.id)" #ref>
-           <option>  <p> Thêm vào playlist của tôi</p></option>
-           <option *ngFor="let list of playlists" value="{{list.id}}">{{list.name}}</option>
-         </select>
-       </div>
-    </span>
-        </td>
-      </tr>
-    </table>
-
-  </section>
-
-  <section class="bg-light p-3 my-4">
-    <div class="row">
-      <div class="col-7 px-5 br-1">
-        <h3 class="mb-3">Lyrics</h3>
-        <div class="lyric-content">
-          <pre></pre>
-          <div *ngFor="let comment of commentsong">
-            <p>{{comment.user.name}}</p>
-            <p>{{comment.content}}</p>
-          </div>
-          <form [formGroup]="form" (ngSubmit)="onEnter()">
-            <input type="text" formControlName="comment">
-          </form>
-        </div>
-      </div>
-      <div class="col-5 px-5">
-        <h3 class="mb-3">Recommend for you</h3>
-        <ul class="list-group">
-          <li class="list-group-item p-0 py-2 bg-light">
-            <div class="name-of-song">
-              <img width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
-              <i class="fa fa-play play-btn position-absolute" style="top: 12px;"></i>
-            </div>
-            <a>
-              <h6 class="mb-1 text-dark"></h6>
-            </a>
-            <p class="mb-0 singer"><span></span></p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <hr/>
-  <section class="comment my-4" id="comment">
-    <div></div>
-  </section>
 </div>
-
 

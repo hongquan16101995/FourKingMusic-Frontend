@@ -14,6 +14,7 @@ import {Users} from '../../../model/Users';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 declare var Amplitude: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-user-play-song',
@@ -30,6 +31,7 @@ export class UserPlaySongComponent implements OnInit {
   userId: number;
   user: Users;
   form: FormGroup;
+  p: number;
 
   constructor(private userService: UsersService,
               private songService: SongService,
@@ -111,7 +113,12 @@ export class UserPlaySongComponent implements OnInit {
       this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {
         this.playlists = data;
       });
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 }

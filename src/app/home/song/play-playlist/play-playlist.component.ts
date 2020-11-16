@@ -49,6 +49,8 @@ export class PlayPlaylistComponent implements OnInit {
           // tslint:disable-next-line:prefer-const
           playPauseButton = $('#play-pause-button'),
           // tslint:disable-next-line:prefer-const
+          playRandomButton = $('#play-random-button'),
+          // tslint:disable-next-line:prefer-const
           i = playPauseButton.find('i'),
           // tslint:disable-next-line:prefer-const
           tProgress = $('#current-time'),
@@ -80,7 +82,10 @@ export class PlayPlaylistComponent implements OnInit {
           return a;
         }
 
-        songs = shuffle(songs);
+        // tslint:disable-next-line:typedef
+        function shuffleButton(){
+           songs = shuffle(songs);
+        }
 
         // tslint:disable-next-line:typedef
         function playPause() {
@@ -101,7 +106,6 @@ export class PlayPlaylistComponent implements OnInit {
             }
           }, 300);
         }
-
 
         // tslint:disable-next-line:typedef
         function showHover(event) {
@@ -309,6 +313,8 @@ export class PlayPlaylistComponent implements OnInit {
           playNextTrackButton.on('click', () => {
             selectTrack(1);
           });
+
+          playRandomButton.on('click', shuffleButton);
         }
 
         initPlayer();

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LoginService} from '../../service/login.service';
 import {Message} from '../../model/Message';
+import validate = WebAssembly.validate;
+
+declare var Swal: any;
 
 @Component({
   selector: 'app-register',
@@ -18,10 +21,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: [''],
-      email: [''],
-      username: [''],
-      password: ['']
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -38,7 +41,11 @@ export class RegisterComponent implements OnInit {
       if (res.message != null) {
         this.router.navigate(['login']);
       } else {
-        alert(res.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: res.message,
+        });
       }
     });
   }

@@ -22,7 +22,7 @@
               <th scope="col">Thích</th>
             </tr>
             </thead>
-            <tbody *ngFor="let song of songList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <tbody *ngFor="let song of songList | paginate: { itemsPerPage: 7, currentPage: p }; let i = index">
             <tr>
               <th> {{i + 1}}</th>
               <th scope="row">
@@ -63,13 +63,11 @@
             </tr>
             </tbody>
           </table>
-
-          <div class="text-center mt-3">
+          <div class="text-center">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <app-footer-user></app-footer-user>
 </div>

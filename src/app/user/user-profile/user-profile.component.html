@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <td style="padding-left: 60px;">Email</td>
-            <td><input type="text" formControlName="email"></td>
+            <td><input type="text" formControlName="email" readonly></td>
             <td>
               <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched"
                    class="text-danger">

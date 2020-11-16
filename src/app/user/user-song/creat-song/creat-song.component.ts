@@ -6,6 +6,7 @@ import {UsersService} from '../../../service/users.service';
 import {HttpService} from '../../../service/http.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+declare var Swal: any;
 
 @Component({
   selector: 'app-creat-song',
@@ -57,13 +58,20 @@ export class CreatSongComponent implements OnInit {
       user: this.user
     };
     this.songService.createSong(song).subscribe(res => {
-      alert(res.message);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: false,
+        timer: 3000
+      });
       this.songForm.reset();
     });
   }
 
   // tslint:disable-next-line:typedef
   submitAvatar() {
+    this.submitFile();
     if (this.selectImg !== null) {
       const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       console.log(filePath);
@@ -83,7 +91,7 @@ export class CreatSongComponent implements OnInit {
   showPreAvtar(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectImg = event.target.files[0];
-      this.submitAvatar();
+      // this.submitAvatar();
     } else {
       this.selectImg = null;
     }
@@ -98,6 +106,7 @@ export class CreatSongComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             this.fileUrl = url;
+            this.onSubmit();
           });
         })
       ).subscribe();
@@ -108,7 +117,7 @@ export class CreatSongComponent implements OnInit {
   showPreFile(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectFile = event.target.files[0];
-      this.submitFile();
+      // this.submitFile();
     } else {
       this.fileUrl = '';
       this.selectFile = null;

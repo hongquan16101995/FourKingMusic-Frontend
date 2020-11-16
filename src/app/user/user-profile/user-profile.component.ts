@@ -7,7 +7,7 @@ import {Users} from '../../model/Users';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Role} from '../../model/Role';
-
+declare var Swal: any;
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -61,7 +61,12 @@ export class UserProfileComponent implements OnInit {
       role: this.user.role
     };
     this.userService.updateUser(user1).subscribe(res => {
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 

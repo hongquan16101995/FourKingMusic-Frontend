@@ -8,6 +8,7 @@ import {PlaylistService} from '../../../service/playlist.service';
 import {Playlist} from '../../../model/Playlist';
 import {UsersService} from '../../../service/users.service';
 import {Users} from '../../../model/Users';
+declare var Swal: any;
 
 @Component({
   selector: 'app-all-songs',
@@ -72,7 +73,12 @@ export class AllSongsComponent implements OnInit {
       this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {
         this.playlists = data;
       });
-      alert(res.message);
+      Swal.fire({
+        icon: 'success',
+        title: res.message,
+        showConfirmButton: true,
+        timer: 3000
+      });
     });
   }
 }

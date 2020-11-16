@@ -1,7 +1,7 @@
 <div class="container">
   <app-navbar-user></app-navbar-user>
   <div style="margin-top: 60px">
-    <form (ngSubmit)="onSubmit()" [formGroup]="songForm">
+    <form (ngSubmit)="submitAvatar()" [formGroup]="songForm">
       <div>
         <table class="box">
           <tr>
@@ -36,10 +36,16 @@
             <td style="padding-left: 60px; padding-top: 40px">File MP3</td>
             <td style=" padding-top: 40px" colspan="2"><input type="file" formControlName="fileUrl"
                                                               (change)="showPreFile($event)"></td>
+            <td>
+              <div *ngIf="songForm.get('fileUrl').hasError('required') && songForm.get('fileUrl').touched"
+                   class="text-danger">
+                Không được để trống ô này!
+              </div>
+            </td>
           </tr>
           <tr>
             <td colspan="3">
-              <button type="submit">Tạo mới</button>
+              <button type="submit" [disabled]="songForm.invalid">Tạo mới</button>
               <button type="button" class="button-cancel" [routerLink]="['/home']">Thoát</button>
             </td>
           </tr>
