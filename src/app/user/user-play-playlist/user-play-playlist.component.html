@@ -1,6 +1,6 @@
 <div class="container">
   <div>
-   <app-navbar-user></app-navbar-user>
+    <app-navbar-user></app-navbar-user>
   </div>
 
   <div class="example-container">
@@ -15,12 +15,12 @@
         </thead>
         <tbody *ngFor="let song of songlist | paginate: {id: 'song', itemsPerPage: 7, currentPage: p }; let i = index">
         <tr>
-          <td>{{i+1}}</td>
+          <td>{{i + 1}}</td>
           <td>
             <img style="float: left" src="{{song.avatarUrl}}" width="40" height="40" alt=""
                  class="img thumbnail pull-left mr-2">
           </td>
-          <td><a  [routerLink]="['/song',song.id]">{{song.name}}</a></td>
+          <td><a [routerLink]="['/home/song',song.id]">{{song.name}}</a></td>
         </tr>
         </tbody>
       </table>
@@ -34,11 +34,15 @@
         <table class="table">
           <tr>
             <td>
-                <span>
-                      <a style="text-decoration: none" [routerLink]="['/login']">
-                      <i class="fa fa-heart text-danger"></i>
-                     </a>
-                 </span>
+              <span>
+              <div *ngFor="let like of likeplaylist">
+                <div *ngIf="like.playlist.id == playlist.id && like.user.id == userId">
+                  <a (click)="likePlaylist(playlist, like)" style="text-decoration: none">
+                    <i class="fa fa-heart text-danger"></i>
+                  </a> {{playlist.countLike}}
+                </div>
+              </div>
+                </span>
             </td>
           </tr>
         </table>
@@ -73,49 +77,49 @@
       </section>
     </div>
   </div>
+</div>
 
-  <div class="footer fixed-bottom" style="margin-bottom: 100px">
-    <div id="app-cover">
-      <div id="player">
-        <div id="player-track">
-          <div id="album-name"></div>
-          <div id="track-name"></div>
-          <div id="track-time">
-            <div id="current-time"></div>
-            <div id="track-length"></div>
-          </div>
-          <div id="s-area">
-            <div id="ins-time"></div>
-            <div id="s-hover"></div>
-            <div id="seek-bar"></div>
-          </div>
+<div class="footer fixed-bottom" style="margin-bottom: 100px">
+  <div id="app-cover">
+    <div id="player">
+      <div id="player-track">
+        <div id="album-name"></div>
+        <div id="track-name"></div>
+        <div id="track-time">
+          <div id="current-time"></div>
+          <div id="track-length"></div>
         </div>
-        <div id="player-content">
-          <div id="album-art">
-            <img src="{{playlist.avatarUrl}}"
-                 class="active"
-                 id="_1">
+        <div id="s-area">
+          <div id="ins-time"></div>
+          <div id="s-hover"></div>
+          <div id="seek-bar"></div>
+        </div>
+      </div>
+      <div id="player-content">
+        <div id="album-art">
+          <img src="{{playlist.avatarUrl}}"
+               class="active"
+               id="_1">
+        </div>
+        <div id="player-controls">
+          <!--            <div class="control">-->
+          <!--              <div class="button" id="play-previous">-->
+          <!--                <i class="fas fa-backward"></i>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <div class="control">
+            <div class="button" id="play-random-button">
+              <i class="fas fa-random"></i>
+            </div>
           </div>
-          <div id="player-controls">
-            <!--            <div class="control">-->
-            <!--              <div class="button" id="play-previous">-->
-            <!--                <i class="fas fa-backward"></i>-->
-            <!--              </div>-->
-            <!--            </div>-->
-            <div class="control">
-              <div class="button" id="play-random-button">
-                <i class="fas fa-random"></i>
-              </div>
+          <div class="control">
+            <div class="button" id="play-pause-button">
+              <i class="fas fa-play"></i>
             </div>
-            <div class="control">
-              <div class="button" id="play-pause-button">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-            <div class="control">
-              <div class="button" id="play-next">
-                <i class="fas fa-forward"></i>
-              </div>
+          </div>
+          <div class="control">
+            <div class="button" id="play-next">
+              <i class="fas fa-forward"></i>
             </div>
           </div>
         </div>

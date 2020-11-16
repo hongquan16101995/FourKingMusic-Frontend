@@ -3,13 +3,14 @@ import {Song} from '../../model/Song';
 import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 import {Playlist} from '../../model/Playlist';
+import {LikeplaylistService} from '../../service/likeplaylist.service';
+import {Likeplaylist} from '../../model/Likeplaylist';
+import {UsersService} from '../../service/users.service';
+import {HttpService} from '../../service/http.service';
 import {CommentplaylistService} from '../../service/commentplaylist.service';
-import {Commentsong} from '../../model/Commentsong';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Users} from '../../model/Users';
 import {Commentplaylist} from '../../model/Commentplaylist';
-import {UsersService} from '../../service/users.service';
-import {HttpService} from '../../service/http.service';
 declare var $: any;
 @Component({
   selector: 'app-user-play-playlist',
@@ -27,13 +28,16 @@ export class UserPlayPlaylistComponent implements OnInit {
   commentplaylist: Commentplaylist[];
   form: FormGroup;
   user: Users;
+  likeplaylist: Likeplaylist[];
+  userId: number;
 
   constructor(private playlistService: PlaylistService,
               private userService: UsersService,
               private router: ActivatedRoute,
               private commentsongService: CommentplaylistService,
               private httpService: HttpService,
-              private formbuild: FormBuilder) { }
+              private formbuild: FormBuilder,
+              private likePlaylistService: LikeplaylistService) { }
 
   ngOnInit(): void {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
@@ -45,6 +49,10 @@ export class UserPlayPlaylistComponent implements OnInit {
     });
     this.userService.getUserById(this.httpService.getID()).subscribe(res => {
       this.user = res;
+    });
+    this.userId = Number(this.httpService.getID());
+    this.likePlaylistService.getAllLikeplaylist().subscribe(res => {
+      this.likeplaylist = res;
     });
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
       this.songlist = res.songs;
@@ -352,6 +360,24 @@ export class UserPlayPlaylistComponent implements OnInit {
       this.commentsongService.getCommentByPlaylist(this.playlist.id).subscribe( data => {
         this.commentplaylist = data;
         this.form.reset();
+      });
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  likePlaylist(playlist, like) {
+    if (like.status) {
+      playlist.countLike--;
+      like.status = false;
+    } else {
+      playlist.countLike++;
+      like.status = true;
+    }
+    this.likePlaylistService.updateLikeplaylist(like).subscribe(() => {
+      this.playlistService.updatePlaylist(playlist).subscribe(() => {
+        this.playlistService.getPlaylistById(playlist.id).subscribe(res => {
+          this.playlist = res;
+        });
       });
     });
   }
