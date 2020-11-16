@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersService} from '../../service/users.service';
 declare var Swal: any;
 @Component({
@@ -10,15 +10,16 @@ declare var Swal: any;
 export class PasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
+  mess: string;
 
   constructor(private fb: FormBuilder,
               private userService: UsersService) { }
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group({
-      oldpassword: [''],
-      newpassword: [''],
-      renewpassword: ['']
+      oldpassword: ['', [Validators.required]],
+      newpassword: ['', [Validators.required]],
+      renewpassword: ['', [Validators.required]]
     });
   }
 
