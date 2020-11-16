@@ -68,6 +68,9 @@ export class PlaySongComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   changeSong(data) {
+    this.commentsongService.getCommentBySong(data).subscribe(res => {
+      this.commentsong = res;
+    });
     this.songService.getSongById(data).subscribe(res => {
       this.song = res;
       Amplitude.init({

@@ -3,6 +3,8 @@ import {Song} from '../../../model/Song';
 import {PlaylistService} from '../../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 import {Playlist} from '../../../model/Playlist';
+import {Commentplaylist} from '../../../model/Commentplaylist';
+import {CommentplaylistService} from '../../../service/commentplaylist.service';
 declare var $: any;
 
 @Component({
@@ -14,14 +16,20 @@ export class PlayPlaylistComponent implements OnInit {
 
   id: number;
   songlist: Song[];
+  commentplaylist: Commentplaylist[];
   playlist: Playlist;
   p: number;
+  page: number;
 
   constructor(private playlistService: PlaylistService,
+              private commentplaylistService: CommentplaylistService,
               private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
+    this.commentplaylistService.getCommentByPlaylist(this.id).subscribe(res => {
+      this.commentplaylist = res;
+    });
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
       this.songlist = res.songs;
       this.playlist = res;
