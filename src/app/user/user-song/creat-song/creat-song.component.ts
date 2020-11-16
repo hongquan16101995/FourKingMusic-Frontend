@@ -66,7 +66,9 @@ export class CreatSongComponent implements OnInit {
   submitAvatar() {
     if (this.selectImg !== null) {
       const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      console.log(filePath);
       const fileRef = this.storage.ref(filePath);
+      console.log(fileRef);
       this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {

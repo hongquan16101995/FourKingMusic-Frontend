@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
               / handle the result /
             }
             console.log(res.id);
+            // console.log(res.picture.metadata.url);
           }
         );
       }
