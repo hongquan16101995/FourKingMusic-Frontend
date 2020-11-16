@@ -1,64 +1,81 @@
-
 <div class="container">
   <div>
-    <app-navbar-user></app-navbar-user>
+   <app-navbar-user></app-navbar-user>
   </div>
-  <div class="new-most-song mt-5">
-    <div class="row p-5">
-      <div class="col">
-        <h4 class="font-weight-bold">Các bài hát của Playlist</h4>
-        <ul class="list-group" *ngFor="let song of songlist">
-          <li class="list-group-item pb-1" >
-            <a class="name-of-song" >
-              <img style="float: left" src="{{song.avatarUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
-              <h6 style="float: left" class="mb-1 text-dark"><b>{{song.name}}</b></h6>
-            </a>
-          </li>
-        </ul>
+
+  <div class="example-container">
+    <div style="float: left; margin-left: 70px; margin-top: 100px; width: 400px">
+      <table class="table table-striped table-light">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ảnh</th>
+          <th scope="col">Bài hát</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let song of songlist | paginate: {id: 'song', itemsPerPage: 7, currentPage: p }; let i = index">
+        <tr>
+          <td>{{i+1}}</td>
+          <td>
+            <img style="float: left" src="{{song.avatarUrl}}" width="40" height="40" alt=""
+                 class="img thumbnail pull-left mr-2">
+          </td>
+          <td><a  [routerLink]="['/song',song.id]">{{song.name}}</a></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <pagination-controls id="song" (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
-  </div>
 
-  <section class="bg-light p-3 mb-4">
-      <span class="ml-5" id="like-btn">
-        <i id="like" class="fa fa-heart text-danger"></i> Like
-    </span>
-    <span class="ml-5">
-          <i class="fa fa-comment text-danger"></i> Commentsong
-      </span>
-  </section>
-
-  <section class="bg-light p-3 my-4">
-    <div class="row">
-      <div class="col-7 px-5 br-1">
-        <h3 class="mb-3">Lyrics</h3>
-        <div class="lyric-content">
-          <pre></pre>
-        </div>
-      </div>
-      <div class="col-5 px-5">
-        <h3 class="mb-3">Recommend for you</h3>
-        <ul class="list-group">
-          <li class="list-group-item p-0 py-2 bg-light">
-            <div class="name-of-song">
-              <img width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
-              <i class="fa fa-play play-btn position-absolute" style="top: 12px;"></i>
+    <div style="float: right; margin-top: 100px; width: 600px">
+      <section class="bg-light p-3 mb-4 container" style="border-radius: 5px">
+        <table class="table">
+          <tr>
+            <td>
+                <span>
+                      <a style="text-decoration: none" [routerLink]="['/login']">
+                      <i class="fa fa-heart text-danger"></i>
+                     </a>
+                 </span>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section class="bg-light p-3 my-4" style="border-radius: 5px">
+        <div>
+          <div class="px-5">
+            <h3 class="mb-3">Bình luận</h3>
+            <div>
+              <ul class="list-group br-1"
+                  *ngFor="let comment of commentplaylist | paginate: { id:'comment', itemsPerPage: 4, currentPage: page };">
+                <li class="list-group-item pb-1">
+                  <div class="name-of-song">
+                    <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left"
+                         class="img thumbnail pull-left mr-2">
+                  </div>
+                  <span>
+                       <h6 class="mb-1 text-dark"><b>{{comment.user.name}}</b></h6>
+                         <p>{{comment.content}}</p>
+                    </span>
+                </li>
+              </ul>
+              <div class="text-center">
+                <pagination-controls id="comment" (pageChange)="page = $event"></pagination-controls>
+              </div>
+              <form [formGroup]="form" (ngSubmit)="onEnter()">
+                <input class="input-group" type="text" formControlName="comment" placeholder="Viết bình luận...">
+              </form>
             </div>
-            <a>
-              <h6 class="mb-1 text-dark"></h6>
-            </a>
-            <p class="mb-0 singer"><span></span></p>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
-
+  </div>
 
   <div class="footer fixed-bottom" style="margin-bottom: 100px">
     <div id="app-cover">
-      <div id="bg-artwork"></div>
-      <div id="bg-layer"></div>
       <div id="player">
         <div id="player-track">
           <div id="album-name"></div>
@@ -80,9 +97,14 @@
                  id="_1">
           </div>
           <div id="player-controls">
+            <!--            <div class="control">-->
+            <!--              <div class="button" id="play-previous">-->
+            <!--                <i class="fas fa-backward"></i>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <div class="control">
-              <div class="button" id="play-previous">
-                <i class="fas fa-backward"></i>
+              <div class="button" id="play-random-button">
+                <i class="fas fa-random"></i>
               </div>
             </div>
             <div class="control">
@@ -100,9 +122,5 @@
       </div>
     </div>
   </div>
-
-  <div style="margin-top: 100px">
-    <app-footer-user></app-footer-user>
-  </div>
-
 </div>
+

@@ -13,7 +13,7 @@
           <th scope="col">Bài hát</th>
         </tr>
         </thead>
-        <tbody *ngFor="let song of songlist | paginate: {id: 'song', itemsPerPage: 7, currentPage: p }; let i = index">
+        <tbody *ngFor="let song of songlist | paginate: {id: 'song', itemsPerPage: 7, currentPage: page }; let i = index">
         <tr>
           <td>{{i+1}}</td>
           <td>
@@ -25,7 +25,7 @@
         </tbody>
       </table>
       <div class="text-center">
-        <pagination-controls id="song" (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls id="song" (pageChange)="page = $event"></pagination-controls>
       </div>
     </div>
 
@@ -48,15 +48,16 @@
           <div class="px-5">
             <h3 class="mb-3">Bình luận</h3>
             <div>
-              <ul class="list-group br-1">
+              <ul class="list-group br-1"
+                  *ngFor="let comment of commentplaylist | paginate: {id: 'comment', itemsPerPage: 4, currentPage: p };">
                 <li class="list-group-item pb-1">
                   <div class="name-of-song">
-                    <img src="" width="40" height="40" style="float: left"
+                    <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left"
                          class="img thumbnail pull-left mr-2">
                   </div>
                   <span>
-                       <h6 class="mb-1 text-dark"><b></b></h6>
-                         <p></p>
+                       <h6 class="mb-1 text-dark"><b>{{comment.user.name}}</b></h6>
+                         <p>{{comment.content}}</p>
                     </span>
                 </li>
               </ul>
@@ -72,8 +73,6 @@
 
   <div class="footer fixed-bottom" style="margin-bottom: 100px">
     <div id="app-cover">
-      <div id="bg-artwork"></div>
-      <div id="bg-layer"></div>
       <div id="player">
         <div id="player-track">
           <div id="album-name"></div>

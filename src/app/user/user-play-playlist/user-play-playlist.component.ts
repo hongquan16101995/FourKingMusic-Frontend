@@ -3,6 +3,13 @@ import {Song} from '../../model/Song';
 import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 import {Playlist} from '../../model/Playlist';
+import {CommentplaylistService} from '../../service/commentplaylist.service';
+import {Commentsong} from '../../model/Commentsong';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Users} from '../../model/Users';
+import {Commentplaylist} from '../../model/Commentplaylist';
+import {UsersService} from '../../service/users.service';
+import {HttpService} from '../../service/http.service';
 declare var $: any;
 @Component({
   selector: 'app-user-play-playlist',
@@ -16,12 +23,29 @@ export class UserPlayPlaylistComponent implements OnInit {
   songlist: Song[];
   playlist: Playlist;
   p: number;
+  page: number;
+  commentplaylist: Commentplaylist[];
+  form: FormGroup;
+  user: Users;
 
   constructor(private playlistService: PlaylistService,
-              private router: ActivatedRoute) { }
+              private userService: UsersService,
+              private router: ActivatedRoute,
+              private commentsongService: CommentplaylistService,
+              private httpService: HttpService,
+              private formbuild: FormBuilder) { }
 
   ngOnInit(): void {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
+    this.form = this.formbuild.group({
+      comment: ['']
+    });
+    this.commentsongService.getCommentByPlaylist(this.id).subscribe(res => {
+      this.commentplaylist = res;
+    });
+    this.userService.getUserById(this.httpService.getID()).subscribe(res => {
+      this.user = res;
+    });
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
       this.songlist = res.songs;
       this.playlist = res;
@@ -312,6 +336,22 @@ export class UserPlayPlaylistComponent implements OnInit {
         }
 
         initPlayer();
+      });
+      // tslint:disable-next-line:no-shadowed-variable
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  onEnter() {
+    const cmt = {
+      content: this.form.value.comment,
+      user: this.user,
+      playlist: this.playlist
+    };
+    this.commentsongService.updateCommentplaylist(cmt).subscribe(res => {
+      this.commentsongService.getCommentByPlaylist(this.playlist.id).subscribe( data => {
+        this.commentplaylist = data;
+        this.form.reset();
       });
     });
   }
