@@ -604,3 +604,7 @@ a.more-on-ssu{
   cursor: pointer;
   text-decoration: none;
 }
+
+.songs:hover{
+  background-color: #d6c9c9;
+}

@@ -58,6 +58,9 @@ export class UserPlaySongComponent implements OnInit {
     this.likesongService.getAllLikesong().subscribe(res => {
       this.likesongs = res;
     });
+    this.songService.getSongByLike().subscribe(res => {
+      this.songList = res;
+    });
     this.userService.getUserById(this.httpService.getID()).subscribe(res => {
       this.user = res;
     });
@@ -118,6 +121,24 @@ export class UserPlaySongComponent implements OnInit {
         title: res.message,
         showConfirmButton: true,
         timer: 3000
+      });
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  changeSong(data) {
+    this.commentsongService.getCommentBySong(data).subscribe(res => {
+      this.commentsong = res;
+    });
+    this.songService.getSongById(data).subscribe(res => {
+      this.song = res;
+      Amplitude.init({
+        songs: [
+          {
+            url: this.song.fileUrl,
+            cover_art_url: this.song.avatarUrl
+          }
+        ],
       });
     });
   }
