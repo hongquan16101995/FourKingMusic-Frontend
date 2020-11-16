@@ -1,11 +1,72 @@
 <app-navbar-menu></app-navbar-menu>
-<form class="box" [formGroup]="registerForm" (ngSubmit)="register()">
-  <h1>Đăng ký</h1>
-  <input formControlName="name" type="text" name="" placeholder="Họ tên">
-  <input formControlName="email" type="text" name="" placeholder="Email">
-  <input formControlName="username" type="text" name="" placeholder="Tên đăng nhập">
-  <input formControlName="password" type="password" name="" placeholder="Mật khẩu">
-  <button type="submit">Đăng ký</button>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+<!--  <h1>Đăng ký</h1>-->
+<!--  <input formControlName="name" type="text" name="" placeholder="Họ tên">-->
+<!--  <input formControlName="email" type="text" name="" placeholder="Email">-->
+<!--  <input formControlName="username" type="text" name="" placeholder="Tên đăng nhập">-->
+<!--  <input formControlName="password" type="password" name="" placeholder="Mật khẩu">-->
+<!--  <button type="submit">Đăng ký</button>-->
+
+  <div>
+    <table class="box">
+      <tr>
+        <th colspan="3" style="padding-top: 40px">
+          <h1>Đăng ký</h1>
+        </th>
+      </tr>
+      <tr>
+        <td><input type="text" formControlName="name" placeholder="Họ tên"></td>
+        <td>
+          <div *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched"
+               class="text-danger">
+            Không được để trống ô này!
+          </div>
+          <div *ngIf="registerForm.get('name').hasError('pattern') && registerForm.get('name').touched"
+               class="text-danger">
+            Email không đúng định dạng!
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" formControlName="email" placeholder="Email"></td>
+        <td>
+          <div *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched"
+               class="text-danger">
+            Không được để trống ô này!
+          </div>
+          <div *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched"
+               class="text-danger">
+            Email không đúng định dạng!
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" formControlName="username" placeholder="Tên đăng nhập"></td>
+        <td>
+          <div *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched"
+               class="text-danger">
+            Không được để trống ô này!
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="password" formControlName="password" placeholder="Mật khẩu"></td>
+        <td>
+          <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched"
+               class="text-danger">
+            Không được để trống ô này!
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <button type="submit">Đăng ký</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
 </form>
 
 <div class="lines">

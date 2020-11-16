@@ -108,7 +108,6 @@ export class UserPlaySongComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-
   addSongInPlaylist(listID, songId) {
     this.playlistService.updateSongOfPlaylist(listID, songId).subscribe(res => {
       this.playlistService.getPlaylistByUser(this.userId).subscribe(data => {

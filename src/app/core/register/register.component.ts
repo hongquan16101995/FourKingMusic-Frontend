@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LoginService} from '../../service/login.service';
 import {Message} from '../../model/Message';
@@ -20,10 +20,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: [''],
-      email: [''],
-      username: [''],
-      password: ['']
+      name: ['', Validators.required, Validators.pattern(/^[a-zA-Z!@#\$%\^\&*\)\(+=._-]{2,}$/g)],
+      email: ['', Validators.required, Validators.email],
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 

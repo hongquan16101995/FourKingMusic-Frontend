@@ -71,6 +71,7 @@ export class CreatSongComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   submitAvatar() {
+    this.submitFile();
     if (this.selectImg !== null) {
       const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
@@ -88,7 +89,7 @@ export class CreatSongComponent implements OnInit {
   showPreAvtar(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectImg = event.target.files[0];
-      this.submitAvatar();
+      // this.submitAvatar();
     } else {
       this.selectImg = null;
     }
@@ -103,6 +104,7 @@ export class CreatSongComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             this.fileUrl = url;
+            this.onSubmit();
           });
         })
       ).subscribe();
@@ -113,7 +115,7 @@ export class CreatSongComponent implements OnInit {
   showPreFile(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectFile = event.target.files[0];
-      this.submitFile();
+      // this.submitFile();
     } else {
       this.fileUrl = '';
       this.selectFile = null;

@@ -2,7 +2,7 @@
   <app-navbar-menu></app-navbar-menu>
   <div>
     <div class="example-container">
-      <div style="float: left; margin-left: 70px" >
+      <div style="float: left; margin-left: 70px">
         <div id="white-player">
           <div class="white-player-top">
             <div class="center">
@@ -50,47 +50,66 @@
         </div>
       </div>
 
-      <div style="float: right; margin-top: 100px; width: 700px">
-        <section class="bg-light p-3 mb-4 container" style="border-radius: 5px">
-          <table class="table">
-            <tr>
-              <td>
+
+      <div class="container amplitude-stop">
+        <div class="new-most-song mt-5">
+          <div class="row p-5">
+            <div class="col">
+              <h4 class="font-weight-bold">Các bài hát của Playlist</h4>
+              <ul class="list-group" *ngFor="let song of songList">
+                <li class="list-group-item pb-1">
+                  <a class="name-of-song" (click)="changeSong(song.id)">
+                    <img style="float: left" src="{{song.avatarUrl}}" width="40" height="40" alt=""
+                         class="img thumbnail pull-left mr-2">
+                    <h6 style="float: left" class="mb-1 text-dark"><b>{{song.name}}</b></h6>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="float: right; margin-top: 100px; width: 700px">
+          <section class="bg-light p-3 mb-4 container" style="border-radius: 5px">
+            <table class="table">
+              <tr>
+                <td>
                 <span>
-                      <a  style="text-decoration: none" [routerLink]="['/login']">
+                      <a style="text-decoration: none" [routerLink]="['/login']">
                       <i class="fa fa-heart text-danger"></i>
                      </a> {{song.countLike}}
                  </span>
-              </td>
-            </tr>
-          </table>
-        </section>
-        <section class="bg-light p-3 my-4" style="border-radius: 5px">
-          <div>
-            <div class="px-5">
-              <h3 class="mb-3">Bình luận</h3>
-              <div>
-                <ul class="list-group br-1" *ngFor="let comment of commentsong | paginate: { itemsPerPage: 4, currentPage: p };" >
-                  <li class="list-group-item pb-1">
-                    <div class="name-of-song">
-                      <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left"
-                           class="img thumbnail pull-left mr-2">
-                    </div>
-                    <span>
+                </td>
+              </tr>
+            </table>
+          </section>
+          <section class="bg-light p-3 my-4" style="border-radius: 5px">
+            <div>
+              <div class="px-5">
+                <h3 class="mb-3">Bình luận</h3>
+                <div>
+                  <ul class="list-group br-1"
+                      *ngFor="let comment of commentsong | paginate: { itemsPerPage: 4, currentPage: p };">
+                    <li class="list-group-item pb-1">
+                      <div class="name-of-song">
+                        <img src="{{comment.user.avatarUrl}}" width="40" height="40" style="float: left"
+                             class="img thumbnail pull-left mr-2">
+                      </div>
+                      <span>
                        <h6 class="mb-1 text-dark"><b>{{comment.user.name}}</b></h6>
                          <p>{{comment.content}}</p>
                     </span>
-                  </li>
-                </ul>
-                <div class="text-center">
-                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </li>
+                  </ul>
+                  <div class="text-center">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
