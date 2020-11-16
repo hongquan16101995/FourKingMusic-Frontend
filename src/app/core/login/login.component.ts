@@ -82,12 +82,12 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userId', JSON.stringify(res.id));
         this.router.navigate(['home']);
       } else {
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Oops...',
-        //   text: 'Đăng nhập thất bại!',
-        //   footer: '<a [routerLink]="[/register]" ]>Nếu bạn chưa tạo tài khoản? Click me!</a>'
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Đăng nhập thất bại!',
+          footer: '<a [routerLink]="[/register]" ]>Nếu bạn chưa tạo tài khoản? Click me!</a>'
+        });
       }
     });
   }

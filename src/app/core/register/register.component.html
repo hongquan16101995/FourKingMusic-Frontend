@@ -2,9 +2,25 @@
 <form class="box" [formGroup]="registerForm" (ngSubmit)="register()">
   <h1>Đăng ký</h1>
   <input formControlName="name" type="text" name="" placeholder="Họ tên">
+  <div *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched"
+       class="text-danger">
+    Không được để trống ô này!
+  </div>
   <input formControlName="email" type="text" name="" placeholder="Email">
+  <div *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched"
+       class="text-danger">
+    Không được để trống ô này!
+  </div>
   <input formControlName="username" type="text" name="" placeholder="Tên đăng nhập">
+  <div *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched"
+       class="text-danger">
+    Không được để trống ô này!
+  </div>
   <input formControlName="password" type="password" name="" placeholder="Mật khẩu">
+  <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched"
+       class="text-danger">
+    Không được để trống ô này!
+  </div>
   <button type="submit">Đăng ký</button>
 </form>
 
