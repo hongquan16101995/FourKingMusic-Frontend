@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersService} from '../../service/users.service';
+import {Router} from '@angular/router';
 declare var Swal: any;
 @Component({
   selector: 'app-password',
@@ -13,7 +14,8 @@ export class PasswordComponent implements OnInit {
   mess: string;
 
   constructor(private fb: FormBuilder,
-              private userService: UsersService) { }
+              private userService: UsersService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group({
@@ -35,6 +37,10 @@ export class PasswordComponent implements OnInit {
         showConfirmButton: true,
         timer: 3000
       });
+      this.router.navigate(['/login']);
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userId');
+      sessionStorage.clear();
     });
   }
 }
