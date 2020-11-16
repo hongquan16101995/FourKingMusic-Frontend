@@ -3,6 +3,10 @@ import {Song} from '../../model/Song';
 import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 import {Playlist} from '../../model/Playlist';
+import {LikeplaylistService} from '../../service/likeplaylist.service';
+import {Likeplaylist} from '../../model/Likeplaylist';
+import {UsersService} from '../../service/users.service';
+import {HttpService} from '../../service/http.service';
 declare var $: any;
 @Component({
   selector: 'app-user-play-playlist',
@@ -10,18 +14,25 @@ declare var $: any;
   styleUrls: ['./user-play-playlist.component.css']
 })
 export class UserPlayPlaylistComponent implements OnInit {
-
-
   id: number;
   songlist: Song[];
   playlist: Playlist;
   p: number;
+  likeplaylist: Likeplaylist[];
+  userId: number;
 
   constructor(private playlistService: PlaylistService,
+              private userService: UsersService,
+              private httpService: HttpService,
+              private likePlaylistService: LikeplaylistService,
               private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
+    this.userId = Number(this.httpService.getID());
+    this.likePlaylistService.getAllLikeplaylist().subscribe(res => {
+      this.likeplaylist = res;
+    });
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
       this.songlist = res.songs;
       this.playlist = res;
@@ -312,6 +323,24 @@ export class UserPlayPlaylistComponent implements OnInit {
         }
 
         initPlayer();
+      });
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  likePlaylist(playlist, like) {
+    if (like.status) {
+      playlist.countLike--;
+      like.status = false;
+    } else {
+      playlist.countLike++;
+      like.status = true;
+    }
+    this.likePlaylistService.updateLikeplaylist(like).subscribe(() => {
+      this.playlistService.updatePlaylist(playlist).subscribe(() => {
+        this.playlistService.getPlaylistById(playlist.id).subscribe(res => {
+          this.playlist = res;
+        });
       });
     });
   }

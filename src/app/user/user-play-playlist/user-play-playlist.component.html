@@ -20,7 +20,7 @@
             <img style="float: left" src="{{song.avatarUrl}}" width="40" height="40" alt=""
                  class="img thumbnail pull-left mr-2">
           </td>
-          <td><a  [routerLink]="['/song',song.id]">{{song.name}}</a></td>
+          <td><a  [routerLink]="['/home/song',song.id]">{{song.name}}</a></td>
         </tr>
         </tbody>
       </table>
@@ -34,11 +34,15 @@
         <table class="table">
           <tr>
             <td>
-                <span>
-                      <a style="text-decoration: none" [routerLink]="['/login']">
-                      <i class="fa fa-heart text-danger"></i>
-                     </a>
-                 </span>
+              <span>
+              <div *ngFor="let like of likeplaylist">
+                <div *ngIf="like.playlist.id == playlist.id && like.user.id == userId">
+                  <a (click)="likePlaylist(playlist, like)" style="text-decoration: none">
+                    <i class="fa fa-heart text-danger"></i>
+                  </a> {{playlist.countLike}}
+                </div>
+              </div>
+                </span>
             </td>
           </tr>
         </table>
